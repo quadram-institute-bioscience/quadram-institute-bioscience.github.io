@@ -7,7 +7,7 @@ bodyClass: page-about
 
 This is the page for news
  
-## News
+## Posts
 
 <div class="posts">
   {% for post in site.posts %}
