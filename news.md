@@ -13,7 +13,7 @@ This is the page for news
   {% for post in site.posts %}
     <article class="post">
 
-      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> {{ page.date | date: "%B %e, %Y" }} </h2>
 
       <div class="entry">
         {{ post.excerpt }}
