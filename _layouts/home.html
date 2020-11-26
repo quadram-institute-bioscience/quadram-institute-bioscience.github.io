@@ -50,14 +50,14 @@ bodyClass: page-home
 <div class="strip">
   <div class="container pt-6 pb-6 pb-md-10">
     <div class="row justify-content-start">
-      {% for post in site.posts %}
+      {% for post in site.posts limit:6 %}
       <div class="col-12 col-md-4 mb-1">
         <div class="service service-summary">
           <div class="service-content">
             <h2 class="service-title">
               <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
             </h2>
-            <p>{{ post.excerpt | markdownify | strip_html | truncate: 100 }}</p>
+            <p>{{ post.excerpt | markdownify | strip_html | truncate: 80 }}</p>
           </div>
         </div>
       </div>
@@ -65,13 +65,14 @@ bodyClass: page-home
     </div>
     <div class="row justify-content-center">
       <div class="col-auto">
-        <a class="button button-primary" href="{{site.baseurl}}/services">View All Services</a>
+        <a class="button button-primary" href="{{site.baseurl}}/news">All news</a>
       </div>
     </div>
   </div>
 </div>
 
 {% if site.data.features %}
+
 <div class="strip strip-grey">
   <div class="container pt-6 pb-6 pt-md-10 pb-md-10">
     <div class="row justify-content-center">
