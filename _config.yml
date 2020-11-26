@@ -12,6 +12,7 @@ logo:
   desktop_height: "36px"
 footer:
   copyright_text: '&copy; CLIMB Big Data - Theme by <a class="zerostatic" href="https://www.zerostatic.io">www.zerostatic.io</a>'
+excerpt_separator: <!--more-->
 
 seo:
   meta_og_title: "CLIMB Big Data"
