@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Merry Xmas!
+title: Post-title-tag
 ---
 
-# Xmas!
+# Post.H1
 
 asdasd asd asd asd asd 
