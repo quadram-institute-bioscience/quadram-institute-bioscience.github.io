@@ -1,7 +1,7 @@
-baseurl: '/corporate-test'
+baseurl: '/corporate-test' #TODO
 exclude: ['README.md']
 permalink: pretty
-title: 'CLIMB Big Data'
+title: 'Core Bionformatics at the Quadram Institute Bioscience'
 
 google_analytics_id: ""
 homepage:
@@ -11,18 +11,18 @@ logo:
   desktop: "images/logo/logo.svg"
   desktop_height: "36px"
 footer:
-  copyright_text: '&copy; CLIMB Big Data - Theme by <a class="zerostatic" href="https://www.zerostatic.io">www.zerostatic.io</a>'
+  copyright_text: '&copy; Quadram Institute Bioscience - Theme by <a class="zerostatic" href="https://www.zerostatic.io">www.zerostatic.io</a>'
 excerpt_separator: <!--more-->
 
 seo:
-  meta_og_title: "CLIMB Big Data"
+  meta_og_title: "Core Bionformatics at the Quadram Institute Bioscience"
   meta_og_type: "website"
-  meta_og_url: "https://telatin.github.io/corporate-test/"
-  meta_og_image: "https://raw.githubusercontent.com/zerostaticthemes/jekyll-serif-theme/master/screenshots/tn.png"
+  meta_og_url: "https://telatin.github.io/corporate-test/" #TODO
+  meta_og_image: "https://raw.githubusercontent.com/zerostaticthemes/jekyll-serif-theme/master/screenshots/tn.png" #TODO
   meta_og_description: "Jekyll Serif is a modern business theme for Hugo. It contains content types for the archetypical business website. The theme is fully responsive, blazing fast and artfully illustrated."
   meta_twitter_card: "summary"
-  meta_twitter_site: "@zerostaticio"
-  meta_twitter_creator: "@zerostaticio"
+  meta_twitter_site: "@QibCoreBioinfo"
+  meta_twitter_creator: "@QibCoreBioinfo"
 
 collections:
   services:
