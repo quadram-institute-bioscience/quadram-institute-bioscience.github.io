@@ -26,11 +26,13 @@ bodyClass: page-team-list
             <div class="team team-summary team-summary-large">
                 {% if team.image %}
                 <div class="team-image">
-                    <img alt="{{ team.title }}" class="img-fluid mb-2" src="{{ team.image | relative_url }}" />
+                    <a href="{{ site.baseurl }}/team/{{ team.slug }}">
+                        <img alt="{{ team.title }}" class="img-fluid mb-2" src="{{ team.image | relative_url }}" />
+                    </a>
                 </div>
                 {% endif %}
                 <div class="team-meta">
-                    <h2 class="team-name">{{ team.title }}</h2>
+                    <h2 class="team-name"><a href="{{ site.baseurl }}/team/{{ team.slug }}">{{ team.title }}</a></h2>
                     <p class="team-description">{{ team.jobtitle }}</p>
                     {% if team.quadramurl %}
                     <a target="_blank" href="{{ team.quadramurl }}">QIB</a>
@@ -42,7 +44,7 @@ bodyClass: page-team-list
                     | <a target="_blank" href="https://github.com/{{ team.github }}">GitHub</a>
                     {% endif %}
                 </div>
-                <div class="team-content">{{ team.content | truncate: 120 }} <a href="{{ site.baseurl }}/team/{{ team.slug }}">...</a></div>
+                <div class="team-content">{{ team.content | truncate: 170 }}</div>
             </div>
         </div>
         {% endfor %}
