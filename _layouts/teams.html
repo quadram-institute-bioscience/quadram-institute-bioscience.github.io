@@ -32,8 +32,14 @@ bodyClass: page-team-list
                 <div class="team-meta">
                     <h2 class="team-name">{{ team.title }}</h2>
                     <p class="team-description">{{ team.jobtitle }}</p>
+                    {% if team.quadramurl %}
+                    <a target="_blank" href="{{ team.quadramurl }}">QIB</a>
+                    {% endif %}
                     {% if team.linkedinurl %}
-                    <a target="_blank" href="{{ team.linkedinurl }}">LinkedIn</a>
+                    | <a target="_blank" href="{{ team.linkedinurl }}">LinkedIn</a>
+                    {% endif %}
+                    {% if team.github %}
+                    | <a target="_blank" href="https://github.com/{{ team.github }}">GitHub</a>
                     {% endif %}
                 </div>
                 <div class="team-content">{{ team.content | truncate: 120 }}</div>
