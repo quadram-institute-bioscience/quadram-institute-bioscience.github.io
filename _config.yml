@@ -1,4 +1,4 @@
-baseurl: '/corporate-test' #TODO
+baseurl: '/' #TODO
 exclude: ['README.md']
 permalink: pretty
 title: 'Core Bionformatics at the Quadram Institute Bioscience'
@@ -17,7 +17,7 @@ excerpt_separator: <!--more-->
 seo:
   meta_og_title: "Core Bionformatics at the Quadram Institute Bioscience"
   meta_og_type: "website"
-  meta_og_url: "https://telatin.github.io/corporate-test/" #TODO
+  meta_og_url: "https://quadram-institute-bioscience.github.io//" #TODO
   meta_og_image: "https://raw.githubusercontent.com/zerostaticthemes/jekyll-serif-theme/master/screenshots/tn.png" #TODO
   meta_og_description: "Jekyll Serif is a modern business theme for Hugo. It contains content types for the archetypical business website. The theme is fully responsive, blazing fast and artfully illustrated."
   meta_twitter_card: "summary"
