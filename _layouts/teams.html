@@ -42,7 +42,7 @@ bodyClass: page-team-list
                     | <a target="_blank" href="https://github.com/{{ team.github }}">GitHub</a>
                     {% endif %}
                 </div>
-                <div class="team-content">{{ team.content | truncate: 120 }}</div>
+                <div class="team-content">{{ team.content | truncate: 120 }} <a href="{{ site.baseurl }}/team/{{ team.slug }}">...</a></div>
             </div>
         </div>
         {% endfor %}
