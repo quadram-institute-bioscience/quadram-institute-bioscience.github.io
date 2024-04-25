@@ -3,6 +3,10 @@ title: 'About'
 date: 2018-02-22T17:01:34+07:00
 layout: page
 bodyClass: page-about
+layout: services
+intro_image: "images/illustrations/qreading.svg"
+intro_image_absolute: true
+intro_image_hide_on_mobile: false
 ---
 
 Lorem markdownum aequalis strigis. _Saetigeri iubeas_, vultu huic alvum nondum
