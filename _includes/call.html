@@ -6,7 +6,7 @@
 
     {% if site.data.contact.support %}
     <div class="call-name">
-      <a href="{{ site.Data.contact.email }}">
+      <a href="{{ site.data.contact.email }}">
         Core Bioinformatics Helpdesk
       </a>
     </div>
@@ -14,9 +14,9 @@
 
     {% if site.data.contact.institute %}
     <div class="call-name"><strong>Institute: </strong>
-      <a href="{{ site.Data.contact.institute }}">
+      <a href="{{ site.data.contact.institute }}">
         {{ site.data.contact.institutename }}
-      </a>
+      </a> A{{ site.data.contact.institute }} | B{{ .site.Data.contact.institute }}
     </div>
     {% endif %}
 
