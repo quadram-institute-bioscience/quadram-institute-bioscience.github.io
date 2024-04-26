@@ -1,17 +1,17 @@
 [
   {
-    "title": "Free Consultation",
-    "description": "New clients receive an obligation free consultation.",
+    "title": "Core service",
+    "description": "of the Quadram Institute Bioscience (QIB).",
     "image": "images/features/noun_branding_1885335.svg"
   },
   {
-    "title": "Certified Accountants",
-    "description": "All members of our team are certified accountants.",
+    "title": "Platform",
+    "description": "We maintain a platform of integrated systems for bioinformatics analyses.",
     "image": "images/features/noun_The Process_1885341.svg"
   },
   {
-    "title": "Tax Compliance",
-    "description": "We stay up to date on the latest changes to the tax code.",
+    "title": "Data Analysis",
+    "description": "Our team supports the data analysis needs of the Quadram Institute Bioscience.",
     "image": "images/features/noun_3d modeling_1885342.svg"
   }
 ]
