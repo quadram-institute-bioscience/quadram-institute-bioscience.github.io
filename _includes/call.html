@@ -4,21 +4,12 @@
         <div class="call-phone"><strong>Phone: </strong> {{ site.data.contact.phone }} </div>
     {% endif %}
 
-    {% if site.data.contact.support %}
-    <div class="call-name">
-      <a href="{{ site.data.contact.support }}">
-        Core Bioinformatics Helpdesk
-      </a>
-    </div>
-    {% endif %}
 
-    {% if site.data.contact.institute %}
-    <div class="call-name"><strong>Institute: </strong>
-      <a href="{{ site.data.contact.institute }}">
-        {{ site.data.contact.institutename }}
-      </a> 
+    <div class="call-name">
+      We maintain a portal for documentation
+      and support request.
     </div>
-    {% endif %}
+ 
 
     {% if site.data.contact.email %}
     <div class="call-email"><strong>Email: </strong>
@@ -29,8 +20,13 @@
     {% endif %}
   </div>
     {% if include.show_button %}
+    <!--
       <div class="call-box-bottom">
         <a href="{{ site.data.contact.contact_button_link }}" class="button">Contact</a>
+      </div>
+    -->
+      <div class="call-box-bottom">
+        <a href="https://quadram-institute.atlassian.net/servicedesk/customer/portals" class="button">Helpdesk</a>
       </div>
     {% endif %}
 </div>
