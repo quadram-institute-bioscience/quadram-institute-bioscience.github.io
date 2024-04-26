@@ -5,15 +5,13 @@ layout: page
 bodyClass: page-about
 ---
 
-This is the page for news
  
-## Posts
-
 <div class="posts">
   {% for post in site.posts %}
     <article class="post">
 
-      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> {{ page.date | date: "%B %e, %Y" }} </h2>
+      <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
+      <p><em>{{ page.date | date: "%B %e, %Y" }}</em></p>
 
       <div class="entry">
         {{ post.excerpt }}
