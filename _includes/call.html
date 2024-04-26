@@ -3,6 +3,23 @@
     {% if site.data.contact.phone %}
         <div class="call-phone"><strong>Phone: </strong> {{ site.data.contact.phone }} </div>
     {% endif %}
+
+    {% if site.data.contact.support %}
+    <div class="call-email"><strong>Support: </strong>
+      <a href="{{ .site.Data.contact.email }}">
+        {{ site.data.contact.support }}
+      </a>
+    </div>
+    {% endif %}
+
+    {% if site.data.contact.institute %}
+    <div class="call-email"><strong>Institute: </strong>
+      <a href="{{ .site.Data.contact.institute }}">
+        {{ site.data.contact.institute }}
+      </a>
+    </div>
+    {% endif %}
+
     {% if site.data.contact.email %}
     <div class="call-email"><strong>Email: </strong>
       <a href="mailto:{{ .site.Data.contact.email }}">
