@@ -5,18 +5,18 @@
     {% endif %}
 
     {% if site.data.contact.support %}
-    <div class="call-email"><strong>Support: </strong>
-      <a href="{{ .site.Data.contact.email }}">
-        {{ site.data.contact.support }}
+    <div class="call-name">
+      <a href="{{ site.data.contact.support }}">
+        Core Bioinformatics Helpdesk
       </a>
     </div>
     {% endif %}
 
     {% if site.data.contact.institute %}
-    <div class="call-email"><strong>Institute: </strong>
-      <a href="{{ .site.Data.contact.institute }}">
-        {{ site.data.contact.institute }}
-      </a>
+    <div class="call-name"><strong>Institute: </strong>
+      <a href="{{ site.data.contact.institute }}">
+        {{ site.data.contact.institutename }}
+      </a> 
     </div>
     {% endif %}
 

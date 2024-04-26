@@ -4,13 +4,13 @@ layout: contact
 bodyClass: page-contact
 ---
 
-Lorem markdownum aequalis strigis. Saetigeri iubeas, vultu huic alvum nondum de obside ut laniavit arbor palmis, cum quin. Rupes vetat videndo, armigerae crimen habet Priamum nec.
+Our team operates at the [Quadram Institute Bioscience](https://www.quadram.ac.uk), a research institute in Norwich, UK. We are part of the Core Bioinformatics group, which maintains both hardware and software infrastructure to support the research in microbial genomics.
 
-| Day       | Opening Hours   |
-| --------- | --------------- |
-| Tuesday   | 8:30am - 5:00pm |
-| Wednesday | 8:30am - 5:00pm |
-| Thursday  | 8:30am - 5:00pm |
-| Friday    | 8:30am - 5:00pm |
-| Saturday  | 10:am - 4:00pm  |
-| Saturday  | Closed          |
+## Ticketing system
+
+* [Support service](https://quadram-institute.atlassian.net/servicedesk/customer/portals)
+
+## Social media
+
+* [Twitter](https://twitter.com/QibCoreBioinfo)
+* [Mastodon](https://mstdn.science/@qibcore)
