@@ -1,0 +1,8 @@
+# Core Bioinformatics pages
+https://quadram-institute.atlassian.net/jira/your-work,Jira,Your work,green
+https://quadram-institute.atlassian.net/wiki,Confluence,Internal wiki,green
+https://quadram-institute.atlassian.net/wiki/spaces/CB/overview,Core Wiki,Internal documentation,red
+https://github.com/quadram-institute-bioscience,GitHub,Quadram Institute GitHub,blue
+# NBI Pages
+https://nbip-research-computing.atlassian.net/servicedesk/customer/portals,RC Portal,Research Computing Ticketing System,purple
+https://reporting.cis.nbi.ac.uk/NBI-user.php,Quotas,Control panel for NBI user quotas,purple
