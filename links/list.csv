@@ -6,3 +6,10 @@ https://github.com/quadram-institute-bioscience,GitHub,Quadram Institute GitHub,
 # NBI Pages
 https://nbip-research-computing.atlassian.net/servicedesk/customer/portals,RC Portal,Research Computing Ticketing System,purple
 https://reporting.cis.nbi.ac.uk/NBI-user.php,Quotas,Control panel for NBI user quotas,purple
+# Internal websites
+https://galaxy.quadram.ac.uk/,Galaxy,Quadram Galaxy,blue
+https://irida.quadram.ac.uk/,IRIDA,Quadram IRIDA,blue
+https://cloud.quadram.ac.uk/user/login/?next=/,OpenStack,QIB Cloud,purple
+https://intranet.nbi.ac.uk/cms/5702,Intranet,Quadram Intranet,orange
+# External websites
+
