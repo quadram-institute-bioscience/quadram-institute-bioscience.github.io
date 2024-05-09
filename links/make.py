@@ -14,7 +14,7 @@ def generate_html(input_file):
                     html_content += (
                         f'        <div class="row">\n'
                         f'          <div class="col-md-12">\n'
-                        f'            <h1><strong>{section_title}</strong></h1>\n'
+                        f'            <h2><strong>{section_title}</strong></h2>\n'
                         f'          </div>\n'
                         f'        </div>\n'
                         f'        <div class="row">\n'

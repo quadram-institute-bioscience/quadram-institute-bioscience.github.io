@@ -4,16 +4,16 @@ https://quadram-institute.atlassian.net/wiki,Confluence,Internal wiki,green
 https://quadram-institute.atlassian.net/servicedesk/customer/portals,Portal,User's entry page,orange
 https://quadram-institute.atlassian.net/wiki/spaces/CB/overview,Core Wiki,Internal documentation,red
 https://github.com/quadram-institute-bioscience,GitHub,Quadram Institute GitHub,blue
-# NBI Pages
-https://nbip-research-computing.atlassian.net/servicedesk/customer/portals,RC Portal,Research Computing Ticketing System,purple
-https://reporting.cis.nbi.ac.uk/NBI-user.php,Quotas,Control panel for NBI user quotas,purple
+
 # Internal websites
 https://galaxy.quadram.ac.uk/,Galaxy,Quadram Galaxy,blue
 https://irida.quadram.ac.uk/,IRIDA,Quadram IRIDA,blue
-https://cloud.quadram.ac.uk/user/login/?next=/,OpenStack,QIB Cloud,purple
-https://intranet.nbi.ac.uk/cms/5702,Intranet,Quadram Intranet,orange
-https://intranet.nbi.ac.uk/infoserv/cgi-bin/booking/?ResourceCategoryID=18&noslide=1,Booking,NBI Room Booking,red
-https://qintranet.com/book-a-meeting-room/,QI Room Booking,Quadram Room Booking,red
+https://cloud.quadram.ac.uk/user/login/?next=/,OpenStack,QIB Cloud,blue
+https://nbip-research-computing.atlassian.net/servicedesk/customer/portals,RC Portal,Research Computing Ticketing System,purple
+https://reporting.cis.nbi.ac.uk/NBI-user.php,Quotas,Control panel for NBI user quotas,purple
+https://intranet.nbi.ac.uk/cms/5702,Intranet,CoreBio landing,orange
+https://intranet.nbi.ac.uk/infoserv/cgi-bin/booking/?ResourceCategoryID=18&noslide=1,NBI,Room Booking,red
+https://qintranet.com/book-a-meeting-room/,QIB,Room Booking,red
 # External websites
 https://twitter.com/QibCoreBioinfo,Twitter,Our Twitter feed,blue
 https://mstdn.science/@qibcore,Mastodon,Our Mastodon feed,blue
