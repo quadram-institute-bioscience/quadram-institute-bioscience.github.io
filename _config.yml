@@ -29,6 +29,8 @@ collections:
     output: true
   team:
     output: true
+  tutorials:
+    output: true
 
 sass:
   indentWidth: 4
