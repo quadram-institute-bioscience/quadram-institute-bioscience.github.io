@@ -89,6 +89,13 @@ models:
               - type: string
                 name: permalink
           - type: object
+            name: tutorials
+            fields:
+              - type: boolean
+                name: output
+              - type: string
+                name: permalink
+          - type: object
             name: team
             fields:
               - type: boolean

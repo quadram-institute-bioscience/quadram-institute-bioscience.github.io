@@ -6,6 +6,6 @@ intro_image_absolute: true
 intro_image_hide_on_mobile: false
 ---
 
-# Services that grow with your business
+# Services and Platforms
 
-Aliquam erat volutpat. Morbi nisl tortor, dignissim eget efficitur vel, auctor non felis. Fusce quis viverra mi. Aenean quis massa pretium, ullamcorper nisi eget, hendrerit odio.
+Our team maintains a comprehensive infrastructure, to enable high-performance computing and data analysis for the Quadram Institute Bioscience. On top of this, we maintain self-service platforms and provide training and support to the QIB staff.
