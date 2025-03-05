@@ -14,6 +14,8 @@ https://reporting.cis.nbi.ac.uk/NBI-user.php,Quotas,Control panel for NBI user q
 https://intranet.nbi.ac.uk/cms/5702,Intranet,CoreBio landing,orange
 https://intranet.nbi.ac.uk/infoserv/cgi-bin/booking/?ResourceCategoryID=18&noslide=1,NBI,Room Booking,red
 https://qintranet.com/book-a-meeting-room/,QIB,Room Booking,red
+https://winrds.nbi.ac.uk/RDWeb/webclient/,RDS,Remote Desktop,blue
+
 # External websites
 https://outlook.office.com/,Outlook,Email,blue
 https://twitter.com/QibCoreBioinfo,Twitter,Our Twitter feed,blue
