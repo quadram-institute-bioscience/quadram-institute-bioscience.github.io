@@ -11,7 +11,7 @@ bodyClass: page-about
     <article class="post">
 
       <h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-      <p><em>{{ page.date | date: "%B %e, %Y" }}</em></p>
+      <p><em>{{ post.date | date: "%B %e, %Y" }}</em></p>
 
       <div class="entry">
         {{ post.excerpt }}
