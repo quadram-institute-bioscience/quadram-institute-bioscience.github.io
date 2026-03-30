@@ -41,12 +41,15 @@ Conda is widely adopted in bioinformatics because most tools are available throu
 
 ### Download and run the installer
 
+Here we show Linux (Intel) example, but see [conda-forge download page](https://conda-forge.org/download/) for 
+other platforms.
+
 ```bash
 # Download the Mambaforge installer for Linux
-wget https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-Linux-x86_64.sh
+wget "https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh"
 
 # Run the installer (follow the prompts)
-bash Mambaforge-Linux-x86_64.sh
+bash Miniforge3-Linux-x86_64.sh
 ```
 
 After installation, either open a new terminal or run:
