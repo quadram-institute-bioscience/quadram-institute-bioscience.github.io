@@ -69,14 +69,8 @@ By default, Mamba fetches packages from Anaconda-hosted servers (`anaconda.org`)
 To work around this, you need to redirect Mamba to an alternative mirror hosted by [prefix.dev](https://prefix.dev). This is done by editing (or creating) the `~/.condarc` configuration file in your home directory.
 
 ```bash
-# Create or overwrite ~/.condarc with the correct mirror settings
-cat > ~/.condarc << 'EOF'
-channel_alias: https://repo.prefix.dev/
-channels:
-  - conda-forge
-  - bioconda
-channel_priority: strict
-EOF
+# Add channel_alias line to Conda config file
+echo 'channel_alias: https://repo.prefix.dev/' >> ~/.condarc
 ```
 
 What each setting does:

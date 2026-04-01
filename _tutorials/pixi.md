@@ -1,16 +1,13 @@
 ---
-title: "Pixi"
+title: "Pixi to manage bioinformatics projects"
 date: 2023-11-18T12:33:46+10:00
 featured: false
 weight: 1
 layout: tutorial
 ---
 
-# Using Pixi to Manage Bioinformatics Projects
 
-## Why Not Just Use Mamba?
-
-Mamba is great — but it has some friction points that become obvious as your projects grow:
+Mamba (a faster version of [conda]({{ site.baseurl }}/{% link _tutorials/conda.md %})) is great — but it has some friction points that become obvious as your projects grow:
 
 - You have to manually keep `environment.yml` in sync with what's actually installed
 - There's no built-in **lockfile**, so collaborators may get slightly different package versions
@@ -18,7 +15,10 @@ Mamba is great — but it has some friction points that become obvious as your p
 - The dependency solver, while improved with Mamba, can still be slow for large environments
 
 Pixi solves all of these. 
-It's built on the same conda ecosystem (so all Bioconda and conda-forge packages work), but takes a **project-first approach** — your environment lives alongside your data and scripts, not in a global `~/.conda/envs` folder.
+It's built on the same conda ecosystem (so all Bioconda and conda-forge packages work), but takes a **project-first approach** — 
+your environment lives alongside your data and scripts, not in a global `~/.conda/envs` folder.
+
+This is a radical change for long time conda users, so pixi might not be the right tool for everyone.
 
 **[Pixi](https://pixi.prefix.dev/latest/)** was launched in 2023 by prefix.dev, built on top of Rattler — a suite of Rust libraries that implement the full conda package ecosystem without needing Python at all. 
 The result is something noticeably faster and more reproducible than traditional conda workflows.

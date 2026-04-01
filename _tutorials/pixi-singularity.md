@@ -6,14 +6,11 @@ weight: 1
 layout: tutorial
 ---
 
-# Making a Singularity Image Using Pixi
-
-## Why Combine Pixi and Singularity?
 
 In the previous tutorials we covered two complementary tools:
 
-- **Pixi** — reproducible, project-scoped environments from Bioconda/conda-forge
-- **Singularity** — portable containers that run identically anywhere on the HPC
+- **[Pixi]({{ site.baseurl }}/{% link _tutorials/pixi.md %})** — reproducible, project-scoped environments from Bioconda/conda-forge
+- **[Singularity]({{ site.baseurl }}/{% link _tutorials/singularity.md %})** — portable containers that run identically anywhere on the HPC
 
 Combining them gives you the best of both worlds: Pixi handles the **software installation** (with its fast solver and exact lockfile), and Singularity wraps the result into a **single portable `.sif` file** that runs without any environment setup at all.
 

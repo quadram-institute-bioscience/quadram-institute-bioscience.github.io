@@ -1,12 +1,11 @@
 ---
-title: "Singularity"
+title: "Singularity containers on the HPC"
 date: 2022-11-18T12:33:46+10:00
 featured: false
 weight: 1
 layout: tutorial
 ---
 
-# Using Singularity Containers on the HPC
 
 ## The Problem: "It Works on My Machine"
 
