@@ -7,7 +7,7 @@ layout: tutorial
 ---
 
 
-Mamba (a faster version of [conda]({% link _tutorials/conda.md %})) is great — but it has some friction points that become obvious as your projects grow:
+Mamba (a faster version of [conda](/tutorials/conda)) is great — but it has some friction points that become obvious as your projects grow:
 
 - You have to manually keep `environment.yml` in sync with what's actually installed
 - There's no built-in **lockfile**, so collaborators may get slightly different package versions
