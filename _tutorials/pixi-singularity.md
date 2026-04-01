@@ -1,6 +1,6 @@
 ---
 title: "A singularity image using Pixi"
-date: 2018-11-18T12:33:46+10:00
+date: 2019-11-18T12:33:46+10:00
 featured: false
 weight: 1
 layout: tutorial
