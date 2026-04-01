@@ -8,7 +8,7 @@ intro_image_hide_on_mobile: false
 
 # Meet The Team
 
-<img src="/images/team/team-2025.jpg" alt="Team 2025" class="img-fluid" />
+<img src="/images/team/team-2025.jpg" alt="Team 2025" style="max-width:100%;height:auto;" />
 
 Core Bioinformatics maintains both hardware and software infrastructure to support the research in microbial genomics.
 To ensure the reproducibility and traceability of our experiments, we have a dedicated sequencing output archival system based on [IRIDA](https://irida.ca/), we maintain a [Galaxy Project](https://www.galaxyproject.org) instance (and we added several tools to the Galaxy Toolshed), and a private cloud based on OpenNebula.
