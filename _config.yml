@@ -1,4 +1,4 @@
-baseurl: '/' #TODO
+baseurl: 'https://quadram-institute-bioscience.github.io/'
 exclude: ['README.md']
 permalink: pretty
 title: 'Core Bionformatics at the Quadram Institute Bioscience'
