@@ -18,7 +18,7 @@ $link-hover-color: lighten($primary, 10%);
 $link-hover-decoration: underline;
 
 // Fonts
-$font-family-base: Helvetica, Arial, sans-serif, -apple-system;
+$font-family-base: 'IBM Plex Sans', Helvetica, Arial, sans-serif;
 $font-family-heading: 'Oswald', serif, -apple-system;
 
 // Footer
@@ -56,6 +56,7 @@ $sub-footer-text-color: $white;
 @import 'components/strip';
 @import 'components/feature';
 @import 'components/social';
+@import 'components/syntax';
 
 // Pages
 @import 'pages/home';

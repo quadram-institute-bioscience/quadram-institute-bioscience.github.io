@@ -1,4 +1,4 @@
-baseurl: '/' #TODO
+baseurl: '/'
 exclude: ['README.md']
 permalink: pretty
 title: 'Core Bionformatics at the Quadram Institute Bioscience'
@@ -36,6 +36,12 @@ sass:
   indentWidth: 4
   style: compact # possible values: nested expanded compact compressed
   precision: 10
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
 
 plugins:
   - jekyll-environment-variables

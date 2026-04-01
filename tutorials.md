@@ -8,4 +8,6 @@ intro_image_hide_on_mobile: false
 
 # Bioinformatics Tutorials
 
-Aliquam erat volutpat. Morbi nisl tortor, dignissim eget efficitur vel, auctor non felis. Fusce quis viverra mi. Aenean quis massa pretium, ullamcorper nisi eget, hendrerit odio.
+We deliver every year **300+** hours of training.
+This includes formal training, workshops, and 1:1 sessions
+with PhD Students and Researchers.
