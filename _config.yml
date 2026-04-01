@@ -1,4 +1,4 @@
-baseurl: 'https://quadram-institute-bioscience.github.io/'
+baseurl: 'https://corebio.info/'
 exclude: ['README.md']
 permalink: pretty
 title: 'Core Bionformatics at the Quadram Institute Bioscience'
