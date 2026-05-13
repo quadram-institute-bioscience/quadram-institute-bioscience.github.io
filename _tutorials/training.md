@@ -2,7 +2,7 @@
 title: "Our training"
 date: 2018-11-18T12:33:46+10:00
 featured: true
-weight: 1
+weight: 10
 layout: tutorial
 ---
 
@@ -19,5 +19,12 @@ Here we list some regular activities that have a companion website:
 
 * [Whole metagenome sequencing](https://mmbdtp.github.io/modules/metagenomics/programme/) - QC, host removal, taxonomic and functional classification, de novo assembly binning and some R code to make plots
 * [Viromics workshop](https://corebio.info/ebame-viromics/) - Mine phages in metagenomes, derepliate and get a vOTU table (EBAME workshop)
+* [Metabarcoding: from reads to counts](https://corebio.info/metabarcoding-tutorial-2026/) - Using DADA2 and modeling NextSeq2000 binned quality errors
+* [Metabarcoding: from counts to diversity](https://corebio.info/metabarcodingecology-tutorial-2026/) - Importing to Phyloseq, filtering tables, alpha- and beta-diversity, composition visualisation, intro to MaAsLin3
 
+## Regular opportunities
+
+* **Ask a bioinformatician** - Monthly open house, usually the first Tuesday of the month (morning)
+* **[Data Science Group](https://github.com/quadram-institute-bioscience/datasciencegroup/wiki)** - Monthly meeting about Data Science
+   * [Join the mailing list to be updated!]()
 
