@@ -26,5 +26,5 @@ Here we list some regular activities that have a companion website:
 
 * **Ask a bioinformatician** - Monthly open house, usually the first Tuesday of the month (morning)
 * **[Data Science Group](https://github.com/quadram-institute-bioscience/datasciencegroup/wiki)** - Monthly meeting about Data Science
-   * [Join the mailing list to be updated!]({{ site.baseurl }}/{% link _tutorials/datascience.md %})
+   * [Join the mailing list to be updated!]({{ site.baseurl }}{% link _tutorials/datascience.md %})
 

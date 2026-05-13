@@ -1,4 +1,5 @@
-baseurl: 'https://quadram-institute-bioscience.github.io/'
+url: "https://quadram-institute-bioscience.github.io"
+baseurl: ""
 exclude: ['README.md']
 permalink: pretty
 title: 'Core Bionformatics at the Quadram Institute Bioscience'
@@ -17,7 +18,7 @@ excerpt_separator: <!--more-->
 seo:
   meta_og_title: "Core Bionformatics at the Quadram Institute Bioscience"
   meta_og_type: "website"
-  meta_og_url: "https://quadram-institute-bioscience.github.io//" #TODO
+  meta_og_url: "https://quadram-institute-bioscience.github.io/" #TODO
   meta_og_image: "https://raw.githubusercontent.com/zerostaticthemes/jekyll-serif-theme/master/screenshots/tn.png" #TODO
   meta_og_description: "The Core Bioinformatics team at Quadram Institute Bioscience (Norwich, UK) delivers microbial genomics analysis, a shared compute platform and researcher training."
   meta_twitter_card: "summary"
