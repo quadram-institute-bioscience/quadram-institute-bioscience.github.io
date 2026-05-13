@@ -30,10 +30,10 @@ To be updated on our future meetings (currently only for NRP students and staff)
 
   <label for="ds-name">Name:</label>
   <input type="text" id="ds-name" name="name" required autocomplete="given-name" />
-
+  <br/>
   <label for="ds-surname">Surname:</label>
   <input type="text" id="ds-surname" name="surname" required autocomplete="family-name" />
-
+  <br/>
   <label for="ds-email">Email address:</label>
   <input type="email"
          id="ds-email"
@@ -44,7 +44,7 @@ To be updated on our future meetings (currently only for NRP students and staff)
          title="Email must end with @quadram.ac.uk, @nbi.ac.uk, @earlham.ac.uk, @jic.ac.uk, @tsl.ac.uk or @uea.ac.uk" />
 
   <p id="ds-error" style="color:#b00; display:none; margin-top:.5em;"></p>
-
+  <br/>
   <button type="submit">Join the mailing list</button>
 </form>
 
