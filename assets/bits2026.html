@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BITS 2026 · Programme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300;9..144,0,500;9..144,1,300&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <style>
+    :root {
+      --bg: #F4F0E8;
+      --surface: #FDFBF7;
+      --surface-2: #F0EDE5;
+      --border: #DDD8CE;
+      --border-light: #EAE6DE;
+      --text: #1A1A28;
+      --text-muted: #7C7870;
+      --text-faint: #ADA9A0;
+
+      --nav-bg: #1B2740;
+      --nav-text: #E8E2D8;
+      --nav-muted: rgba(232,226,216,0.45);
+
+      --accent: #B03A2A;
+      --accent-dim: rgba(176,58,42,0.08);
+
+      --badge-keynote-bg: #FEF3DC; --badge-keynote-fg: #A06B00;
+      --badge-invited-bg: #E3F3EC; --badge-invited-fg: #1E6B48;
+      --badge-lecture-bg: #EDE8F7; --badge-lecture-fg: #5B3490;
+      --badge-oral-bg: #E8EEF7;    --badge-oral-fg: #2D5590;
+
+      --note-bg: #FEFCE6;
+      --note-border: #C8B068;
+      --note-text-muted: #8A7648;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── HEADER ─────────────────────────────────────────────── */
+    header {
+      background: var(--nav-bg);
+      padding: 2.25rem 2rem 1.75rem;
+    }
+
+    .header-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+    }
+
+    .brand h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(2.2rem, 6vw, 3.6rem);
+      font-weight: 500;
+      letter-spacing: -0.025em;
+      color: var(--nav-text);
+      line-height: 1;
+    }
+
+    .brand p {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--nav-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 0.45rem;
+    }
+
+    .notes-tally {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--nav-muted);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 0.35rem 0.8rem;
+      border-radius: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-end;
+      margin-bottom: 0.1rem;
+    }
+
+    /* ── DAY NAV ─────────────────────────────────────────────── */
+    .day-nav-wrap {
+      background: var(--nav-bg);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .day-nav {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      gap: 0;
+    }
+
+    .day-tab {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.9rem 1.4rem 0.85rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      position: relative;
+      transition: opacity 0.15s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+
+    .day-tab:hover { opacity: 0.85; }
+
+    .day-tab .num {
+      font-family: 'Fraunces', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--nav-muted);
+      line-height: 1;
+      transition: color 0.15s;
+    }
+
+    .day-tab .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--nav-muted);
+      margin-top: 0.25rem;
+      transition: color 0.15s;
+    }
+
+    .day-tab .today-pip {
+      display: none;
+      position: absolute;
+      top: 0.55rem;
+      right: 0.6rem;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .day-tab.today .today-pip { display: block; }
+
+    .day-tab.active {
+      border-bottom-color: var(--accent);
+    }
+
+    .day-tab.active .num,
+    .day-tab.active .label {
+      color: var(--nav-text);
+    }
+
+    /* ── MAIN ────────────────────────────────────────────────── */
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1.5rem 2rem 4rem;
+    }
+
+    .day-pane { display: none; }
+    .day-pane.active {
+      display: block;
+      animation: fadeslide 0.2s ease both;
+    }
+
+    @keyframes fadeslide {
+      from { opacity: 0; transform: translateY(5px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SESSION HEADER ──────────────────────────────────────── */
+    .session-head {
+      margin: 2.25rem 0 0.35rem;
+      padding: 0.7rem 1rem 0.7rem 0.85rem;
+      background: var(--nav-bg);
+      border-radius: 3px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .session-head:first-child { margin-top: 0; }
+
+    .session-topic {
+      font-family: 'Fraunces', serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.92rem;
+      color: var(--nav-text);
+    }
+
+    .session-chairs {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--nav-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    /* ── LOGISTICS ITEM ──────────────────────────────────────── */
+    .item-logistics {
+      display: flex;
+      align-items: baseline;
+      gap: 0.9rem;
+      padding: 0.5rem 0.85rem;
+      border-left: 2px solid var(--border);
+      background: var(--surface-2);
+      margin-bottom: 2px;
+    }
+
+    .item-logistics .t {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-faint);
+      white-space: nowrap;
+      min-width: 88px;
+    }
+
+    .item-logistics .ttl {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .item-logistics .venue {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text-faint);
+      margin-left: auto;
+      padding-left: 1rem;
+      white-space: nowrap;
+    }
+
+    /* ── TALK CARD ───────────────────────────────────────────── */
+    .item-talk {
+      background: var(--surface);
+      border: 1px solid var(--border-light);
+      border-radius: 4px;
+      margin-bottom: 3px;
+      overflow: hidden;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .item-talk:hover {
+      border-color: var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .item-talk.has-open-note {
+      border-color: var(--note-border);
+      box-shadow: 0 2px 12px rgba(200,176,104,0.15);
+    }
+
+    .talk-row {
+      display: grid;
+      grid-template-columns: 96px 1fr auto;
+      gap: 0.75rem;
+      padding: 0.85rem 0.85rem 0.85rem 0.9rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .talk-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      padding-top: 2px;
+      line-height: 1.4;
+    }
+
+    .talk-body { min-width: 0; }
+
+    .badge {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.13rem 0.45rem;
+      border-radius: 2px;
+      margin-bottom: 0.4rem;
+    }
+
+    .badge-keynote  { background: var(--badge-keynote-bg);  color: var(--badge-keynote-fg); }
+    .badge-invited  { background: var(--badge-invited-bg);  color: var(--badge-invited-fg); }
+    .badge-lecture  { background: var(--badge-lecture-bg);  color: var(--badge-lecture-fg); }
+    .badge-oral     { background: var(--badge-oral-bg);     color: var(--badge-oral-fg); }
+
+    .talk-speaker {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .talk-affil {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 0.1rem;
+    }
+
+    .talk-title {
+      font-family: 'Fraunces', serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--text);
+      margin-top: 0.35rem;
+    }
+
+    .notes-btn {
+      flex-shrink: 0;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.28rem 0.6rem;
+      border: 1px solid var(--border);
+      background: none;
+      color: var(--text-faint);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+
+    .notes-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .notes-btn.has-notes {
+      border-color: var(--note-border);
+      color: var(--note-text-muted);
+      background: var(--note-bg);
+    }
+
+    .notes-btn.open {
+      border-color: var(--note-border);
+      color: var(--note-text-muted);
+      background: var(--note-bg);
+    }
+
+    /* ── NOTE AREA ───────────────────────────────────────────── */
+    .note-panel {
+      display: none;
+      background: var(--note-bg);
+      border-top: 1px solid var(--note-border);
+    }
+
+    .note-panel.open { display: block; }
+
+    .note-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45rem 0.85rem;
+      border-bottom: 1px solid rgba(200,176,104,0.3);
+    }
+
+    .note-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--note-text-muted);
+    }
+
+    .mode-btns { display: flex; gap: 3px; }
+
+    .mode-btn {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid rgba(200,176,104,0.4);
+      background: none;
+      color: var(--note-text-muted);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+
+    .mode-btn.active {
+      background: rgba(200,176,104,0.25);
+      color: #5A4410;
+      border-color: rgba(200,176,104,0.6);
+    }
+
+    .note-editor {
+      display: block;
+      width: 100%;
+      min-height: 110px;
+      padding: 0.75rem 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      line-height: 1.75;
+      border: none;
+      background: transparent;
+      color: var(--text);
+      resize: vertical;
+      outline: none;
+    }
+
+    .note-editor::placeholder { color: var(--note-text-muted); opacity: 0.6; }
+
+    .note-preview {
+      display: none;
+      padding: 0.75rem 0.9rem;
+      font-size: 0.84rem;
+      line-height: 1.7;
+      min-height: 110px;
+      color: var(--text);
+    }
+
+    .note-preview.show { display: block; }
+
+    .note-preview h1, .note-preview h2, .note-preview h3 {
+      font-family: 'Fraunces', serif;
+      font-weight: 300;
+      margin: 0.75rem 0 0.3rem;
+      color: var(--text);
+    }
+    .note-preview h1 { font-size: 1.1rem; }
+    .note-preview h2 { font-size: 0.98rem; }
+    .note-preview h3 { font-size: 0.88rem; }
+    .note-preview p { margin-bottom: 0.5rem; }
+    .note-preview ul, .note-preview ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .note-preview li { margin-bottom: 0.15rem; }
+    .note-preview strong { font-weight: 500; }
+    .note-preview em { font-style: italic; }
+    .note-preview code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78em;
+      background: rgba(0,0,0,0.07);
+      padding: 0.1rem 0.3rem;
+      border-radius: 2px;
+    }
+    .note-preview pre {
+      background: rgba(0,0,0,0.06);
+      padding: 0.75rem;
+      border-radius: 3px;
+      overflow-x: auto;
+      margin-bottom: 0.5rem;
+    }
+    .note-preview pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.82em;
+      display: block;
+    }
+    .note-preview blockquote {
+      border-left: 3px solid var(--note-border);
+      padding-left: 0.75rem;
+      color: var(--note-text-muted);
+      margin: 0.5rem 0;
+    }
+    .note-preview a { color: var(--badge-oral-fg); }
+
+    .note-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.35rem 0.9rem;
+      border-top: 1px solid rgba(200,176,104,0.2);
+    }
+
+    .note-wc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(139,118,72,0.6);
+    }
+
+    .note-saved {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: #3A7A52;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .note-saved.show { opacity: 1; }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      header, main { padding-left: 1rem; padding-right: 1rem; }
+      .day-nav { padding: 0 1rem; }
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+      .notes-tally { align-self: flex-start; }
+      .talk-row { grid-template-columns: 72px 1fr; }
+      .notes-btn { grid-column: 1 / -1; width: fit-content; }
+      .item-logistics .venue { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <h1>BITS 2026</h1>
+      <p>Annual Meeting &nbsp;·&nbsp; Padova &nbsp;·&nbsp; 27–29 May 2026</p>
+    </div>
+    <div class="notes-tally" id="notesTally">0 notes</div>
+  </div>
+</header>
+
+<div class="day-nav-wrap">
+  <nav class="day-nav">
+    <button class="day-tab" data-day="wed">
+      <span class="num">27</span>
+      <span class="label">Wednesday</span>
+      <span class="today-pip"></span>
+    </button>
+    <button class="day-tab" data-day="thu">
+      <span class="num">28</span>
+      <span class="label">Thursday</span>
+      <span class="today-pip"></span>
+    </button>
+    <button class="day-tab" data-day="fri">
+      <span class="num">29</span>
+      <span class="label">Friday</span>
+      <span class="today-pip"></span>
+    </button>
+  </nav>
+</div>
+
+<main id="main"></main>
+
+<script>
+// ─── DATA ────────────────────────────────────────────────────────────────────
+
+const DAYS = {
+  wed: {
+    items: [
+      { k: 'logistics', time: '12:30 – 14:00', title: 'Registration & Sign-in' },
+      { k: 'session',   topic: 'Translational Bioinformatics', chairs: ['Matteo Pallocca', 'Manuela Helmer Citterich'] },
+      { k: 'logistics', time: '14:00 – 14:10', title: 'Welcome' },
+      { k: 'talk', id: 'wed-01', time: '14:10 – 14:45', badge: 'PREPARATA LECTURE',
+        speaker: 'Graziano Pesole', affil: 'University of Bari',
+        title: 'Accurate Genotyping and Tissue-Specific Expression Analysis of the Human Mitochondrial Genome integrating whole genome and direct long-read RNA sequencing data' },
+      { k: 'talk', id: 'wed-02', time: '14:45', badge: 'ORAL',
+        speaker: 'Martina Varisco',
+        title: 'Beyond the mechanism of action: a data-driven interpretable model reveals new determinants of cancer drug sensitivity' },
+      { k: 'talk', id: 'wed-03', time: '15:00', badge: 'ORAL',
+        speaker: 'Dora Tortarolo',
+        title: 'Gut microbiome signatures at Multiple Sclerosis onset as an independent early prognostic factor for disease course' },
+      { k: 'talk', id: 'wed-04', time: '15:15', badge: 'ORAL',
+        speaker: 'Fabiana Galluzzo',
+        title: 'Molecular determinants of antibiotic-ribosome recognition: a comparative analysis' },
+      { k: 'logistics', time: '15:30 – 15:40', title: 'Presentation of YOUNG BITS, RSG-Italy, SIB Young, CINI Young-InfoLife groups' },
+      { k: 'logistics', time: '15:40 – 16:00', title: 'Coffee break' },
+      { k: 'logistics', time: '16:00 – 19:00', title: 'BITS Members Assembly' },
+      { k: 'logistics', time: '19:00 – 21:00', title: 'AperiBITS', venue: 'Best Western Plus Hotel Galileo, Via Venezia 30' },
+    ]
+  },
+  thu: {
+    items: [
+      { k: 'session', topic: 'Databases, Interoperability & Research Infrastructure', chairs: ['Silvio Tosatto', 'Damiano Piovesan'] },
+      { k: 'talk', id: 'thu-01', time: '09:00 – 09:45', badge: 'KEYNOTE',
+        speaker: 'Paul Thomas', affil: 'University of Southern California & Swiss Institute of Bioinformatics',
+        title: 'Homology as a tool for predicting gene functions: what are the limitations and can we push past them?' },
+      { k: 'talk', id: 'thu-02', time: '09:45', badge: 'ORAL',
+        speaker: 'Giada Malatesta',
+        title: 'Bridging Health Research and Innovation: The Strategic Role of ICSC and the IT4LIA AI Factory in Building a Federated, AI-Ready Ecosystem for Biomedical Data' },
+      { k: 'talk', id: 'thu-03', time: '10:00', badge: 'ORAL',
+        speaker: 'Mehdi Zoubiri',
+        title: 'APICURON: Crediting scientific contributions beyond publications' },
+      { k: 'talk', id: 'thu-04', time: '10:15', badge: 'ORAL',
+        speaker: 'Matteo Andriolo',
+        title: 'ArchetypalC: A High-Performance C++ Implementation of Archetypal Analysis for Large-Scale Bioinformatics with Interactive Visualization' },
+      { k: 'logistics', time: '10:30 – 11:30', title: 'Coffee break & Poster session' },
+      { k: 'session', topic: 'Cancer Bioinformatics', chairs: ['Fabio Vandin', 'Mattia Forcato'] },
+      { k: 'talk', id: 'thu-05', time: '11:30 – 12:00', badge: 'INVITED',
+        speaker: 'Francesca Ciccarelli', affil: 'Barts Cancer Institute & The Francis Crick Institute',
+        title: 'Determinants of response to immunotherapy in colon cancer: why space matters' },
+      { k: 'talk', id: 'thu-06', time: '12:00', badge: 'ORAL',
+        speaker: 'Paolo Bresolin',
+        title: 'General-Purpose Topology-Aware Embedding of Tumor Phylogenetic Trees with Graph Neural Networks' },
+      { k: 'talk', id: 'thu-07', time: '12:15', badge: 'ORAL',
+        speaker: 'Emanuela Scafuri',
+        title: 'Assessing Omics Layer Contributions in Unsupervised Multi-Omics Integration for Patient Stratification' },
+      { k: 'logistics', time: '12:30 – 14:00', title: 'Lunch & Group Photo' },
+      { k: 'talk', id: 'thu-08', time: '14:00', badge: 'ORAL',
+        speaker: 'Michele Marziliano',
+        title: 'A Spatial Multiplex Proteomics Approach to Study Tumor Microenvironment Remodeling in Treated Non-Small Cell Lung Cancer' },
+      { k: 'talk', id: 'thu-09', time: '14:15', badge: 'ORAL',
+        speaker: 'Lorenzo Amir Nemati Fard',
+        title: 'Communication Breakdown and Evolution of the Cancer Cell' },
+      { k: 'talk', id: 'thu-10', time: '14:30', badge: 'ORAL',
+        speaker: 'Roberto Pagliarini',
+        title: 'A computational analysis to decipher different transcriptomic signatures regulating gliomas heterogeneity' },
+      { k: 'talk', id: 'thu-11', time: '14:45', badge: 'ORAL',
+        speaker: 'Elia Giuseppe Ceroni',
+        title: 'MRI-based intratumoral heterogeneity mapping in Glioblastoma via self-supervised 3D Masked Autoencoder' },
+      { k: 'session', topic: 'Omics Data, Methods & Applications', chairs: ['Barbara Di Camillo', 'Cinzia Pizzi'] },
+      { k: 'talk', id: 'thu-12', time: '15:00 – 15:30', badge: 'INVITED',
+        speaker: 'Ivan G. Costa', affil: 'RWTH Aachen University',
+        title: 'From Cells to Samples: Algorithms for Multi-Scale Analysis of Spatial Disease Atlases' },
+      { k: 'logistics', time: '15:30 – 16:30', title: 'Coffee break & Poster session' },
+      { k: 'talk', id: 'thu-13', time: '16:30 – 17:00', badge: 'INVITED',
+        speaker: 'Silvio Bicciato', affil: 'University of Padua',
+        title: 'Computational analysis of single-cell spatial omics data: challenges and opportunities' },
+      { k: 'talk', id: 'thu-14', time: '17:00', badge: 'ORAL',
+        speaker: 'Matteo Marchionni',
+        title: 'Enhanced cell phenotyping in single-cell and spatial omics using the scPleiades pipeline' },
+      { k: 'talk', id: 'thu-15', time: '17:15', badge: 'ORAL',
+        speaker: 'Giorgia Bucciarelli',
+        title: 'RNAEventProfiler: A Statistical Framework for Detecting Direct RNA Modification Changes in Complex Experimental Designs' },
+      { k: 'talk', id: 'thu-16', time: '17:30', badge: 'ORAL',
+        speaker: 'Veronica Guerrini',
+        title: 'A Burrows-Wheeler Transform Index for Pangenomes' },
+      { k: 'talk', id: 'thu-17', time: '17:45', badge: 'ORAL',
+        speaker: 'Sandro Gepiro Contaldo',
+        title: 'A Bioinformatics Workflow for the Detection of Antimicrobial Resistance-Associated Genomic Variants' },
+      { k: 'talk', id: 'thu-18', time: '18:00', badge: 'ORAL',
+        speaker: 'Alessandra Luciani',
+        title: 'Characterization of Brain Microbiome in Neurodegenerative Disease via Metatranscriptomics' },
+      { k: 'talk', id: 'thu-19', time: '18:15', badge: 'ORAL',
+        speaker: 'Eva König',
+        title: 'A scalable framework for multi-ancestry meta-analyses of complex traits across heterogeneous cohorts: a phosphate and calcium use case' },
+      { k: 'logistics', time: '20:00', title: 'Social Dinner', venue: 'Ristorante Vecchia Padova, Via Cesare Battisti 37' },
+    ]
+  },
+  fri: {
+    items: [
+      { k: 'session', topic: 'AI, Models & Tools', chairs: ['Stefano Toppo', 'Enrica Calura'] },
+      { k: 'talk', id: 'fri-01', time: '09:00 – 09:45', badge: 'KEYNOTE',
+        speaker: 'Christine Orengo', affil: 'University College London',
+        title: 'CATH and TED reveal novel insights into protein evolution and protein design' },
+      { k: 'talk', id: 'fri-02', time: '09:45', badge: 'ORAL',
+        speaker: 'Wageesha Widuranga Waththe Liyanage',
+        title: 'LLMsFold: Integrating Large Language Models and Biophysical Simulations for De Novo Drug Design' },
+      { k: 'talk', id: 'fri-03', time: '10:00', badge: 'ORAL',
+        speaker: 'Giovanni Birolo',
+        title: 'SurvCraft: Decomposing and Recombining Deep Survival Models for Fair Comparison' },
+      { k: 'talk', id: 'fri-04', time: '10:15', badge: 'ORAL',
+        speaker: 'Luca Alessandri',
+        title: 'REBEL (Reproducible Environment Builder for Explicit Library Resolution)' },
+      { k: 'logistics', time: '10:30 – 11:00', title: 'Coffee break' },
+      { k: 'session', topic: 'Systems Biology & Multi-Omics', chairs: ['Enrico Lavezzo', 'Francesca Cordero'] },
+      { k: 'talk', id: 'fri-05', time: '11:00 – 11:45', badge: 'BITS LECTURE',
+        speaker: 'Filippo Utro', affil: 'IBM T.J. Watson Research Center',
+        title: 'From Classical to Quantum: New Computational Paradigms for Life Sciences' },
+      { k: 'talk', id: 'fri-06', time: '11:45', badge: 'ORAL',
+        speaker: 'Gioele Lazzari',
+        title: 'A paradigm shift in genome-scale metabolic models reconstruction: introducing GRAP' },
+      { k: 'talk', id: 'fri-07', time: '12:00', badge: 'ORAL',
+        speaker: 'Tania Alonso-Vásquez',
+        title: 'Stochasticity in multi-layered Quorum Sensing systems' },
+      { k: 'talk', id: 'fri-08', time: '12:15', badge: 'ORAL',
+        speaker: 'Carlo Ferrari',
+        title: 'Comparing Sequence and Graph Frameworks for Antibody Interaction Site Prediction' },
+      { k: 'logistics', time: '12:30 – 14:00', title: 'Lunch' },
+      { k: 'session', topic: 'Proteins', chairs: ["Pasqualina D'Ursi", 'Alexander Miguel Monzon'] },
+      { k: 'talk', id: 'fri-09', time: '14:00 – 14:30', badge: 'INVITED',
+        speaker: 'Gábor Erdős', affil: 'Eötvös Loránd University',
+        title: 'Zero-Shot Prediction of Thermodynamic Properties of Proteins' },
+      { k: 'talk', id: 'fri-10', time: '14:30', badge: 'ORAL',
+        speaker: 'Sergio Vulterini',
+        title: 'Computational studies of the dynamics of the human iron exporter Ferroportin. Insight into the effect of pathogenic mutations in the transport mechanism.' },
+      { k: 'logistics', time: '14:45 – 15:00', title: 'Biohackathon Results — Giacomo Baruzzo, Roberto Pagliarini' },
+      { k: 'logistics', time: '15:00 – 15:15', title: 'Announcements BITS2027 & BITS2028' },
+      { k: 'logistics', time: '15:15 – 15:30', title: 'Final Remarks' },
+      { k: 'logistics', time: '15:30 – 15:45', title: 'Break' },
+      { k: 'session', topic: 'YOUNG BITS, RSG-Italy & CINI Young InfoLife Symposium', chairs: ['Davide Bressan', 'Grete Privitera'] },
+      { k: 'talk', id: 'fri-11', time: '15:45', badge: 'ORAL',
+        speaker: 'Virginia Quadrotta',
+        title: 'Asymmetric conformational dynamics of the mitochondrial choline carrier SLC25A48 revealed by molecular dynamics simulations' },
+      { k: 'talk', id: 'fri-12', time: '16:00', badge: 'ORAL',
+        speaker: 'Gaia Faggin',
+        title: 'The Cell Marker Accordion 2.0: An Entropy-Driven Framework for Interpretable Cell Type Annotation, Clustering, and Spatial Deconvolution' },
+      { k: 'talk', id: 'fri-13', time: '16:15', badge: 'ORAL',
+        speaker: 'Omar Almolla',
+        title: 'Topological Data Analysis reveals the fine structure of smooth muscle cell phenotypic modulation in human atherosclerotic plaques' },
+      { k: 'talk', id: 'fri-14', time: '16:30', badge: 'ORAL',
+        speaker: 'Samuele Boga',
+        title: 'MetaBench: assessment of performance of metabarcoding approaches' },
+    ]
+  }
+};
+
+// ─── STORAGE ─────────────────────────────────────────────────────────────────
+
+const STORE = 'bits2026_notes';
+
+function loadNotes() {
+  try { return JSON.parse(localStorage.getItem(STORE) || '{}'); }
+  catch { return {}; }
+}
+
+function saveNote(id, text) {
+  const n = loadNotes();
+  text.trim() ? (n[id] = text) : delete n[id];
+  localStorage.setItem(STORE, JSON.stringify(n));
+  refreshTally();
+}
+
+function getNote(id) { return loadNotes()[id] || ''; }
+
+function refreshTally() {
+  const c = Object.keys(loadNotes()).length;
+  document.getElementById('notesTally').textContent =
+    c === 0 ? '0 notes' : c === 1 ? '1 note' : `${c} notes`;
+}
+
+// ─── RENDERING ───────────────────────────────────────────────────────────────
+
+const BADGE_CLS = {
+  'KEYNOTE':           'badge-keynote',
+  'INVITED':           'badge-invited',
+  'ORAL':              'badge-oral',
+  'PREPARATA LECTURE': 'badge-lecture',
+  'BITS LECTURE':      'badge-lecture',
+};
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderSession(item) {
+  return `<div class="session-head">
+    <div class="session-topic">${escHtml(item.topic)}</div>
+    <div class="session-chairs">chairs: ${item.chairs.map(escHtml).join(' · ')}</div>
+  </div>`;
+}
+
+function renderLogistics(item) {
+  const venueHtml = item.venue ? `<span class="venue">${escHtml(item.venue)}</span>` : '';
+  return `<div class="item-logistics">
+    <span class="t">${escHtml(item.time || '')}</span>
+    <span class="ttl">${escHtml(item.title)}</span>
+    ${venueHtml}
+  </div>`;
+}
+
+function renderTalk(item) {
+  const note = getNote(item.id);
+  const hasNote = note.trim().length > 0;
+  const badgeCls = BADGE_CLS[item.badge] || 'badge-oral';
+  const affilHtml = item.affil
+    ? `<div class="talk-affil">${escHtml(item.affil)}</div>` : '';
+  const btnLabel = hasNote ? '✎ notes' : '+ notes';
+  const btnCls   = hasNote ? 'notes-btn has-notes' : 'notes-btn';
+  const wcText   = wc(note);
+
+  return `<div class="item-talk" id="card-${item.id}">
+    <div class="talk-row" onclick="toggleNote('${item.id}')">
+      <div class="talk-time">${escHtml(item.time)}</div>
+      <div class="talk-body">
+        <span class="badge ${badgeCls}">${escHtml(item.badge)}</span>
+        <div class="talk-speaker">${escHtml(item.speaker)}</div>
+        ${affilHtml}
+        <div class="talk-title">${escHtml(item.title)}</div>
+      </div>
+      <button class="${btnCls}" id="nbtn-${item.id}"
+              onclick="event.stopPropagation();toggleNote('${item.id}')">
+        ${btnLabel}
+      </button>
+    </div>
+    <div class="note-panel" id="np-${item.id}">
+      <div class="note-toolbar">
+        <span class="note-label">notes · markdown</span>
+        <div class="mode-btns">
+          <button class="mode-btn active" id="emode-${item.id}" onclick="setMode('${item.id}','edit')">edit</button>
+          <button class="mode-btn"        id="pmode-${item.id}" onclick="setMode('${item.id}','preview')">preview</button>
+        </div>
+      </div>
+      <textarea class="note-editor" id="ned-${item.id}"
+        placeholder="Start taking notes… (markdown supported)"
+        oninput="onInput('${item.id}')">${escHtml(note)}</textarea>
+      <div class="note-preview" id="nprev-${item.id}"></div>
+      <div class="note-footer">
+        <span class="note-wc" id="nwc-${item.id}">${wcText}</span>
+        <span class="note-saved" id="nsvd-${item.id}">saved</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderDay(dayId) {
+  const html = DAYS[dayId].items.map(it => {
+    if (it.k === 'session')   return renderSession(it);
+    if (it.k === 'logistics') return renderLogistics(it);
+    if (it.k === 'talk')      return renderTalk(it);
+    return '';
+  }).join('');
+  return `<div class="day-pane" id="pane-${dayId}">${html}</div>`;
+}
+
+function boot() {
+  document.getElementById('main').innerHTML =
+    ['wed','thu','fri'].map(renderDay).join('');
+  refreshTally();
+
+  // Tab click handlers
+  document.querySelectorAll('.day-tab').forEach(tab => {
+    tab.addEventListener('click', () => switchDay(tab.dataset.day));
+  });
+
+  // Mark today + auto-switch
+  const d = new Date();
+  const dayMap = { 27:'wed', 28:'thu', 29:'fri' };
+  if (d.getFullYear() === 2026 && d.getMonth() === 4) {
+    const todayKey = dayMap[d.getDate()];
+    if (todayKey) {
+      document.querySelector(`[data-day="${todayKey}"]`).classList.add('today');
+      switchDay(todayKey);
+      return;
+    }
+  }
+  switchDay('wed');
+}
+
+// ─── INTERACTIONS ─────────────────────────────────────────────────────────────
+
+function switchDay(id) {
+  document.querySelectorAll('.day-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`pane-${id}`).classList.add('active');
+  document.querySelector(`[data-day="${id}"]`).classList.add('active');
+}
+
+function toggleNote(id) {
+  const panel = document.getElementById(`np-${id}`);
+  const card  = document.getElementById(`card-${id}`);
+  const btn   = document.getElementById(`nbtn-${id}`);
+  const open  = panel.classList.contains('open');
+  if (open) {
+    panel.classList.remove('open');
+    card.classList.remove('has-open-note');
+    btn.classList.remove('open');
+  } else {
+    panel.classList.add('open');
+    card.classList.add('has-open-note');
+    btn.classList.add('open');
+    setTimeout(() => document.getElementById(`ned-${id}`)?.focus(), 40);
+  }
+}
+
+function setMode(id, mode) {
+  const editor  = document.getElementById(`ned-${id}`);
+  const preview = document.getElementById(`nprev-${id}`);
+  const eBtn    = document.getElementById(`emode-${id}`);
+  const pBtn    = document.getElementById(`pmode-${id}`);
+  if (mode === 'preview') {
+    preview.innerHTML = marked.parse(editor.value || '*No notes yet.*');
+    editor.style.display = 'none';
+    preview.classList.add('show');
+    eBtn.classList.remove('active');
+    pBtn.classList.add('active');
+  } else {
+    editor.style.display = 'block';
+    preview.classList.remove('show');
+    eBtn.classList.add('active');
+    pBtn.classList.remove('active');
+    editor.focus();
+  }
+}
+
+const timers = {};
+
+function onInput(id) {
+  const text = document.getElementById(`ned-${id}`).value;
+  const wcEl = document.getElementById(`nwc-${id}`);
+  const btn  = document.getElementById(`nbtn-${id}`);
+  if (wcEl) wcEl.textContent = wc(text);
+  if (btn) {
+    const hasNote = text.trim().length > 0;
+    btn.textContent = hasNote ? '✎ notes' : '+ notes';
+    btn.classList.toggle('has-notes', hasNote);
+  }
+  clearTimeout(timers[id]);
+  timers[id] = setTimeout(() => {
+    saveNote(id, text);
+    const sv = document.getElementById(`nsvd-${id}`);
+    if (sv) { sv.classList.add('show'); setTimeout(() => sv.classList.remove('show'), 1400); }
+  }, 500);
+}
+
+function wc(text) {
+  if (!text.trim()) return '0 words';
+  const n = text.trim().split(/\s+/).length;
+  return n === 1 ? '1 word' : `${n} words`;
+}
+
+// ─── GO ──────────────────────────────────────────────────────────────────────
+boot();
+</script>
+</body>
+</html>
