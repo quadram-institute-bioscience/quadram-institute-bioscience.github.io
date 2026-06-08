@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QIB Funding Calls</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* Primary palette */
+  --charcoal:   #2F3D46;
+  --acid-green: #B6BE00;
+  --dark-green: #097E74;
+  --antiflash:  #F0F1F1;
+  /* Secondary palette */
+  --d-orange:   #CF4520;
+  --l-orange:   #FF9E1B;
+  --s-green:    #48A23F;
+  --teal:       #00778B;
+  /* Derived */
+  --primary:       var(--dark-green);
+  --primary-hover: #0a9d91;
+  /* Status */
+  --open-c:    #48A23F; --open-bg:    #edf7ec; --open-br:    #a3d99e;
+  --soon-c:    #CF4520; --soon-bg:    #fff0eb; --soon-br:    #f5ad92;
+  --upcoming-c:#00778B; --upcoming-bg:#e5f3f6; --upcoming-br:#7dc5d0;
+  --new-c:     #CF4520; --new-bg:     #fff0eb;
+  /* Surface */
+  --bg:     #eceef0;
+  --card:   #ffffff;
+  --border: #d8dcdf;
+  --text:   #1a2428;
+  --muted:  #596870;
+  --sidebar:280px;
+}
+body{
+  font-family:'Calibri','Segoe UI','Helvetica Neue',Arial,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;font-size:15px;
+}
+a{color:var(--dark-green);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── Header ── */
+header{
+  background:var(--charcoal);color:#fff;
+  padding:0 24px;display:flex;align-items:center;gap:16px;height:60px;
+  position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.35);
+}
+.logo{font-size:1.1rem;font-weight:700;white-space:nowrap;letter-spacing:.3px;display:flex;align-items:center;gap:8px}
+.logo-bar{width:4px;height:26px;background:var(--acid-green);border-radius:2px}
+.logo span{color:var(--acid-green)}
+.search-wrap{flex:1;max-width:560px;position:relative}
+.search-wrap input{
+  width:100%;padding:8px 14px 8px 38px;border-radius:6px;
+  border:1.5px solid rgba(255,255,255,.2);font-size:.9rem;
+  background:rgba(255,255,255,.1);color:#fff;outline:none;
+  font-family:inherit;transition:.2s;
+}
+.search-wrap input::placeholder{color:rgba(255,255,255,.45)}
+.search-wrap input:focus{background:rgba(255,255,255,.18);border-color:var(--acid-green)}
+.search-icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.5;pointer-events:none}
+.result-count{font-size:.82rem;color:rgba(255,255,255,.6);white-space:nowrap;min-width:80px;text-align:right}
+
+/* ── Layout ── */
+.layout{display:flex;min-height:calc(100vh - 60px)}
+aside{
+  width:var(--sidebar);min-width:var(--sidebar);
+  background:#fff;border-right:1px solid var(--border);
+  padding:16px 14px;overflow-y:auto;
+  position:sticky;top:60px;height:calc(100vh - 60px);
+}
+main{flex:1;padding:20px;overflow:hidden;min-width:0}
+
+/* ── Sidebar sections ── */
+.filter-section{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.filter-section:last-child{border-bottom:none;padding-bottom:0}
+.filter-section h3{
+  font-size:.68rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.09em;color:var(--charcoal);margin-bottom:9px;
+  display:flex;align-items:center;gap:6px;
+}
+.filter-section h3::before{content:'';display:block;width:3px;height:12px;background:var(--dark-green);border-radius:2px}
+select{
+  width:100%;padding:6px 10px;border-radius:6px;
+  border:1.5px solid var(--border);font-size:.85rem;
+  background:#fff;cursor:pointer;color:var(--text);font-family:inherit;
+}
+select:focus{outline:none;border-color:var(--dark-green)}
+.check-group{display:flex;flex-direction:column;gap:5px}
+.check-group label{
+  display:flex;align-items:center;gap:8px;font-size:.85rem;
+  cursor:pointer;padding:3px 6px;border-radius:5px;transition:.12s;color:var(--text);
+}
+.check-group label:hover{background:var(--antiflash)}
+.check-group input[type=checkbox]{
+  accent-color:var(--dark-green);width:14px;height:14px;flex-shrink:0;cursor:pointer;
+}
+.tag-filter-wrap{display:flex;flex-wrap:wrap;gap:4px}
+.tag-btn{
+  font-size:.72rem;padding:3px 9px;border-radius:20px;
+  border:1.5px solid var(--border);background:#fff;cursor:pointer;
+  color:var(--muted);font-family:inherit;font-weight:500;transition:.15s;
+}
+.tag-btn:hover{border-color:var(--dark-green);color:var(--dark-green)}
+.tag-btn.active{background:var(--dark-green);color:#fff;border-color:var(--dark-green)}
+.funder-list{
+  max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:2px;
+  scrollbar-width:thin;scrollbar-color:var(--border) transparent;
+}
+.funder-btn{
+  font-size:.82rem;padding:5px 8px;border-radius:5px;
+  border:1.5px solid transparent;background:none;cursor:pointer;
+  color:var(--text);text-align:left;font-family:inherit;
+  transition:.12s;width:100%;line-height:1.3;
+}
+.funder-btn:hover{background:var(--antiflash);border-color:var(--border)}
+.funder-btn.active{background:var(--dark-green);color:#fff;border-color:var(--dark-green)}
+.btn-clear{
+  width:100%;padding:7px 12px;border-radius:6px;border:none;
+  background:var(--charcoal);color:#fff;font-family:inherit;
+  font-size:.85rem;font-weight:600;cursor:pointer;transition:.15s;
+}
+.btn-clear:hover{background:#3e5260}
+
+/* ── Cards ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.card{
+  background:var(--card);border-radius:10px;
+  border:1.5px solid var(--border);padding:16px;
+  cursor:pointer;transition:.18s;position:relative;
+  display:flex;flex-direction:column;gap:9px;
+  border-left:4px solid transparent;
+}
+.card:hover{
+  box-shadow:0 6px 20px rgba(9,126,116,.12);
+  border-color:var(--dark-green);border-left-color:var(--dark-green);
+  transform:translateY(-2px);
+}
+.card.status-open{border-left-color:var(--open-c)}
+.card.status-soon{border-left-color:var(--soon-c)}
+.card.status-upcoming{border-left-color:var(--upcoming-c)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-funder{
+  font-size:.72rem;font-weight:700;color:var(--dark-green);
+  text-transform:uppercase;letter-spacing:.06em;line-height:1.2;
+}
+.card-badges{display:flex;gap:4px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.badge{font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:20px;white-space:nowrap;letter-spacing:.02em}
+.badge-open{background:var(--open-bg);color:var(--open-c);border:1.5px solid var(--open-br)}
+.badge-soon{background:var(--soon-bg);color:var(--soon-c);border:1.5px solid var(--soon-br)}
+.badge-upcoming{background:var(--upcoming-bg);color:var(--upcoming-c);border:1.5px solid var(--upcoming-br)}
+.badge-new{background:#fff8e1;color:#b36200;border:1.5px solid #ffc947}
+.card-title{font-size:.93rem;font-weight:700;line-height:1.35;color:var(--text)}
+.card-desc{
+  font-size:.82rem;color:var(--muted);line-height:1.55;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tag{font-size:.7rem;padding:2px 8px;border-radius:12px;font-weight:600;letter-spacing:.01em}
+.card-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:auto;padding-top:9px;border-top:1px solid var(--border);
+}
+.deadline-info{font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.deadline-info strong{color:var(--text);font-weight:600}
+.elig-mini{display:flex;gap:3px;align-items:center}
+.elig-dot{
+  width:9px;height:9px;border-radius:50%;
+  transition:.1s;border:1.5px solid transparent;
+}
+.elig-dot.off{background:#e2e8ec;border-color:#c8d0d5}
+.elig-dot.on-gl{background:#3b82f6;border-color:#2563eb}
+.elig-dot.on-ctgl{background:#8b5cf6;border-color:#7c3aed}
+.elig-dot.on-fellow{background:var(--d-orange);border-color:#a83618}
+.elig-dot.on-ecr{background:var(--l-orange);border-color:#d4820e}
+.elig-dot.on-clin{background:var(--s-green);border-color:#357a2c}
+
+/* ── Empty state ── */
+.empty{text-align:center;padding:60px 20px;color:var(--muted)}
+.empty p{font-size:1rem;margin-top:12px}
+
+/* ── Modal ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.55);
+  z-index:200;display:none;align-items:flex-start;
+  justify-content:center;padding:28px 16px;overflow-y:auto;
+  backdrop-filter:blur(2px);
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:#fff;border-radius:14px;width:100%;max-width:740px;
+  padding:30px;position:relative;margin:auto;
+  border-top:5px solid var(--dark-green);
+}
+.modal-close{
+  position:absolute;top:14px;right:14px;
+  background:var(--antiflash);border:none;width:30px;height:30px;
+  border-radius:50%;cursor:pointer;font-size:1rem;color:var(--muted);
+  display:flex;align-items:center;justify-content:center;transition:.15s;
+}
+.modal-close:hover{background:var(--border);color:var(--text)}
+.modal-funder{
+  font-size:.72rem;font-weight:700;color:var(--dark-green);
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px;
+}
+.modal-title{font-size:1.25rem;font-weight:700;line-height:1.3;margin-bottom:14px}
+.modal-meta{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px;align-items:center}
+.meta-chip{font-size:.78rem;padding:3px 11px;border-radius:20px;font-weight:600}
+.meta-open{background:var(--open-bg);color:var(--open-c);border:1.5px solid var(--open-br)}
+.meta-soon{background:var(--soon-bg);color:var(--soon-c);border:1.5px solid var(--soon-br)}
+.meta-upcoming{background:var(--upcoming-bg);color:var(--upcoming-c);border:1.5px solid var(--upcoming-br)}
+.meta-new{background:#fff8e1;color:#b36200;border:1.5px solid #ffc947}
+.modal-section{margin-bottom:18px}
+.modal-section h4{
+  font-size:.7rem;font-weight:700;text-transform:uppercase;
+  letter-spacing:.09em;color:var(--charcoal);margin-bottom:8px;
+  padding-bottom:5px;border-bottom:2px solid var(--antiflash);
+}
+.modal-desc{font-size:.9rem;line-height:1.7;white-space:pre-wrap;color:var(--text)}
+.elig-grid{display:flex;flex-wrap:wrap;gap:7px}
+.elig-pill{
+  font-size:.8rem;padding:4px 12px;border-radius:20px;
+  font-weight:600;border:1.5px solid;
+}
+.elig-yes{background:#edf7ec;color:#2d7a26;border-color:#a3d99e}
+.elig-no{background:#f5f6f7;color:#94a3b8;border-color:#dde3e7}
+.deadlines-list{display:flex;flex-wrap:wrap;gap:6px}
+.dl-chip{
+  font-size:.82rem;padding:4px 12px;border-radius:8px;
+  background:var(--soon-bg);color:var(--soon-c);
+  border:1.5px solid var(--soon-br);font-weight:600;
+}
+.dl-rolling{background:var(--upcoming-bg);color:var(--upcoming-c);border-color:var(--upcoming-br)}
+.opens-info{margin-top:8px;font-size:.83rem;color:var(--muted)}
+.opens-info strong{color:var(--text)}
+.links-wrap{display:flex;flex-wrap:wrap;gap:8px}
+.link-btn{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 14px;
+  border-radius:7px;font-size:.83rem;font-weight:600;transition:.15s;
+  border:1.5px solid var(--border);color:var(--dark-green);
+  background:#fff;font-family:inherit;cursor:pointer;
+}
+.link-btn:hover{background:var(--dark-green);color:#fff;border-color:var(--dark-green);text-decoration:none}
+.link-btn.primary-btn{background:var(--dark-green);color:#fff;border-color:var(--dark-green)}
+.link-btn.primary-btn:hover{background:#0a9d91;text-decoration:none}
+.modal-notes{
+  font-size:.85rem;background:#fffbeb;
+  border:1.5px solid #fcd34d;border-left:4px solid var(--l-orange);
+  border-radius:7px;padding:10px 14px;color:var(--text);line-height:1.5;
+}
+
+/* ── Tag palette (brand-derived) ── */
+.t0{background:#e5f3f6;color:#005f6e}   /* teal deep */
+.t1{background:#edf7ec;color:#2d7a26}   /* s-green */
+.t2{background:#fff0eb;color:#a33519}   /* d-orange */
+.t3{background:#fff8ec;color:#b37000}   /* l-orange amber */
+.t4{background:#e8f5f4;color:#065e57}   /* dark-green deep */
+.t5{background:#f5f6cc;color:#7a8000}   /* acid-green */
+.t6{background:#e5f3f6;color:#006680}   /* teal mid */
+.t7{background:#fff8ec;color:#cc7d00}   /* warm amber */
+.t8{background:#edf7ec;color:#1a6016}   /* forest */
+.t9{background:#fff0eb;color:#9e3010}   /* burnt orange */
+.t10{background:#e8f5f4;color:#074f49}  /* deep teal-green */
+.t11{background:#f0f1cc;color:#6e7500}  /* olive */
+.t12{background:#fceae8;color:#7c2913}  /* dark red-orange */
+.t13{background:#eaf6f4;color:#086b5c}  /* green-teal */
+
+@media(max-width:900px){
+  aside{display:none}
+  .cards-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-bar"></div>
+    QIB <span>Funding</span>
+  </div>
+  <div class="search-wrap">
+    <svg class="search-icon" width="15" height="15" fill="none" stroke="white" stroke-width="2.2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search calls, funders, topics…">
+  </div>
+  <div class="result-count" id="resultCount"></div>
+</header>
+
+<div class="layout">
+<aside>
+  <div class="filter-section">
+    <h3>Sort by</h3>
+    <select id="sortSelect">
+      <option value="deadline_asc">Deadline — soonest first</option>
+      <option value="deadline_desc">Deadline — latest first</option>
+      <option value="funder_az">Funder A–Z</option>
+      <option value="call_az">Call A–Z</option>
+    </select>
+  </div>
+
+  <div class="filter-section">
+    <h3>Status</h3>
+    <div class="check-group">
+      <label><input type="checkbox" class="status-filter" value="Open" checked><span>Open now</span></label>
+      <label><input type="checkbox" class="status-filter" value="Upcoming" checked><span>Upcoming</span></label>
+      <label><input type="checkbox" class="status-filter" value="closing_soon"><span>⚡ Closing ≤ 30 days</span></label>
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <h3>Eligible for</h3>
+    <div class="check-group">
+      <label><input type="checkbox" class="elig-filter" value="gls"><span>Group Leaders (GLs)</span></label>
+      <label><input type="checkbox" class="elig-filter" value="ctgls"><span>CTGLs</span></label>
+      <label><input type="checkbox" class="elig-filter" value="fellows"><span>Fellows</span></label>
+      <label><input type="checkbox" class="elig-filter" value="ecrs"><span>ECRs / RTPs</span></label>
+      <label><input type="checkbox" class="elig-filter" value="clinical"><span>Clinical collaborators</span></label>
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <h3>Topics</h3>
+    <div class="tag-filter-wrap" id="tagFilters"></div>
+  </div>
+
+  <div class="filter-section">
+    <h3>Funder</h3>
+    <div class="funder-list" id="funderList"></div>
+  </div>
+
+  <div class="filter-section">
+    <button class="btn-clear" onclick="clearAllFilters()">↺ Clear all filters</button>
+  </div>
+</aside>
+
+<main>
+  <div class="cards-grid" id="cardsGrid"></div>
+  <div class="empty" id="emptyState" style="display:none">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <p>No calls match your current filters.</p>
+  </div>
+</main>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalContent">
+    <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+const CALLS = [{"funder": "Public Engagement Funding", "call": "Public Engagement Funding List", "description": "A comprehensive list of QIB relevant public engagement funding opportunities.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": true, "clinical": false}, "opens": null, "deadlines": ["Rolling"], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Public Engagement"]}, {"funder": "NBI Contracts Department", "call": "Funding Opportunities list", "description": "The Fellowships and Travel sections may be the most relevant to any Postdocs. The Contracts Office is available to offer advice and guidance on any funding calls.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": true, "clinical": false}, "opens": null, "deadlines": [], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship"]}, {"funder": "Innovate UK", "call": "Frontier AI Benchmarking Datasets", "description": "UK registered organisations can apply for a share of up to £4.5 million. This programme focuses on the creation, curation, annotation and exploitation of FAIR-data and benchmarks which will fuel AI industry growth. This funding is from Innovate UK.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-10"], "next_deadline": "2026-06-10", "status": "Open", "closing_soon": true, "notes": "22 April Online briefing event - registration required", "is_new": false, "urls": [], "funder_url": null, "tags": ["AI & ML", "Innovation"]}, {"funder": "ESRC", "call": "ESRC Connect Awards (pilot)", "description": "Apply for funding to connect with other researchers to scope, seed and grow emerging research fields and new areas of inquiry.\nThis pilot funding opportunity will support researchers to collaborate on novel, exploratory and high-risk ideas, building the foundations for future research and innovation.\nAwards can last up to six months. Projects must have finished by 31 March 2027.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-10"], "next_deadline": "2026-06-10", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "Ripen Hub", "call": "Feasibility Award", "description": "· Aimed at bridging the gap in late-stage innovation.\n· Focus on the translation of an idea and have a clear pathway to commercialisation.\n· Each with a maximum value of £100,000.\n· Match Funding from Industrial Partner(s) in cash and/or in-kind contribution\n· Timeline of 12 months with a clear deliverable at 12 months.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-12"], "next_deadline": "2026-06-12", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Innovation"]}, {"funder": "Ripen Hub", "call": "Mobility Award", "description": "· Based on partnership between academia and business.\n· We will prioritise applications where academic and industrial partners have a two-way experience. \n· Each with a maximum value of £100,000.\n· Timing of award will be 3 to 9 months but can be extended with extra funding from the project partners.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-12"], "next_deadline": "2026-06-12", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Innovation"]}, {"funder": "Ripen Hub", "call": "Progression Award", "description": "· Bring together academics and business partners to develop high quality applications that can be submitted for joint funding to UKRI.\n· Aimed at pump priming partnerships, this will include meetings and small pieces of work that will strengthen collaborations.\n· Each with a maximum value of £50,000; all projects being funded through the RIPEN Hub are eligible for BBSRC follow-on funding\n· Timeline of 6 months with a clear deliverable at 6 months.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-12"], "next_deadline": "2026-06-12", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "BBSRC", "call": "Future Leaders Fellowship", "description": "Apply for funding to support ambitious research and innovation across UK Research and Innovation (UKRI)’s remit. You must be an early career researcher or innovator who is either:\n> looking to establish or transition to independence\n> developing your own original and ambitious plans within a commercial setting", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-16"], "next_deadline": "2026-06-16", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": ["Innovation", "Fellowship"]}, {"funder": "NERC", "call": "Early Independence: NERC Independent Research Fellowship 2026", "description": "Apply for funding to further your career through an independent research fellowship", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-06-16"], "next_deadline": "2026-06-16", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": ["Fellowship"]}, {"funder": "NIHR", "call": "Postdoctoral Award", "description": "The NIHR Postdoctoral Award is aimed at anyone with a PhD or a submitted PhD thesis under assessment who has not yet been appointed to a professorial post. This award provides funding to help you develop your research career across a broad range of postdoctoral career stages. The award will support you to undertake research in any scientific discipline or sector. You'll need to demonstrate a contribution to improving health and care within the NIHR’s remit.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-06-16"], "next_deadline": "2026-06-16", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "NIH", "call": "Investigator Initiated Innovation in Computational Genomics and Data Science (R21 - Exploratory/Developmental Grants)", "description": "Funding highly innovative research efforts in computational genomics through developing novel data science, statistics, and bioinformatics approaches that are broadly applicable to human health and disease. E.g.\nTools for visualization of large genomic data sets --- Development of genetically informed causal inference methods --- Machine learning and AI for genomics research --- Improving efficiency and scalability of compute-intensive genomic data analysis applications --- \nMethodology development for federated learning on distributed genomic data, computing resources, and models from multiple sites", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-06-16", "2027-02-16", "2027-06-16"], "next_deadline": "2026-06-16", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["AI & ML", "Genomics", "Clinical Research", "Innovation"]}, {"funder": "BBSRC", "call": "2026 to 2027 strategic Longer and Larger (sLoLa)", "description": "Apply for funding to undertake large team-based curiosity-driven bioscience discovery research projects.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-06-25"], "next_deadline": "2026-06-25", "status": "Open", "closing_soon": true, "notes": "30 April 2026 12:00pm\nOutline stage Webinar", "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": []}, {"funder": "Royal Society", "call": "Wolfson Fellowship", "description": "These Fellowships are to:\n> enable UK universities and research institutions to strategically recruit and attract outstanding emerging or established international research leaders to the UK from overseas by offering long-term support and flexible funding to conduct high-quality research\n> strengthen research and help build a critical mass of excellence in the UK’s best university departments and research institutions in fields considered to be strategically important by the institution", "eligible": {"gls": true, "ctgls": false, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-07-01"], "next_deadline": "2026-07-01", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Fellowship", "International"]}, {"funder": "Royal Society", "call": "Wolfson Visiting Fellowship", "description": "The Royal Society Wolfson Fellowships enable UK Universities and not-for-profit Research Institutions to attract and recruit internationally leading researchers (and their teams) to their organisation. The objectives of the Royal Society Wolfson Visiting Fellowships are to:\n> enable UK universities and research institutions to attract outstanding emerging or established international research leaders in key strategic areas to the UK from overseas\n> enable the Visiting Fellow and the host UK organisation to develop ongoing collaborative research links, share ideas and practice", "eligible": {"gls": true, "ctgls": false, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-07-01"], "next_deadline": "2026-07-01", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Fellowship", "International"]}, {"funder": "Medical Research Foundation", "call": "Antimicrobial Resistance Research Fellowship", "description": "Inviting applications from early or mid-career researchers in the field of Antimicrobial Resistance research.\nAll areas of research relevant to Antimicrobial Resistance will be considered. However, particularly encouraging proposals that include the following human-health research themes:\n- Climate change or the environment and AMR\n- The impact of AMR on children and young people\n- Social sciences, community and policy\n- Large scale data and genomics\n- Infection prevention and control\n- Global studies", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["2026-07-02"], "next_deadline": "2026-07-02", "status": "Open", "closing_soon": true, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.medicalresearchfoundation.org.uk/", "tags": ["Genomics", "Microbiome", "Fellowship", "International", "Sustainability", "AMR"]}, {"funder": "Quadram Institute Biocience", "call": "Proof of Concept (PoC) Funding Call", "description": "Value of awards: up to £20,000. Funding to progress QIB science towards commercialisation or translation. Applications are welcomed for projects focussed on the pre-commercial evaluation and development of a technology and for the purpose of qualifying its potential for future commercialisation or translation. Please email laila.roper@quadram.ac.uk with any questions or to arrange a chat.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-07-06"], "next_deadline": "2026-07-06", "status": "Open", "closing_soon": true, "notes": "Guidance and application form", "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "Quadram Institute Biocience", "call": "Pump Priming Funding Call", "description": "Value of awards: up to £50,000 to be match funded by an industry partner (in-kind or cash). Funding towards new research projects with a focus on industry collaborations. Applications are welcome for projects focussed on developing long term industrial partnerships to progress QIB science towards commercialisation or translation. Please email leanne.williams@quadram.ac.uk with any questions or to arrange a chat.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-07-06"], "next_deadline": "2026-07-06", "status": "Open", "closing_soon": true, "notes": "Guidance and application form", "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Innovation"]}, {"funder": "NIHR", "call": "Tackling bacterial and fungal antimicrobial resistance in sub-Saharan Africa and South Asia", "description": "2026 Global Health Research theme is antimicrobial resistance (AMR), with a focus on bacterial and fungal pathogens on the World Health Organisation (WHO) priority lists. This choice of theme was informed by existing areas of need, including those identified by the WHO Global Research Agenda for AMR, horizon scanning and a consultation with key stakeholders. It was further refined by experts from an independent scientific advisory group. This process highlighted a lack of evidence on real-world implementation of interventions designed to:\n> strengthen antimicrobial stewardship\n> prevent AMR infections\n> improve AMR-related health outcomes", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-07-08", "Outline application stage.", "(full application deadline in December)"], "next_deadline": "2026-07-08", "status": "Open", "closing_soon": true, "notes": "Info webinar will be on 12 May 2026, 10-11.30am. Registration required.", "is_new": false, "urls": [], "funder_url": null, "tags": ["Microbiome", "International", "AMR"]}, {"funder": "UEA", "call": "Impact Funding (REF returnable GLs only)", "description": "> Maximum of £10,000 .\n> These funds are to support impact projects delivering impact in time for inclusion as a REF impact case study (ICS) in REF29. \n> Must be spent before 31 July 2027. \n> Applications should be made using the application form \n> Any questions to impact@uea.ac.uk.", "eligible": {"gls": true, "ctgls": false, "fellows": false, "ecrs": false, "clinical": false}, "opens": null, "deadlines": ["2026-07-08"], "next_deadline": "2026-07-08", "status": "Open", "closing_soon": true, "notes": "Application for and guidance", "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "Innovate UK", "call": "Accelerated Knowledge Transfer Partnerships 6 (AKT 6)", "description": "Allowing researchers to work with a UK registered business to deliver a short, rapid and targeted intervention. This intervention will accelerate the evaluation or development of an innovation project or concept, with the potential for a significant impact for the Business Partner.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "2026-05-26", "deadlines": ["2026-07-15"], "next_deadline": "2026-07-15", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "NERC", "call": "Environmental sciences: Global Partnerships Seedcorn Fund", "description": "Apply for funding to create new and sustainable global partnerships within NERC remit. Applications must:\n> include at least one new international partner\n> focus on activities that require international expertise\n> show long-term potential", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-07-16"], "next_deadline": "2026-07-16", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": ["International", "Sustainability"]}, {"funder": "British Heart Foundation", "call": "Translational Awards", "description": "To support the pre-clinical and early phase clinical development of new cardiovascular medicines and technologies so that they are attractive for follow-on funding.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["2026-08-05"], "next_deadline": "2026-08-05", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Clinical Research", "Innovation"]}, {"funder": "ERC", "call": "Advanced Grant", "description": "Targeted at senior research leaders with a significant track record over the last 10 years.  They promote substantial advances in the frontiers of knowledge - in any research discipline - by encouraging new, innovative thinking.  Up to €2.5m per grant is available for a maximum of 5 years.", "eligible": {"gls": true, "ctgls": false, "fellows": false, "ecrs": false, "clinical": false}, "opens": "2026-05-28", "deadlines": ["2026-08-27"], "next_deadline": "2026-08-27", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": ["Innovation"]}, {"funder": "Leverhulme Trust", "call": "Visiting Professorships", "description": "For UK institutions to invite an eminent senior professor from overseas, to bring genuinely novel expertise and enhance the skills and knowledge of academic staff and students in an underrepresented area in the UK. Priority will be given to new or recent collaborations and visits with a variety of activities beyond research.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open\n1-May-27", "deadlines": ["2026-09-01", "2027-10-02"], "next_deadline": "2026-09-01", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.leverhulme.ac.uk/schemes-at-a-glance", "tags": ["International"]}, {"funder": "Horizon Europe", "call": "Enhancing integrated research and healthcare in sub-Saharan Africa through digital innovation and Artificial Intelligence", "description": "Aiming to deliver results contributing to at least two of the below:\n> Scaled-up implementation of validated digital innovations at national or sub-regional level.\n> Improved data interoperability and data harmonisation of electronic health records between different digital health systems according to international standards.\n> Integrated comprehensive roadmap for the sustainable and scalable integration of digital health tools into clinical trials and public health systems in SSA, in line with international standards and local ethical standards, and in the context of sharing of best practices.\n> Increased retention of skilled experts in digital health, epidemiology, bioinformatics, AI in SSA.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-09-02"], "next_deadline": "2026-09-02", "status": "Open", "closing_soon": false, "notes": "This is a Coordination & Support Actions (CSA), which is primarily for accompanying measures such as standardisation, dissemination, awareness-raising and communication, networking, coordination or support services, policy dialogues and mutual learning exercises and studies, including design studies for new infrastructure and may also include complementary activities of strategic planning, networking and coordination between programmes in different countries.", "is_new": false, "urls": [], "funder_url": null, "tags": ["AI & ML", "Genomics", "Clinical Research", "Innovation", "International", "Sustainability"]}, {"funder": "MRC", "call": "Capacity building: clinical research training fellowship", "description": "If you have clinical researchers who would like to work at QIB:\nApply for funding to reacquire research skills.\nYour research can focus on any area of Medical Research Council (MRC)’s remit.\nYou must:\n-be a registered healthcare professional\n-be a PhD graduate working outside of research, usually five or more years\n-show plans to pursue a research career and be at an appropriate point in your clinical training to undertake the fellowship", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "2026-06-10", "deadlines": ["2026-09-02", "2027-01-13", "2027-04-07"], "next_deadline": "2026-09-02", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Fellowship"]}, {"funder": "MRC", "call": "Professional doctorate: clinical research training fellowship", "description": "If you have clinical researchers who would like to do a PhD at QIB:\nYour research can focus on any area of Medical Research Council (MRC)’s remit to improve human health.\nYou must:\n- be a registered healthcare professional\n- be at an appropriate point in your training to undertake a PhD\n- show plans to pursue a research career", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "2026-06-10", "deadlines": ["2026-09-02", "2027-01-13", "2027-04-07"], "next_deadline": "2026-09-02", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Fellowship"]}, {"funder": "MRC", "call": "Early independence: clinician scientist fellowship", "description": "If you have clinical researchers who would like to work at QIB:\nApply for an early independence fellowship to support your career transition.\nYou must:\n- be a registered healthcare professional\n- have a PhD or equivalent\n- show evidence of career consolidation and past productivity\n- show clear plans for establishing your own research niche that enables a step-change towards independence", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "2026-06-10", "deadlines": ["2026-09-02", "2027-01-13", "2027-04-07"], "next_deadline": "2026-09-02", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Fellowship"]}, {"funder": "ERC", "call": "ERC Plus Grants", "description": "The aim is to support outstanding PIs with bold ideas and a vision for transformative research that goes beyond the scope of existing ERC programmes. The grant is for a single PI (with team). The grants are for a duration of 4-7 years and up to 7M euros, with a minimum of 30% of your time on the grant. All topics are welcome.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["2-Sep-26 (TBC)"], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": "Webinar on the new ERC Plus Grants", "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": []}, {"funder": "UKRI", "call": "Policy internships 2026", "description": "An opportunity for UKRI-funded doctoral students to undertake a three-month internship at one of a selected group of influential policy organisations, as part of the existing doctoral studentship.", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-09-08"], "next_deadline": "2026-09-08", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": []}, {"funder": "Royal Society", "call": "University Research Fellowship", "description": "To support the next generation of research leaders to undertake cutting-edge research. The objectives of the URF programme are to enable outstanding early career scientists with the potential to become leaders in their field to:\n> Build an independent research career at a UK university or research institution\n> Gain the freedom, time, and long-term flexible support to pursue high-quality and innovative lines of scientific research\n> Develop as research leaders by offering tailored high-quality professional development, networking and engagement opportunities.", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "2026-07-14", "deadlines": ["2026-09-09"], "next_deadline": "2026-09-09", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Innovation", "Fellowship"]}, {"funder": "Horizon Europe", "call": "MSCA Postdoctoral Fellowships 2026", "description": "Postdoctoral Fellowships aim to enhance the innovative potential of postdoctoral researchers through advanced training, international mobility. There are two main types: European Fellowships (1-2 years, and undertaken at Quadram and open to researchers of any nationality currently within and outside Europe); and Global Fellowships (which involve a 1-2 year secondment to a Third (non-EU) Country followed by a mandatory 12 month return phase at Quadram).", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-09-09"], "next_deadline": "2026-09-09", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation", "Fellowship", "International"]}, {"funder": "MRC", "call": "Centre of Research Excellence", "description": "MRC CoRE funding aims to tackle complex and interdisciplinary health challenges. MRC CoREs will support bold and ambitious research focused on a defined challenge. Tackling such challenges will be transformative to biomedical research, health research or both within 14 years, and will enhance approaches to the prevention, early detection, diagnosis, and treatment of disease, improving health and wellbeing for all. MRC CoREs will be funded for up to 14 years. Your award will initially last for seven years, with a further seven years based on successful review.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open\n7-Oct-26\n13-May-27", "deadlines": ["2026-09-10", "2027-02-03", "2027-09-09"], "next_deadline": "2026-09-10", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research"]}, {"funder": "Royal Society", "call": "Industry Fellowship", "description": "The Industry Fellowship scheme is open to academic and industrial researchers from early to senior career stages based in the UK. The aims of the scheme are to:\n> Support the mobility of excellent academic or industrial researchers between the two sectors in the UK, across the natural sciences\n> Enable the Industry Fellow to develop and establish collaborative links between the academic and industrial organisations, which may lead to longer term collaborations\n> Support the career development of the Industry Fellow, and their team, through the cross-sector collaborative research experience afforded by the fellowship\n> Enhance knowledge exchange in science and technology between industry and academia.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": true, "clinical": false}, "opens": "2026-07-22", "deadlines": ["2026-09-16"], "next_deadline": "2026-09-16", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Clinical Research", "Fellowship"]}, {"funder": "Cancer Research UK", "call": "Early Detection and Diagnosis Primer Award", "description": "This award supports new and pioneering research ideas and pilot studies of high scientific risk to stimulate and develop the early detection field.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "2026-06-16", "deadlines": ["2026-09-17"], "next_deadline": "2026-09-17", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Cancer"]}, {"funder": "Cancer Research UK", "call": "Pre-doctoral Research Bursary", "description": "This bursary provides short-term funding to allow clinicians and other health professionals get involved in research projects early in their career.", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["2026-09-24"], "next_deadline": "2026-09-24", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Cancer"]}, {"funder": "Cancer Research UK", "call": "Discovery Programme Award", "description": "This scheme provides long-term support for established researchers to pursue an ambitious and creative programme of work addressing key questions in the cancer field. Proposals should be centred on a core overarching vision, explored via a set of connected aims. We encourage collaborative teams and multidisciplinary approaches.", "eligible": {"gls": true, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["2026-09-29"], "next_deadline": "2026-09-29", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Cancer"]}, {"funder": "Cancer Research UK", "call": "Discovery Programme Foundation Award", "description": "This scheme is equivalent to our Discovery Programme Award but aimed at mid-career researchers seeking to further develop their independent research programme and scientific leadership. It is designed to support development of a strong foundation for future internationally-leading research and often serves as a pathway to the Discovery Programme Award.", "eligible": {"gls": false, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["2026-09-29"], "next_deadline": "2026-09-29", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["International", "Cancer"]}, {"funder": "Royal Society", "call": "Faraday Discivery Fellowships", "description": "The programme will provide the most talented mid-career researchers with the time and freedom to focus on their research, providing long-term, stable funding to allow them to tackle difficult and intractable problems.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "2026-08-31", "deadlines": ["2026-09-30", "2027-02-01"], "next_deadline": "2026-09-30", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Fellowship"]}, {"funder": "British Heart Foundation", "call": "Discovery Research Early Career Fellowships", "description": "The program is open to applicants with a background in cardiovascular research as well as those transitioning from other disciplines or industry, during the last year of their PhD or up to 4 years from the date of their PhD award letter. This scheme is also open to career re-entry and international applicants. Eligible candidates can apply for an award of up to 4 years, or an equivalent duration for part-time work.", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["2026-09-30"], "next_deadline": "2026-09-30", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Fellowship", "International"]}, {"funder": "British Heart Foundation", "call": "Discovery Research Senior Fellowships", "description": "The Discovery Research Senior Fellowship will support leaders in cardiovascular research in their progression towards leading larger scale research programme grants and securing professorship funding. Eligible candidates can apply for an award of up to 5 years, or an equivalent duration for part-time work. Candidates must hold (or be moving to) a position at an eligible host institution that will underwrite 50% of their salary. This scheme is also open to international applicants, as well as those returning to academia from industry or a career break.", "eligible": {"gls": true, "ctgls": false, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-09-30"], "next_deadline": "2026-09-30", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Fellowship", "International"]}, {"funder": "British Heart Foundation", "call": "Future Leader Fellowships", "description": "The Discovery Research Future Leaders Fellowship (FLF) will provide long-term support to high-potential scientists as they transition to independence, leading their own research projects and teams. The programme is open to applicants with a background in cardiovascular research as well as those returning to academia from industry or a career break. This scheme is also open to international applicants. Eligible candidates can apply for an award of up to 7 years, or an equivalent duration for part-time work.", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2026-09-30"], "next_deadline": "2026-09-30", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Fellowship", "International"]}, {"funder": "Cancer Research UK", "call": "Careere Development Fellowship", "description": "This fellowship supports new group leaders who do not have a salaried independent position to establish their independent research group.", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "2026-07-07", "deadlines": ["2026-10-01", "(Outline)"], "next_deadline": "2026-10-01", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship", "Cancer"]}, {"funder": "Cancer Research UK", "call": "Career Establishment Award", "description": "This fellowship supports new group leaders who have a salaried independent position to establish their independent research group.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "2026-07-07", "deadlines": ["2026-10-01", "(Outline)"], "next_deadline": "2026-10-01", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship", "Cancer"]}, {"funder": "Cancer Research UK", "call": "Clinical Future Leaders Fellowship", "description": "This fellowship aims to support clinician scientists to transition to research independence and leadership in their field of cancer research. These long-term fellowships provide talented clinician scientists with the flexibility and freedom to establish themselves as clinical academic leaders.", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "2026-07-07", "deadlines": ["2026-10-01", "(Outline)"], "next_deadline": "2026-10-01", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Fellowship", "Cancer"]}, {"funder": "Cancer Research UK", "call": "Clinical Scientist Fellowship", "description": "This fellowship supports clinician scientists who have gained a higher research degree, have some postdoctoral experience and are ready to make the first step towards developing their own research niche.", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": false, "clinical": true}, "opens": "2026-07-07", "deadlines": ["2026-10-01", "(Outline)"], "next_deadline": "2026-10-01", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Fellowship", "Cancer"]}, {"funder": "Royal Society", "call": "Short Industry Fellowships", "description": "The Short Industry Fellowships scheme is open to talented researchers, especially early career researchers, in academia or industry in the UK. The aims of the scheme are to:\n> Support mobility of excellent academic or industry researchers (and/or their postdoctoral researcher) between the two sectors in the UK, across the natural sciences\n> Enable the fellow to initiate and develop collaborative links between the academic and industry organisations, which may lead to longer term collaborations (and can seek further funding through the Industry Fellowship)\n> Support the career development of the fellow and/or their postdoctoral researcher gained through the working in the other sector\n> Enhance knowledge exchange in science and technology between industry and academia. Awards must involve mobility between sectors i.e. UK based private industry and a UK university or a not-for-profit research organisation.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "2026-08-12", "deadlines": ["2026-10-07"], "next_deadline": "2026-10-07", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Fellowship"]}, {"funder": "Royal Society", "call": "Dorothy Hodgkin Fellowship", "description": "The Dorothy Hodgkin Fellowship (DHF) programme aims to support outstanding early career scientists who require a flexible working pattern due to personal circumstances, such as caring responsibilities and/or health-related conditions. The objectives of the DHF programme are to enable the next generation of research leaders to:\n> Build an independent research career at a UK university or research institution\n> Gain the freedom, time and long-term flexible support to pursue high quality and innovative lines of scientific research\n> Develop as a research leader by offering tailored, high quality professional development, networking and engagement opportunities", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "2026-09-01", "deadlines": ["2026-10-28"], "next_deadline": "2026-10-28", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Innovation", "Fellowship"]}, {"funder": "MRC", "call": "Pre-announcement: Purchase mid-range equipment for biomedical research: MRC Equip", "description": "Apply for funding for mid-range equipment for research across MRC’s scientific areas. You must be employed at a research organisation eligible to apply for MRC funding.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "2026-08-13", "deadlines": ["2026-11-05"], "next_deadline": "2026-11-05", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "Royal Society", "call": "Career Development Fellowship", "description": "The Career Development Fellowship (CDF) is a four-year, postdoctoral research fellowship that aims to support the retention in STEM of researchers from underrepresented backgrounds. Fellowships will provide funding to conduct high-quality research and a comprehensive programme of mentoring, training and networking opportunities to support award holders in establishing a successful research career in the UK.", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": true, "clinical": false}, "opens": "2026-09-22", "deadlines": ["2026-11-18"], "next_deadline": "2026-11-18", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Fellowship"]}, {"funder": "MRC", "call": "Proof of Concept", "description": "Apply for funding to develop and test novel therapeutics, medical devices, diagnostics and other interventions. Your project can start and finish at any stage on the developmental pathway from prototype development, through pre-clinical refinement and testing to early-phase clinical studies and trials (up to phase 2a).", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "2026-07-02", "deadlines": ["2026-11-18"], "next_deadline": "2026-11-18", "status": "Upcoming", "closing_soon": false, "notes": "Webinar on 2nd June - registration required", "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research"]}, {"funder": "Royal Society", "call": "Leverhulme Trust Senior Research Fellowship", "description": "The scheme seeks to provide opportunities for experienced senior and mid-career researchers to focus on full-time research for up to one year, by relieving them of all their teaching, administrative and pastoral care duties during that period. Preference will be given to candidates who, as well as demonstrating scientific excellence, can show that such relief is particularly needed and timely. Applications from mid-career candidates are particularly encouraged.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "2026-09-30", "deadlines": ["2026-11-30"], "next_deadline": "2026-11-30", "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://royalsociety.org/grants-schemes-awards/grants/", "tags": ["Fellowship"]}, {"funder": "NIH", "call": "Investigator Initiated Innovation in Computational Genomics and Data Science (R01 - Research Project Grant)", "description": "Funding highly innovative research efforts in computational genomics through developing novel data science, statistics, and bioinformatics approaches that are broadly applicable to human health and disease. E.g.\nTools for visualization of large genomic data sets --- Development of genetically informed causal inference methods --- Machine learning and AI for genomics research --- Improving efficiency and scalability of compute-intensive genomic data analysis applications --- \nMethodology development for federated learning on distributed genomic data, computing resources, and models from multiple sites", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["2027-02-05", "2027-06-05"], "next_deadline": "2027-02-05", "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["AI & ML", "Genomics", "Clinical Research", "Innovation"]}, {"funder": "Lister Institute", "call": "Research Prize", "description": "Lister Prize Fellowships are awarded to up and coming researchers undertaking high quality biomedical research, and are designed to assist scientists in situations where the prize money will have a significant beneficial impact on their work and career. Prizes are ideal for researchers just starting their own independent research group, or for group leaders looking to research new areas not covered by current awards.", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "2026-07-01", "deadlines": ["Rolling"], "next_deadline": null, "status": "Upcoming", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship"]}, {"funder": "BBSRC", "call": "Follow-On Fund", "description": "The BBSRC Follow-on Fund (FoF) is designed to support the translation of fundamental research into practical application, including commercialisation.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Rolling"], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": ["Innovation"]}, {"funder": "BBSRC", "call": "Standard research grant: applicant-led mode", "description": "Apply for funding to support excellent investigator-led research across the breadth of the Biotechnology and Biological Sciences Research Council (BBSRC) scientific remit.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": []}, {"funder": "BBSRC", "call": "New Investigator Award", "description": "This scheme is designed to assist newly employed university lecturers, researchers (at a level equivalent to lecturer) in research council institutes, and fellows (at a level equivalent to lecturer) to secure their first major element of research support funding.", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": ["Fellowship"]}, {"funder": "MRC", "call": "Partnership grant", "description": "Apply for funding to support partnerships to carry out novel collaborative activities between a team of researchers, with interdisciplinarity encouraged where appropriate. The grant will allow you to:\nestablish novel high-value collaborative activities or capabilities\nadd value to high-quality research activities supported by existing funding, or underpin future funding in our remit build capacity in an area of unmet need\nFunding is available for between 18 months and five years.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "MRC", "call": "Research Grant", "description": "Apply for funding to support research within the remit of the Medical Research Council (MRC).\nMolecular and cellular medicine \nInfections and Immunity\nPopulation and systems medicine\nNeurosciences and mental health", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Immunology", "Neuroscience"]}, {"funder": "MRC", "call": "New Investgator Research Grant", "description": "Apply for funding to take the next step towards becoming an independent researcher. Your research must be in the remit of the Medical Research Council. You must have: \n•\tthe skills and experience to ‘transition to independence’\n•\tthe support of an eligible host research organisation", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship"]}, {"funder": "EPSRC", "call": "Mathematical Sciences Early Independence Fellowship", "description": "Apply for an early independence fellowship if your research  is within EPSRC Mathematical Sciences remit. You must have: \n• a PhD\n• evidence of career consolidation and past productivity\n• plans for establishing your own research niche that enables a step-change towards independence", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship"]}, {"funder": "BBSRC", "call": "Industrial Partnership Awards (IPA)", "description": "IPAs are academic-led, applicant-led mode grants that have significant industrial involvement and industry partners that contribute in cash at least equivalent to 10% of the full project costs.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": ["Clinical Research", "Innovation"]}, {"funder": "BBSRC", "call": "‘Stand-alone’ LINK", "description": "LINK supports collaborative research projects between at least one company and one academic partner. At least 50% of the full project cost comes from industry. Applications should be for pre-competitive research that would not be undertaken in this form without LINK support.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": []}, {"funder": "MRC", "call": "Using the ‘Our Future Health’ data resource for research", "description": "This is a pilot scheme through which the Medical Research Council (MRC) will cover data access costs for eligible MRC funded researchers. Data is accessed through Our Future Health.\nResearchers should submit an expression of interest to MRC. Once MRC has confirmed eligibility, researchers must register with Our Future Health and submit their study application. Computation costs will not be covered, but nominal cloud credits are provided by Our Future Health.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": "You must be a researcher supported by MRC funding.", "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "NERC", "call": "Pushing the frontiers of environmental science 2026", "description": "Apply for funding to pursue an ambitious, high-reward curiosity-driven project in environmental research.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": ["Sustainability"]}, {"funder": "UK Gov", "call": "AI Research Resource (AIRR) advanced supercomputers for the UK", "description": "Apply to use the supercomputers via the \"Gateway\" option.  Designed for researchers from academia, industry, or other UK organisations, this route supports:\n- first-time users of AI supercomputing resources\n- testing of (novel) algorithms, code, and workflows\n- benchmarking of algorithms, code, and workflows before applying for larger AIRR opportunities\nEligible activities include:\n- fundamental research (Research organisations only)\n- feasibility studies\n- industrial research\n- experimental development\nUp to 10,000 GPU hours on AIRR services, to be used within 3 months of project start.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["AI & ML", "Clinical Research"]}, {"funder": "AHRC, EPSRC, ESRC, MRC, NERC", "call": "Collaborate with researchers in Norway", "description": "Project co-leads (international) based in Norway can be included in UK-led applications and receive funding from UK Research and Innovation (UKRI) under the Money Follows Cooperation agreement between UKRI and Research Council of Norway (RCN) to reduce barriers to cross-border collaboration.\nThis agreement does not represent a separate funding scheme. Applications must be submitted through existing council programmes. Conditions and budgets will differ depending on the funding opportunity.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": ["Innovation", "International"]}, {"funder": "CMI", "call": "Centre for Microbial Interactions - Flexible Fund", "description": "Our Flexible Fund is designed to support events and activities that help to build the microbiology community and share your work with different audiences. It aims to provide financial support towards small projects hoping to generate impact through outreach, training, seminars, conference travel etc. within the Centre's remit. The maximum funding that can be applied for is £500 and we anticipate supporting around five projects in this first round of funding.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Microbiome", "Public Engagement"]}, {"funder": "AIBIO-UK", "call": "FlexiFund support", "description": "The AIBIO-UK FlexiFund is designed to help you run community events and activities. It aims to provide financial support for the exploration and development of innovative activities to support AI in the Biosciences.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": true}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["AI & ML", "Innovation"]}, {"funder": "National Biofilm Innovation Centre", "call": "NBIC Flexible Talent Mobility Account Call", "description": "The FTMA is intended to support secondments and other activities that contribute to the mobility and development of researchers and technical staff in industry and academia.   \nOver this period, NBIC expects to fund successful projects with durations of up to six months. The full economic costs (FEC) of these projects are anticipated to range between £10,000 and £15,000 on average.", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": "For use between July 2024 and March 2027", "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "MRC", "call": "Collaborate with the functional genomics screening laboratory", "description": "Apply to collaborate with the functional genomics screening laboratory on projects using complex human in vitro models for CRISPR screening to better understand model biology. You must be a researcher eligible for MRC funding. Applications from UK based industry parties may also be considered.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Genomics"]}, {"funder": "Eurobioimaging", "call": "Eurobioimaging", "description": "Euro-BioImaging is a publicly funded, non-profit research infrastructure. Hence, the costs for scientists to access Euro-BioImaging services are kept to their minimum, with the sole aim to allow running the infrastructure. If you are interested in applying for any of the funding opportunities listed, please let James Lazenby know.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "EPSRC", "call": "Programme Grants", "description": "Programme grants provide flexible funding to world-leading UK research groups addressing significant research challenges.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "EPSRC", "call": "Mathematical sciences small grants", "description": "Applications to the Mathematical sciences small grants funding opportunity must focus on original research projects or feasibility research studies. This funding opportunity will follow a different assessment process to EPSRC’s responsive mode opportunities.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "EPSRC", "call": "Mathematical sciences postdoctoral fellowship", "description": "These are personal, career development focused awards. Your fellowship must focus on research where the majority of the research novelty lies within our mathematical sciences remit.", "eligible": {"gls": false, "ctgls": false, "fellows": false, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship"]}, {"funder": "Anglia Innovation Partnership", "call": "Norwich Research Park Explorer Forum", "description": "This call provides funds (up to £5k) to enable exploratory meetings and activities between the research and the business community to identify new innovations which have potential to address business problems and ultimately, it is hoped, global grand challenges.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": "Application form", "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation", "International"]}, {"funder": "UK Innovation & Science", "call": "Seed Fund (UKI2S)", "description": "UKI2S is a £100M early stage venture fund providing patient capital and support for businesses emerging from the UK’s publicly funded science and knowledge base. UKI2S invests in high-risk businesses to get the most ground-breaking ideas to market; and provides support beyond financial.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Clinical Research", "Innovation"]}, {"funder": "UKRI", "call": "Collaborate with researchers in Norway", "description": "This enables eligible UK principal investigators to submit collaborative applications with co-investigators employed by Norwegian institutions. This agreement enables Norway co-investigators to be included in UK-led applications and to receive funding from the participating UKRI Councils.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": []}, {"funder": "UKRI and FAPESP", "call": "Collaborate with researchers in Brazil", "description": "UK Research and Innovation (UKRI) and FAPESP have signed a memorandum of understanding (MoU) to support collaborative applications. It provides for a lead agency agreement whereby participant UKRI research councils receive and assess joint applications from eligible UK and Brazil-based researchers from the state of São Paulo on behalf of both organisations. UKRI and FAPESP will co-fund applications submitted to participant UKRI councils’ responsive mode funding opportunities via selected funding opportunities.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Innovation"]}, {"funder": "UKRI", "call": "Collaborate with researchers in Luxembourg", "description": "UK Research and Innovation (UKRI) and FNR have signed a memorandum of understanding (MoU) to welcome and support collaborative applications. The MoU provides for a lead agency agreement whereby UKRI will receive and assess joint applications from eligible UK and Luxembourg applicants on behalf of both organisations. UKRI and FNR will co-fund applications submitted to the UKRI council’s responsive mode funding opportunities, in some cases named standard research grant opportunities.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": ["Innovation"]}, {"funder": "NERC", "call": "Work with US-based researchers on environmental science research", "description": "Apply for funding to work with US-based researchers on an environmental science proposal. Collaborative work is governed by an agreement between NERC and NSF.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://erc.europa.eu/", "tags": ["Sustainability"]}, {"funder": "Daphne Jackson fellowship", "call": "Daphne Jackson fellowship", "description": "These fellowships are for those looking to return to a research career after a break. Fellowships combine a personalised retraining programme with a challenging research project. They are flexible, usually lasting two years at 0.5 full-time equivalent, although some UKRI funders may award longer.", "eligible": {"gls": false, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": ["Fellowship"]}, {"funder": "BBSRC", "call": "Brazil pump-priming award", "description": "You can apply for up to £35,000 over two years to pump-prime collaborations between scientists in the UK and São Paolo state in Brazil.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": []}, {"funder": "Microbiology Society", "call": "Society Conference Grants", "description": "Funds are available to eligible members to support their attendance at the Annual Conference or one other Society meeting per year.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://microbiologysociety.org/grants-prizes.html", "tags": ["Microbiome"]}, {"funder": "EMBO", "call": "Postdoctoral fellowships", "description": "EMBO Postdoctoral Fellowships support excellent postdoctoral researchers throughout Europe and the world for a period of up to two years. International mobility is a key requirement. The fellowship includes a salary or stipend, a relocation allowance and support for fellows with children. Awardees can attend an EMBO Laboratory Leadership course and become part of the global network of EMBO Fellows.", "eligible": {"gls": false, "ctgls": false, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": "Spring evaluation: all eligible applications submitted by the second Friday of January.\nAutumn evaluation: all eligible applications submitted by the second Friday of July.", "is_new": false, "urls": [], "funder_url": "https://www.embo.org/funding/", "tags": ["Fellowship", "International"]}, {"funder": "EMBO", "call": "Scientific Exchange Grants", "description": "EMBO Scientific Exchange Grants fund research exchanges of up to three months between laboratories in eligible countries. The grants facilitate collaborations with research groups with expertise techniques or infrastructure that is unavailable in the applicant’s laboratory. They cover travel cost plus subsistence for the fellow.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.embo.org/funding/", "tags": ["Fellowship"]}, {"funder": "British Heart Foundation", "call": "Project Grants", "description": "For research projects (basic science and clinical) costing up to £350,000", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Clinical Research"]}, {"funder": "British Heart Foundation", "call": "Programme Grant", "description": "Programme grants provide larger, longer term (up to five years) and renewable funding to leading research groups to address significant research challenges. They are intended to support researchers to undertake a variety of activities focusing on one strategic research theme.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": []}, {"funder": "British Heart Foundation", "call": "Special project grants", "description": "For basic science research projects costing more than £350,000 or lasting longer than 3 years. This grant type also supports funding for studies using datasets only, population and patient based cohort studies (epidemiology) or experimental medicine studies that cost more than £350,000 or that will last longer than 3 years.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Clinical Research"]}, {"funder": "British Heart Foundation", "call": "Translational Pump-Priming Awards", "description": "Access to smaller agile funding to support the development of innovative technologies in the field of heart, stroke, and circulatory diseases, including vascular dementia.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.bhf.org.uk/for-professionals/information-for-researchers/what-we-fund", "tags": ["Clinical Research", "Innovation", "Neuroscience"]}, {"funder": "UKRI", "call": "Daphne Jackson Fellowship", "description": "These fellowships are for those looking to return to a research career after a break of two or more years for family, health or caring reasons. The aim is to give participants the confidence and skills they need to make a successful return to research.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": "Open", "deadlines": ["Open - no closing date."], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": "https://www.ukri.org/opportunity/", "tags": ["Fellowship"]}, {"funder": "NBIC", "call": "Flexible Talent Mobility Account (FTMA)", "description": "The FTMA is intended to support secondments and other activities that contribute to the mobility and development of researchers and technical staff in industry and academia.", "eligible": {"gls": true, "ctgls": true, "fellows": true, "ecrs": true, "clinical": false}, "opens": null, "deadlines": ["Open - no closing date. (funded until March 2027)"], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": null, "is_new": false, "urls": [], "funder_url": null, "tags": []}, {"funder": "Defence and Security Accelerator", "call": "Open Call", "description": "Cat Edwards was at a talk through which she found out that Defence and Security Accelerator could also be a great funding opportunity for food biotech. Apparently they have a lot of research and innovation needs for food biotech including ideas for food preservation to avoid spoilage, nutrition, analytics, etc. for maximising human performance.", "eligible": {"gls": true, "ctgls": true, "fellows": false, "ecrs": false, "clinical": false}, "opens": "Open", "deadlines": ["See website for current calls"], "next_deadline": null, "status": "Open", "closing_soon": false, "notes": "Info slides for more about DASA", "is_new": false, "urls": [], "funder_url": null, "tags": ["Food & Nutrition", "Innovation"]}];
+
+const ALL_TAGS    = [...new Set(CALLS.flatMap(c=>c.tags))].sort();
+const ALL_FUNDERS = [...new Set(CALLS.map(c=>c.funder))].sort();
+const TAG_CLS     = ['t0','t1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13'];
+const ELIG_KEYS   = ['gls','ctgls','fellows','ecrs','clinical'];
+const ELIG_LABELS = {gls:'GL',ctgls:'CTGL',fellows:'Fellow',ecrs:'ECR/RTP',clinical:'Clinical'};
+const ELIG_ON_CLS = {gls:'on-gl',ctgls:'on-ctgl',fellows:'on-fellow',ecrs:'on-ecr',clinical:'on-clin'};
+
+let state = {
+  search:'', statuses:new Set(['Open','Upcoming']), closingSoon:false,
+  eligReq:new Set(), tags:new Set(), funders:new Set(), sort:'deadline_asc'
+};
+
+// Build tag buttons
+const tagWrap = document.getElementById('tagFilters');
+ALL_TAGS.forEach((tag,i)=>{
+  const b=document.createElement('button');
+  b.className='tag-btn';b.textContent=tag;
+  b.onclick=()=>{toggleSet(state.tags,tag);b.classList.toggle('active');render();};
+  tagWrap.appendChild(b);
+});
+
+// Build funder buttons
+const funderList=document.getElementById('funderList');
+ALL_FUNDERS.forEach(f=>{
+  const b=document.createElement('button');
+  b.className='funder-btn';b.textContent=f;
+  b.onclick=()=>{toggleSet(state.funders,f);b.classList.toggle('active');render();};
+  funderList.appendChild(b);
+});
+
+// Listeners
+document.getElementById('searchInput').addEventListener('input',e=>{state.search=e.target.value.toLowerCase();render();});
+document.getElementById('sortSelect').addEventListener('change',e=>{state.sort=e.target.value;render();});
+document.querySelectorAll('.status-filter').forEach(cb=>cb.addEventListener('change',()=>{
+  if(cb.value==='closing_soon'){state.closingSoon=cb.checked;}
+  else{toggleSet(state.statuses,cb.value,cb.checked);}
+  render();
+}));
+document.querySelectorAll('.elig-filter').forEach(cb=>cb.addEventListener('change',()=>{
+  toggleSet(state.eligReq,cb.value,cb.checked);render();
+}));
+
+function toggleSet(set,val,force){
+  if(force===undefined){set.has(val)?set.delete(val):set.add(val);}
+  else{force?set.add(val):set.delete(val);}
+}
+
+function tagCls(t){return TAG_CLS[ALL_TAGS.indexOf(t)%TAG_CLS.length];}
+
+function fmtDate(d){
+  if(!d)return'—';
+  if(d==='Rolling'||d==='Open')return d;
+  try{return new Date(d+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}
+  catch{return d;}
+}
+
+function daysUntil(d){
+  if(!d||d==='Rolling')return null;
+  try{return Math.ceil((new Date(d+'T00:00:00')-new Date())/86400000);}catch{return null;}
+}
+
+function filter(calls){
+  return calls.filter(c=>{
+    if(state.search){
+      const hay=`${c.funder} ${c.call} ${c.description} ${c.tags.join(' ')}`.toLowerCase();
+      if(!state.search.split(' ').filter(Boolean).every(w=>hay.includes(w)))return false;
+    }
+    if(state.closingSoon&&!c.closing_soon)return false;
+    if(!state.closingSoon&&!state.statuses.has(c.status))return false;
+    if(state.eligReq.size>0&&![...state.eligReq].every(k=>c.eligible[k]))return false;
+    if(state.tags.size>0&&!c.tags.some(t=>state.tags.has(t)))return false;
+    if(state.funders.size>0&&!state.funders.has(c.funder))return false;
+    return true;
+  });
+}
+
+function sortCalls(calls){
+  const s=[...calls];
+  const safeDl=c=>c.next_deadline||'9999-12-31';
+  if(state.sort==='deadline_asc')s.sort((a,b)=>safeDl(a).localeCompare(safeDl(b)));
+  else if(state.sort==='deadline_desc')s.sort((a,b)=>safeDl(b).localeCompare(safeDl(a)));
+  else if(state.sort==='funder_az')s.sort((a,b)=>a.funder.localeCompare(b.funder));
+  else if(state.sort==='call_az')s.sort((a,b)=>a.call.localeCompare(b.call));
+  return s;
+}
+
+function statusBadgeHtml(c){
+  const parts=[];
+  if(c.is_new)parts.push('<span class="badge badge-new">★ NEW</span>');
+  if(c.closing_soon&&c.next_deadline){
+    const d=daysUntil(c.next_deadline);
+    parts.push(`<span class="badge badge-soon">⚡ ${d}d</span>`);
+  }else if(c.status==='Open'){
+    parts.push('<span class="badge badge-open">Open</span>');
+  }else{
+    parts.push('<span class="badge badge-upcoming">Upcoming</span>');
+  }
+  return parts.join('');
+}
+
+function eligDotsHtml(elig){
+  return ELIG_KEYS.map(k=>
+    `<span class="elig-dot ${elig[k]?'on-'+k.replace('gls','gl').replace('ctgls','ctgl').replace('fellows','fellow').replace('ecrs','ecr').replace('clinical','clin'):'off'}" title="${ELIG_LABELS[k]}"></span>`
+  ).join('');
+}
+
+function render(){
+  const filtered=sortCalls(filter(CALLS));
+  window._filtered=filtered;
+  document.getElementById('resultCount').textContent=`${filtered.length} call${filtered.length!==1?'s':''}`;
+  const grid=document.getElementById('cardsGrid');
+  const empty=document.getElementById('emptyState');
+  if(!filtered.length){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=filtered.map((c,i)=>{
+    const statusCls=c.closing_soon?'status-soon':c.status==='Open'?'status-open':'status-upcoming';
+    const tags=c.tags.slice(0,3).map(t=>`<span class="tag ${tagCls(t)}">${t}</span>`).join('');
+    const desc=(c.description||'').replace(/\n/g,' ');
+    const shortDesc=desc.length>150?desc.slice(0,150)+'…':desc;
+    const dl=c.next_deadline?`<strong>${fmtDate(c.next_deadline)}</strong>`:
+              c.deadlines.length?`<strong>${c.deadlines[0]}</strong>`:'No deadline';
+    return `<div class="card ${statusCls}" onclick="openModal(${i})">
+      <div class="card-top">
+        <div class="card-funder">${c.funder}</div>
+        <div class="card-badges">${statusBadgeHtml(c)}</div>
+      </div>
+      <div class="card-title">${c.call}</div>
+      <div class="card-desc">${shortDesc}</div>
+      <div class="card-tags">${tags}</div>
+      <div class="card-footer">
+        <div class="deadline-info">🗓 ${dl}</div>
+        <div class="elig-mini">${eligDotsHtml(c.eligible)}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openModal(idx){
+  const c=window._filtered[idx];
+
+  const tagHtml=c.tags.map(t=>`<span class="tag ${tagCls(t)}" style="font-size:.78rem;padding:3px 10px">${t}</span>`).join(' ');
+  const statusMeta=c.closing_soon
+    ?`<span class="meta-chip meta-soon">⚡ Closing soon</span>`
+    :c.status==='Open'
+      ?`<span class="meta-chip meta-open">● Open now</span>`
+      :`<span class="meta-chip meta-upcoming">◉ Upcoming</span>`;
+  const newMeta=c.is_new?'<span class="meta-chip meta-new">★ New this week</span>':'';
+
+  const eligHtml=ELIG_KEYS.map(k=>
+    `<span class="elig-pill ${c.eligible[k]?'elig-yes':'elig-no'}">${c.eligible[k]?'✓':'–'} ${ELIG_LABELS[k]}</span>`
+  ).join('');
+
+  const dlHtml=c.deadlines.length
+    ?c.deadlines.map(d=>`<span class="dl-chip ${d==='Rolling'?'dl-rolling':''}">${fmtDate(d)}</span>`).join('')
+    :'<span class="dl-chip dl-rolling">Not specified</span>';
+
+  const opensLine=c.opens
+    ?`<div class="opens-info">Opens: <strong>${fmtDate(c.opens)}</strong></div>`:
+    c.status==='Open'?`<div class="opens-info">Status: <strong>Currently open</strong></div>`:'';
+
+  const links=[];
+  if(c.funder_url)links.push(`<a class="link-btn primary-btn" href="${c.funder_url}" target="_blank">🌐 ${c.funder} website</a>`);
+  (c.urls||[]).forEach(u=>links.push(`<a class="link-btn" href="${u}" target="_blank">🔗 Call page</a>`));
+  links.push(`<a class="link-btn" href="https://www.google.com/search?q=${encodeURIComponent(c.funder+' '+c.call)}" target="_blank">🔍 Search this call</a>`);
+
+  document.getElementById('modalBody').innerHTML=`
+    <div class="modal-funder">${c.funder}</div>
+    <div class="modal-title">${c.call}</div>
+    <div class="modal-meta">${statusMeta} ${newMeta} ${tagHtml}</div>
+
+    <div class="modal-section">
+      <h4>Description</h4>
+      <div class="modal-desc">${c.description||'No description available.'}</div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Eligible for</h4>
+      <div class="elig-grid">${eligHtml}</div>
+    </div>
+
+    <div class="modal-section">
+      <h4>Deadlines</h4>
+      <div class="deadlines-list">${dlHtml}</div>
+      ${opensLine}
+    </div>
+
+    ${c.notes?`<div class="modal-section"><h4>Notes</h4><div class="modal-notes">${c.notes}</div></div>`:''}
+
+    <div class="modal-section">
+      <h4>Links & Resources</h4>
+      <div class="links-wrap">${links.join('')}</div>
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('modalOverlay'))closeModalDirect();
+}
+function closeModalDirect(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModalDirect();});
+
+function clearAllFilters(){
+  state={search:'',statuses:new Set(['Open','Upcoming']),closingSoon:false,
+          eligReq:new Set(),tags:new Set(),funders:new Set(),sort:'deadline_asc'};
+  document.getElementById('searchInput').value='';
+  document.getElementById('sortSelect').value='deadline_asc';
+  document.querySelectorAll('.status-filter').forEach(cb=>cb.checked=cb.value==='Open'||cb.value==='Upcoming');
+  document.querySelectorAll('.elig-filter').forEach(cb=>cb.checked=false);
+  document.querySelectorAll('.tag-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.funder-btn').forEach(b=>b.classList.remove('active'));
+  render();
+}
+
+render();
+</script>
+</body>
+</html>
