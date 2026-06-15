@@ -1,0 +1,1806 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsible use of AI at the Quadram Institute</title>
+  <meta name="description" content="A one-page interactive guide to responsible use of AI at the Quadram Institute.">
+  <style>
+    :root {
+      --qi-ink: #182939;
+      --qi-ink-soft: #314055;
+      --qi-teal: #00ad94;
+      --qi-teal-dark: #007c70;
+      --qi-lime: #bdd629;
+      --qi-green: #69c063;
+      --qi-grey: #525a69;
+      --qi-stone: #f4f7f4;
+      --qi-mint: #eaf8f4;
+      --qi-white: #ffffff;
+      --qi-warning: #f4b84a;
+      --qi-danger: #ca3f3f;
+      --shadow: 0 18px 50px rgba(24, 41, 57, 0.14);
+      --shadow-soft: 0 10px 28px rgba(24, 41, 57, 0.10);
+      --radius: 26px;
+      --radius-small: 16px;
+      --max-width: 1180px;
+      --focus: 0 0 0 4px rgba(0, 173, 148, 0.25);
+      --qi-diamond-path: polygon(88.182% 0%, 0% 50.515%, 31.250% 99.920%, 31.253% 99.925%, 99.697% 82.021%, 95.425% 51.595%);
+      --qi-diamond-aspect: 1.18 / 1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--qi-ink);
+      background:
+        radial-gradient(circle at top left, rgba(189, 214, 41, 0.17), transparent 30rem),
+        radial-gradient(circle at 80% 16rem, rgba(0, 173, 148, 0.12), transparent 34rem),
+        linear-gradient(180deg, #fbfdfb 0%, var(--qi-stone) 100%);
+      line-height: 1.55;
+    }
+
+    body.high-contrast {
+      --qi-stone: #ffffff;
+      --qi-mint: #ffffff;
+      --shadow: 0 0 0 3px #182939;
+      --shadow-soft: 0 0 0 2px #182939;
+    }
+
+    a {
+      color: var(--qi-teal-dark);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.18em;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible {
+      outline: none;
+      box-shadow: var(--focus);
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -4rem;
+      left: 1rem;
+      z-index: 100;
+      padding: 0.75rem 1rem;
+      color: var(--qi-white);
+      background: var(--qi-ink);
+      border-radius: 999px;
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid rgba(24, 41, 57, 0.10);
+    }
+
+    .topbar-inner {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 1rem;
+      min-height: 76px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      min-width: 230px;
+      color: var(--qi-ink);
+      text-decoration: none;
+    }
+
+    .brand-logo {
+      display: block;
+      height: clamp(52px, 6vw, 68px);
+      width: auto;
+      max-width: min(36vw, 168px);
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .brand-text strong,
+    .brand-text span {
+      display: block;
+      line-height: 1.05;
+    }
+
+    .brand-text strong {
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-text span {
+      font-size: 0.78rem;
+      color: var(--qi-grey);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--qi-ink-soft);
+      font-weight: 700;
+      font-size: 0.88rem;
+      padding: 0.58rem 0.72rem;
+      border-radius: 999px;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--qi-ink);
+      background: rgba(0, 173, 148, 0.12);
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .icon-button,
+    .pill-button,
+    .primary-button,
+    .ghost-button {
+      border: 0;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: transform 160ms ease, background 160ms ease, box-shadow 160ms ease;
+    }
+
+    .icon-button:hover,
+    .pill-button:hover,
+    .primary-button:hover,
+    .ghost-button:hover {
+      transform: translateY(-1px);
+    }
+
+    .icon-button {
+      width: 42px;
+      height: 42px;
+      display: inline-grid;
+      place-items: center;
+      color: var(--qi-ink);
+      background: var(--qi-white);
+      border: 1px solid rgba(24, 41, 57, 0.12);
+    }
+
+    .primary-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.9rem 1.1rem;
+      color: var(--qi-white);
+      background: var(--qi-teal-dark);
+      box-shadow: 0 10px 24px rgba(0, 124, 112, 0.25);
+      text-decoration: none;
+    }
+
+    .primary-button:hover {
+      background: var(--qi-ink);
+    }
+
+    .ghost-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.86rem 1.05rem;
+      color: var(--qi-ink);
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(24, 41, 57, 0.15);
+      text-decoration: none;
+    }
+
+    .section {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      padding: 4.5rem 0;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 5.2rem 0 3.6rem;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      right: max(-10vw, -10rem);
+      top: 3rem;
+      width: min(42vw, 32rem);
+      aspect-ratio: var(--qi-diamond-aspect);
+      background: linear-gradient(135deg, rgba(0, 173, 148, 0.18), rgba(189, 214, 41, 0.26));
+      clip-path: var(--qi-diamond-path);
+      z-index: -1;
+    }
+
+    .hero-layout {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.38rem 0.7rem;
+      margin: 0 0 1rem;
+      border-radius: 999px;
+      color: var(--qi-teal-dark);
+      background: var(--qi-mint);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      font-size: 0.9rem;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 0.82rem;
+      aspect-ratio: var(--qi-diamond-aspect);
+      background: var(--qi-lime);
+      clip-path: var(--qi-diamond-path);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      font-size: clamp(2.6rem, 7vw, 5.7rem);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1;
+      letter-spacing: -0.045em;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.22rem;
+      margin-bottom: 0.55rem;
+    }
+
+    .lead {
+      max-width: 66ch;
+      color: var(--qi-ink-soft);
+      font-size: clamp(1.05rem, 2vw, 1.24rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 1.55rem 0 1.4rem;
+    }
+
+    .micro-note {
+      color: var(--qi-grey);
+      font-size: 0.92rem;
+      max-width: 66ch;
+    }
+
+    .hero-panel {
+      position: relative;
+      padding: 1.15rem;
+      border-radius: calc(var(--radius) + 8px);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.92);
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      inset: 1.2rem auto auto -1rem;
+      width: 4.6rem;
+      aspect-ratio: var(--qi-diamond-aspect);
+      background: var(--qi-lime);
+      clip-path: var(--qi-diamond-path);
+      opacity: 0.75;
+    }
+
+    .statement-card {
+      position: relative;
+      padding: 2rem;
+      border-radius: var(--radius);
+      color: var(--qi-white);
+      background: linear-gradient(145deg, var(--qi-ink), #263c53);
+      overflow: hidden;
+    }
+
+    .statement-card::after {
+      content: "";
+      position: absolute;
+      right: -5rem;
+      bottom: -5rem;
+      width: 15.2rem;
+      aspect-ratio: var(--qi-diamond-aspect);
+      background: rgba(0, 173, 148, 0.28);
+      clip-path: var(--qi-diamond-path);
+    }
+
+    .statement-card p {
+      position: relative;
+      font-size: 1.35rem;
+      line-height: 1.25;
+      margin-bottom: 1.2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .statement-card small {
+      position: relative;
+      display: block;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .value-card {
+      padding: 1rem;
+      border-radius: 18px;
+      background: var(--qi-white);
+      border: 1px solid rgba(24, 41, 57, 0.09);
+    }
+
+    .value-card strong {
+      display: block;
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .value-card span {
+      display: block;
+      color: var(--qi-grey);
+      font-size: 0.88rem;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(17rem, 0.55fr);
+      gap: 1rem 2rem;
+      align-items: end;
+      margin-bottom: 2rem;
+    }
+
+    .section-heading p {
+      color: var(--qi-grey);
+      margin-bottom: 0;
+    }
+
+    .panel {
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(24, 41, 57, 0.10);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .tab-shell {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      overflow: hidden;
+    }
+
+    .tabs {
+      padding: 1rem;
+      background: linear-gradient(180deg, var(--qi-mint), rgba(255, 255, 255, 0.7));
+      border-right: 1px solid rgba(24, 41, 57, 0.08);
+    }
+
+    .tab-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.95rem 1rem;
+      margin: 0 0 0.55rem;
+      border: 0;
+      border-radius: 18px;
+      text-align: left;
+      color: var(--qi-ink);
+      background: transparent;
+      font-weight: 800;
+    }
+
+    .tab-button span {
+      color: var(--qi-teal-dark);
+      font-size: 0.82rem;
+    }
+
+    .tab-button.active {
+      color: var(--qi-white);
+      background: var(--qi-teal-dark);
+      box-shadow: 0 12px 26px rgba(0, 124, 112, 0.22);
+    }
+
+    .tab-button.active span {
+      color: var(--qi-lime);
+    }
+
+    .tab-panel {
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      min-height: 520px;
+    }
+
+    .tab-panel .tag {
+      display: inline-block;
+      padding: 0.28rem 0.55rem;
+      margin-bottom: 1rem;
+      border-radius: 999px;
+      background: rgba(189, 214, 41, 0.25);
+      color: var(--qi-ink);
+      font-weight: 800;
+      font-size: 0.84rem;
+    }
+
+    .tab-panel h3 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      line-height: 1.04;
+      letter-spacing: -0.04em;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+
+    .info-box {
+      padding: 1.15rem;
+      border-radius: 20px;
+      background: var(--qi-stone);
+      border: 1px solid rgba(24, 41, 57, 0.08);
+    }
+
+    .info-box.good {
+      background: rgba(0, 173, 148, 0.08);
+      border-color: rgba(0, 173, 148, 0.22);
+    }
+
+    .info-box.bad {
+      background: rgba(202, 63, 63, 0.08);
+      border-color: rgba(202, 63, 63, 0.20);
+    }
+
+    .info-box h4 {
+      margin: 0 0 0.55rem;
+      font-size: 1rem;
+    }
+
+    .compact-list {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .compact-list li + li {
+      margin-top: 0.35rem;
+    }
+
+    .co-pilot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .principle-card,
+    .scenario-card,
+    .prompt-card {
+      position: relative;
+      overflow: hidden;
+      padding: 1.2rem;
+      border-radius: 22px;
+      background: var(--qi-white);
+      border: 1px solid rgba(24, 41, 57, 0.10);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .principle-card::before,
+    .scenario-card::before,
+    .prompt-card::before {
+      content: "";
+      position: absolute;
+      top: -1.2rem;
+      right: -1.2rem;
+      width: 5rem;
+      aspect-ratio: var(--qi-diamond-aspect);
+      background: rgba(0, 173, 148, 0.13);
+      clip-path: var(--qi-diamond-path);
+    }
+
+    .principle-card h3,
+    .scenario-card h3,
+    .prompt-card h3 {
+      position: relative;
+    }
+
+    .number-token {
+      display: inline-grid;
+      place-items: center;
+      width: 2rem;
+      height: 2rem;
+      margin-bottom: 0.7rem;
+      border-radius: 999px;
+      color: var(--qi-ink);
+      background: var(--qi-lime);
+      font-weight: 900;
+    }
+
+    .risk-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(18rem, 0.8fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .risk-form {
+      padding: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .risk-question {
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(24, 41, 57, 0.09);
+    }
+
+    .risk-question:first-child {
+      padding-top: 0;
+    }
+
+    .risk-question:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .risk-question legend {
+      margin-bottom: 0.65rem;
+      font-weight: 800;
+    }
+
+    .radio-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .radio-pill input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .radio-pill span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 5.5rem;
+      padding: 0.55rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(24, 41, 57, 0.15);
+      background: var(--qi-white);
+      font-weight: 800;
+    }
+
+    .radio-pill input:checked + span {
+      color: var(--qi-white);
+      background: var(--qi-ink);
+      border-color: var(--qi-ink);
+    }
+
+    .risk-result {
+      position: sticky;
+      top: 96px;
+      padding: 1.4rem;
+      border-radius: var(--radius);
+      background: var(--qi-ink);
+      color: var(--qi-white);
+      box-shadow: var(--shadow);
+    }
+
+    .risk-result[data-state="green"] {
+      background: linear-gradient(145deg, #136f67, var(--qi-teal-dark));
+    }
+
+    .risk-result[data-state="amber"] {
+      background: linear-gradient(145deg, #66500f, #a46d00);
+    }
+
+    .risk-result[data-state="red"] {
+      background: linear-gradient(145deg, #7b1f2a, var(--qi-danger));
+    }
+
+    .risk-result strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      font-size: 1.35rem;
+      letter-spacing: -0.025em;
+    }
+
+    .risk-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.33rem 0.55rem;
+      margin-bottom: 0.8rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      font-weight: 900;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .checklist-panel {
+      padding: clamp(1.2rem, 3vw, 2rem);
+    }
+
+    .progress-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      align-items: center;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .progress-bar {
+      height: 16px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(24, 41, 57, 0.10);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--qi-teal), var(--qi-lime));
+      border-radius: inherit;
+      transition: width 220ms ease;
+    }
+
+    .progress-label {
+      min-width: 4.2rem;
+      font-weight: 900;
+      color: var(--qi-teal-dark);
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .check-group {
+      padding: 1rem;
+      border-radius: 18px;
+      background: var(--qi-stone);
+      border: 1px solid rgba(24, 41, 57, 0.08);
+    }
+
+    .check-group h3 {
+      margin-bottom: 0.85rem;
+      font-size: 1.05rem;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.55rem;
+      align-items: start;
+      margin: 0.75rem 0;
+      color: var(--qi-ink-soft);
+    }
+
+    .check-item input {
+      width: 1.15rem;
+      height: 1.15rem;
+      margin-top: 0.18rem;
+      accent-color: var(--qi-teal-dark);
+    }
+
+    .check-status {
+      padding: 1rem;
+      margin-top: 1.2rem;
+      border-radius: 18px;
+      background: rgba(0, 173, 148, 0.09);
+      border: 1px solid rgba(0, 173, 148, 0.2);
+      color: var(--qi-ink);
+      font-weight: 750;
+    }
+
+    .prompt-controls,
+    .scenario-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .pill-button {
+      padding: 0.65rem 0.85rem;
+      color: var(--qi-ink);
+      background: var(--qi-white);
+      border: 1px solid rgba(24, 41, 57, 0.14);
+    }
+
+    .pill-button.active {
+      color: var(--qi-white);
+      background: var(--qi-teal-dark);
+      border-color: var(--qi-teal-dark);
+    }
+
+    .prompt-grid,
+    .scenario-grid,
+    .principles-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .prompt-card {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-height: 240px;
+    }
+
+    .prompt-card.good {
+      border-color: rgba(0, 173, 148, 0.26);
+    }
+
+    .prompt-card.poor {
+      border-color: rgba(202, 63, 63, 0.24);
+    }
+
+    .prompt-type {
+      position: relative;
+      display: inline-flex;
+      width: fit-content;
+      padding: 0.25rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .good .prompt-type {
+      color: var(--qi-teal-dark);
+      background: rgba(0, 173, 148, 0.12);
+    }
+
+    .poor .prompt-type {
+      color: var(--qi-danger);
+      background: rgba(202, 63, 63, 0.10);
+    }
+
+    .prompt-card blockquote {
+      position: relative;
+      margin: 0;
+      color: var(--qi-ink);
+      font-weight: 750;
+    }
+
+    .copy-button,
+    .reveal-button {
+      margin-top: auto;
+      align-self: flex-start;
+      padding: 0.55rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid rgba(24, 41, 57, 0.14);
+      background: var(--qi-white);
+      color: var(--qi-ink);
+      font-weight: 850;
+    }
+
+    .copy-button.copied {
+      color: var(--qi-white);
+      background: var(--qi-teal-dark);
+      border-color: var(--qi-teal-dark);
+    }
+
+    .scenario-card {
+      min-height: 260px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scenario-answer {
+      display: none;
+      padding: 0.9rem;
+      margin-top: 0.8rem;
+      border-radius: 16px;
+      background: var(--qi-mint);
+      color: var(--qi-ink);
+      border: 1px solid rgba(0, 173, 148, 0.18);
+    }
+
+    .scenario-card.open .scenario-answer {
+      display: block;
+    }
+
+    .accordion {
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    details {
+      border-radius: 20px;
+      background: var(--qi-white);
+      border: 1px solid rgba(24, 41, 57, 0.10);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    details[open] {
+      border-color: rgba(0, 173, 148, 0.25);
+    }
+
+    summary {
+      cursor: pointer;
+      padding: 1rem 1.2rem;
+      font-weight: 900;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    summary::-webkit-details-marker {
+      display: none;
+    }
+
+    summary::after {
+      content: "+";
+      width: 1.7rem;
+      height: 1.7rem;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--qi-mint);
+      color: var(--qi-teal-dark);
+    }
+
+    details[open] summary::after {
+      content: "-";
+    }
+
+    details > div {
+      padding: 0 1.2rem 1.2rem;
+      color: var(--qi-grey);
+    }
+
+    .principles-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .principle-card {
+      min-height: 215px;
+    }
+
+    .final-message {
+      display: grid;
+      grid-template-columns: minmax(0, 0.85fr) minmax(18rem, 0.45fr);
+      gap: 1rem;
+      align-items: stretch;
+      padding: clamp(1.3rem, 4vw, 2.4rem);
+      color: var(--qi-white);
+      background: linear-gradient(135deg, var(--qi-ink), #233f54 55%, var(--qi-teal-dark));
+      border-radius: calc(var(--radius) + 8px);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .final-message::after {
+      content: "";
+      position: absolute;
+      right: -2rem;
+      top: -2rem;
+      width: 11.8rem;
+      aspect-ratio: var(--qi-diamond-aspect);
+      background: rgba(189, 214, 41, 0.32);
+      clip-path: var(--qi-diamond-path);
+    }
+
+    .final-message h2,
+    .final-message p,
+    .final-message div {
+      position: relative;
+      z-index: 1;
+    }
+
+    .final-message p {
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 1.12rem;
+    }
+
+    .quick-links {
+      display: grid;
+      gap: 0.65rem;
+      align-content: center;
+    }
+
+    .quick-links a,
+    .quick-links button {
+      justify-content: center;
+      width: 100%;
+    }
+
+    .footer {
+      padding: 2.8rem 1rem;
+      color: var(--qi-grey);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    .source-strip {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .source-strip a,
+    .source-strip span {
+      display: block;
+      padding: 0.9rem 1rem;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(24, 41, 57, 0.10);
+      color: var(--qi-ink-soft);
+      text-align: left;
+      text-decoration: none;
+    }
+
+    .source-strip small {
+      display: block;
+      color: var(--qi-grey);
+      margin-top: 0.25rem;
+    }
+
+    .print-only {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .topbar-inner {
+        grid-template-columns: 1fr auto;
+        padding: 0.65rem 0;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .nav {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.2rem;
+      }
+
+      .nav a {
+        flex: 0 0 auto;
+      }
+
+      .hero-layout,
+      .section-heading,
+      .tab-shell,
+      .risk-grid,
+      .final-message {
+        grid-template-columns: 1fr;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 0.55rem;
+        overflow-x: auto;
+        border-right: 0;
+        border-bottom: 1px solid rgba(24, 41, 57, 0.08);
+      }
+
+      .tab-button {
+        flex: 0 0 auto;
+        width: auto;
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .co-pilot-grid,
+      .checklist-grid,
+      .prompt-grid,
+      .scenario-grid,
+      .principles-grid,
+      .source-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .risk-result {
+        position: static;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .top-actions .ghost-button {
+        display: none;
+      }
+
+      .brand-text span {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .value-grid,
+      .two-col,
+      .co-pilot-grid,
+      .checklist-grid,
+      .prompt-grid,
+      .scenario-grid,
+      .principles-grid,
+      .source-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 3.2rem 0;
+      }
+
+      .tab-panel {
+        min-height: 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+    @media print {
+      .topbar,
+      .hero-actions,
+      .prompt-controls,
+      .copy-button,
+      .reveal-button,
+      .quick-links,
+      .source-strip {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff;
+        color: #000000;
+      }
+
+      .section,
+      .hero-layout {
+        width: 100%;
+        padding: 1rem 0;
+      }
+
+      .panel,
+      .principle-card,
+      .prompt-card,
+      .scenario-card,
+      .final-message {
+        box-shadow: none;
+        border: 1px solid #999999;
+      }
+
+      .final-message {
+        color: #000000;
+        background: #ffffff;
+      }
+
+      .final-message p {
+        color: #000000;
+      }
+
+      .print-only {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="topbar" aria-label="Page header">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Responsible AI at Quadram Institute home">
+        <img class="brand-logo" src="https://corebio.info/assets/branding/QI-logo.png" alt="Quadram Institute logo" loading="eager" decoding="async">
+        <span class="brand-text">
+          <strong>Responsible AI guide</strong>
+          <span>Quadram Institute</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Guide sections">
+        <a href="#principles">Principles</a>
+        <a href="#risk-check">Risk check</a>
+        <a href="#checklist">Checklist</a>
+        <a href="#prompts">Prompts</a>
+        <a href="#scenarios">Scenarios</a>
+        <a href="#summary">Summary</a>
+      </nav>
+
+      <div class="top-actions">
+        <button class="icon-button" id="contrastToggle" type="button" aria-pressed="false" aria-label="Toggle high contrast">Aa</button>
+        <button class="ghost-button" type="button" onclick="window.print()">Print</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-layout">
+        <div>
+          <p class="kicker">For staff, students and collaborators</p>
+          <h1 id="hero-title">Responsible use of AI at the Quadram Institute</h1>
+          <p class="lead">Use AI to support curiosity, clarity and careful research. Do not use it to outsource judgement, bypass understanding, expose sensitive data or hide uncertainty.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#risk-check">Start the 60-second risk check</a>
+            <a class="ghost-button" href="#principles">Explore the principles</a>
+          </div>
+          <p class="micro-note">This one-page guide translates the talks into practical actions for research, supervision, writing, coding, data work and open science.</p>
+        </div>
+
+        <aside class="hero-panel" aria-label="Core message">
+          <div class="statement-card">
+            <p>AI can help us think, but it should not think on our behalf.</p>
+            <small>Treat AI as a co-pilot: useful for learning, structure and challenge, risky when it replaces expertise, supervision or accountability.</small>
+          </div>
+          <div class="value-grid" aria-label="Four core values">
+            <div class="value-card"><strong>Rigour</strong><span>Check claims, code and citations.</span></div>
+            <div class="value-card"><strong>Data care</strong><span>Keep sensitive data protected.</span></div>
+            <div class="value-card"><strong>Transparency</strong><span>Record and disclose meaningful use.</span></div>
+            <div class="value-card"><strong>Wellbeing</strong><span>Use AI with mentorship, not isolation.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="principles" aria-labelledby="principles-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Interactive principles</p>
+          <h2 id="principles-title">Move from general caution to everyday habits</h2>
+        </div>
+        <p>Choose a topic to see the practical standard, what to do, and what to avoid.</p>
+      </div>
+
+      <div class="panel tab-shell">
+        <div class="tabs" role="tablist" aria-label="Responsible AI topics">
+          <button class="tab-button active" id="tab-judgement" role="tab" aria-selected="true" aria-controls="tabPanel" type="button" data-tab="judgement">Human judgement <span>01</span></button>
+          <button class="tab-button" id="tab-integrity" role="tab" aria-selected="false" aria-controls="tabPanel" type="button" data-tab="integrity">Research integrity <span>02</span></button>
+          <button class="tab-button" id="tab-data" role="tab" aria-selected="false" aria-controls="tabPanel" type="button" data-tab="data">Data protection <span>03</span></button>
+          <button class="tab-button" id="tab-authorship" role="tab" aria-selected="false" aria-controls="tabPanel" type="button" data-tab="authorship">Authorship and openness <span>04</span></button>
+          <button class="tab-button" id="tab-learning" role="tab" aria-selected="false" aria-controls="tabPanel" type="button" data-tab="learning">Learning and wellbeing <span>05</span></button>
+        </div>
+        <article class="tab-panel" id="tabPanel" role="tabpanel" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="copilot-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Co-pilot, not driver</p>
+          <h2 id="copilot-title">Keep the human in the research loop</h2>
+        </div>
+        <p>AI is most useful when it sharpens expert work. It becomes risky when it replaces understanding, supervision, review or judgement.</p>
+      </div>
+
+      <div class="co-pilot-grid">
+        <div class="principle-card">
+          <span class="number-token">1</span>
+          <h3>Use AI to learn faster</h3>
+          <p>Ask for explanations, assumptions, method summaries and questions to take to a supervisor or statistician.</p>
+        </div>
+        <div class="principle-card">
+          <span class="number-token">2</span>
+          <h3>Use AI to structure ideas</h3>
+          <p>Let it organise themes, headings or possible outlines, while keeping the scientific argument yours.</p>
+        </div>
+        <div class="principle-card">
+          <span class="number-token">3</span>
+          <h3>Use AI as a sounding board</h3>
+          <p>Ask it to identify gaps, caveats and reviewer-style questions before human peer review.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="risk-check" aria-labelledby="risk-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Before you paste, prompt or publish</p>
+          <h2 id="risk-title">Run a quick risk check</h2>
+        </div>
+        <p>Answer four questions. The result updates immediately and gives a recommended next step.</p>
+      </div>
+
+      <div class="risk-grid">
+        <form class="panel risk-form" id="riskForm">
+          <fieldset class="risk-question">
+            <legend>1. Does your prompt include personal, clinical, participant, confidential, unpublished or restricted information?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="sensitive" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="sensitive" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="risk-question">
+            <legend>2. Are you asking AI to make a final scientific, clinical, ethical or legal decision?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="decision" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="decision" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="risk-question">
+            <legend>3. Will the output be shared, submitted, published or used in a formal research workflow?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="publish" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="publish" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="risk-question">
+            <legend>4. Can you verify, explain and defend the output without relying on the AI?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="verify" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="verify" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+        </form>
+
+        <aside class="risk-result" id="riskResult" data-state="neutral" aria-live="polite">
+          <span class="risk-badge" id="riskBadge">Not assessed</span>
+          <strong id="riskHeadline">Answer the questions to assess risk.</strong>
+          <p id="riskMessage">Use this as a pause point before using a public AI tool, especially when working with research, clinical, partner or unpublished material.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="checklist" aria-labelledby="checklist-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Practical checklist</p>
+          <h2 id="checklist-title">A responsible-AI check before you continue</h2>
+        </div>
+        <p>Tick each item that you have addressed. The progress bar helps make responsible use visible and repeatable.</p>
+      </div>
+
+      <div class="panel checklist-panel">
+        <div class="progress-wrap" aria-label="Checklist progress">
+          <div class="progress-bar" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-label" id="progressLabel">0%</div>
+        </div>
+
+        <div class="checklist-grid" id="checklistGrid">
+          <div class="check-group">
+            <h3>Purpose</h3>
+            <label class="check-item"><input type="checkbox"><span>I know what I am using AI for.</span></label>
+            <label class="check-item"><input type="checkbox"><span>AI is supporting my thinking, not replacing it.</span></label>
+            <label class="check-item"><input type="checkbox"><span>The task is appropriate for the tool.</span></label>
+          </div>
+
+          <div class="check-group">
+            <h3>Data</h3>
+            <label class="check-item"><input type="checkbox"><span>No sensitive, confidential or restricted data is being entered.</span></label>
+            <label class="check-item"><input type="checkbox"><span>The tool is approved for this kind of work.</span></label>
+            <label class="check-item"><input type="checkbox"><span>I have considered re-identification risk.</span></label>
+          </div>
+
+          <div class="check-group">
+            <h3>Accuracy</h3>
+            <label class="check-item"><input type="checkbox"><span>I can verify every factual claim.</span></label>
+            <label class="check-item"><input type="checkbox"><span>I have checked references, code and calculations.</span></label>
+            <label class="check-item"><input type="checkbox"><span>I understand and can explain the output.</span></label>
+          </div>
+
+          <div class="check-group">
+            <h3>Transparency</h3>
+            <label class="check-item"><input type="checkbox"><span>I have recorded the tool, date and purpose.</span></label>
+            <label class="check-item"><input type="checkbox"><span>I know whether disclosure or acknowledgement is required.</span></label>
+            <label class="check-item"><input type="checkbox"><span>I would be comfortable explaining this use to a reviewer or supervisor.</span></label>
+          </div>
+
+          <div class="check-group">
+            <h3>Ethics and ownership</h3>
+            <label class="check-item"><input type="checkbox"><span>The output does not misuse another person's work, voice, image or style.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Licence and reuse restrictions have been considered.</span></label>
+            <label class="check-item"><input type="checkbox"><span>The output is not misleading, discriminatory or harmful.</span></label>
+          </div>
+
+          <div class="check-group">
+            <h3>Wellbeing and culture</h3>
+            <label class="check-item"><input type="checkbox"><span>AI is helping me learn rather than creating an anxiety loop.</span></label>
+            <label class="check-item"><input type="checkbox"><span>I know who to ask for human feedback.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Speed has not been prioritised over understanding.</span></label>
+          </div>
+        </div>
+
+        <div class="check-status" id="checkStatus">Start with purpose and data. Those two areas usually reveal the biggest risks.</div>
+      </div>
+    </section>
+
+    <section class="section" id="prompts" aria-labelledby="prompts-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Prompt lab</p>
+          <h2 id="prompts-title">Ask for help in ways that preserve responsibility</h2>
+        </div>
+        <p>Filter examples of better and poorer prompts. Good prompts ask AI to support learning, structure and critique without inventing evidence or handling restricted data.</p>
+      </div>
+
+      <div class="prompt-controls" aria-label="Prompt filters">
+        <button class="pill-button active" type="button" data-filter="all">All prompts</button>
+        <button class="pill-button" type="button" data-filter="good">Better use</button>
+        <button class="pill-button" type="button" data-filter="poor">Avoid</button>
+      </div>
+
+      <div class="prompt-grid" id="promptGrid">
+        <article class="prompt-card good" data-kind="good">
+          <span class="prompt-type">Better</span>
+          <blockquote>Explain synthetic control methods to a bioscience researcher who understands regression but has not used causal inference before.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card good" data-kind="good">
+          <span class="prompt-type">Better</span>
+          <blockquote>List the assumptions behind this analysis and suggest what I should ask a statistician before using it.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card good" data-kind="good">
+          <span class="prompt-type">Better</span>
+          <blockquote>Help me organise themes for a literature review on diet, microbiome and inflammation. Do not invent references.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card good" data-kind="good">
+          <span class="prompt-type">Better</span>
+          <blockquote>Critique this paragraph for clarity, logic and missing caveats. Do not add new scientific claims.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card poor" data-kind="poor">
+          <span class="prompt-type">Avoid</span>
+          <blockquote>Write my discussion section and make it sound publishable.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card poor" data-kind="poor">
+          <span class="prompt-type">Avoid</span>
+          <blockquote>Analyse this confidential participant dataset.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card poor" data-kind="poor">
+          <span class="prompt-type">Avoid</span>
+          <blockquote>Find me references that prove my hypothesis.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+        <article class="prompt-card poor" data-kind="poor">
+          <span class="prompt-type">Avoid</span>
+          <blockquote>Rewrite this so reviewers cannot tell AI helped.</blockquote>
+          <button class="copy-button" type="button">Copy prompt</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="scenarios" aria-labelledby="scenarios-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Scenario cards</p>
+          <h2 id="scenarios-title">What should you do?</h2>
+        </div>
+        <p>Use these examples in lab meetings, induction, supervision or research-group discussions.</p>
+      </div>
+
+      <div class="scenario-grid">
+        <article class="scenario-card">
+          <span class="number-token">A</span>
+          <h3>Clinical metadata</h3>
+          <p>You want to paste a dataset with microbiome and clinical metadata into a public AI tool to get an analysis plan.</p>
+          <button class="reveal-button" type="button">Show guidance</button>
+          <div class="scenario-answer">Pause. Consider identifiability, agreements, ethics approval and tool approval. Use approved institutional routes or ask a data governance lead before using AI.</div>
+        </article>
+        <article class="scenario-card">
+          <span class="number-token">B</span>
+          <h3>AI-generated citations</h3>
+          <p>AI suggests ten papers for your introduction, with convincing titles and authors.</p>
+          <button class="reveal-button" type="button">Show guidance</button>
+          <div class="scenario-answer">Verify every reference in trusted databases. Do not cite papers unless they exist, are relevant and support the claim being made.</div>
+        </article>
+        <article class="scenario-card">
+          <span class="number-token">C</span>
+          <h3>Positive feedback, poor understanding</h3>
+          <p>A student gets good feedback on an AI-generated table but does not understand how it was produced.</p>
+          <button class="reveal-button" type="button">Show guidance</button>
+          <div class="scenario-answer">Do not build on work that the researcher cannot explain. Use supervision to reconstruct the method, assumptions and next steps.</div>
+        </article>
+        <article class="scenario-card">
+          <span class="number-token">D</span>
+          <h3>Open-source AI model</h3>
+          <p>Your team wants to publish code or a model that others can reuse.</p>
+          <button class="reveal-button" type="button">Show guidance</button>
+          <div class="scenario-answer">Share where possible, but document limitations, licences, intended uses and misuse risks. Consider responsible AI licensing for sensitive applications.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="culture-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Research culture</p>
+          <h2 id="culture-title">Responsible AI is also about mentorship</h2>
+        </div>
+        <p>AI can reduce friction, but it cannot replace clear feedback, training, constructive criticism or community.</p>
+      </div>
+
+      <div class="accordion">
+        <details open>
+          <summary>What should supervisors and line managers model?</summary>
+          <div>Discuss acceptable and unacceptable AI use openly. Give examples. Encourage disclosure rather than secrecy. Reinforce that understanding matters more than speed.</div>
+        </details>
+        <details>
+          <summary>What should staff and students record?</summary>
+          <div>Record the tool used, date, purpose, prompt summary, output used and checks performed when AI materially contributes to writing, coding, analysis or figures.</div>
+        </details>
+        <details>
+          <summary>When should I ask for human advice?</summary>
+          <div>Ask when data is sensitive, outputs affect research conclusions, you feel uncertain, you cannot explain the result, or AI use is increasing anxiety rather than clarity.</div>
+        </details>
+        <details>
+          <summary>How should AI support open research?</summary>
+          <div>Use AI to improve documentation, metadata, code comments and plain-language summaries, while protecting restricted data and applying clear licences and safeguards.</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="section" id="summary" aria-labelledby="summary-title">
+      <div class="section-heading">
+        <div>
+          <p class="kicker">Eight principles</p>
+          <h2 id="summary-title">The Quadram standard in one screen</h2>
+        </div>
+        <p>Use these principles as a short code of practice for everyday AI use.</p>
+      </div>
+
+      <div class="principles-grid">
+        <article class="principle-card"><span class="number-token">1</span><h3>Human responsibility</h3><p>People remain accountable for research decisions, outputs and impacts.</p></article>
+        <article class="principle-card"><span class="number-token">2</span><h3>Scientific rigour</h3><p>AI outputs must be checked, validated and understood.</p></article>
+        <article class="principle-card"><span class="number-token">3</span><h3>Data protection</h3><p>Do not enter sensitive or restricted data into unapproved tools.</p></article>
+        <article class="principle-card"><span class="number-token">4</span><h3>Transparency</h3><p>Record and disclose meaningful AI use where relevant.</p></article>
+        <article class="principle-card"><span class="number-token">5</span><h3>Fairness and respect</h3><p>Do not misrepresent people or misuse creative, scientific or personal work.</p></article>
+        <article class="principle-card"><span class="number-token">6</span><h3>Open with safeguards</h3><p>Share research assets with licences, documentation and misuse protections.</p></article>
+        <article class="principle-card"><span class="number-token">7</span><h3>Learning and mentorship</h3><p>AI should support learning, not replace supervision or peer feedback.</p></article>
+        <article class="principle-card"><span class="number-token">8</span><h3>Public trust</h3><p>AI use should strengthen confidence in food, microbiology, gut health and disease research.</p></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="final-title">
+      <div class="final-message">
+        <div>
+          <h2 id="final-title">Use AI with curiosity, care and accountability.</h2>
+          <p>Responsible AI at the Quadram Institute means combining innovation with rigour, transparency, data protection, good mentorship and public trust.</p>
+          <p class="print-only">Use the on-screen version for the interactive checklist, prompt filters and scenario cards.</p>
+        </div>
+        <div class="quick-links" aria-label="Quick actions">
+          <a class="primary-button" href="#risk-check">Run risk check</a>
+          <a class="ghost-button" href="#checklist">Open checklist</a>
+          <button class="ghost-button" type="button" onclick="window.print()">Print this guide</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="source-strip" aria-label="Sources and brand notes">
+      <span><strong>Content source</strong><small>Adapted from the uploaded responsible-AI markdown and the two supplied talks.</small></span>
+      <a href="https://quadram.ac.uk/about/branding/" target="_blank" rel="noreferrer"><strong>Brand note</strong><small>Header logo uses the supplied Quadram Institute asset URL.</small></a>
+      <a href="https://quadram.ac.uk/" target="_blank" rel="noreferrer"><strong>Quadram context</strong><small>Food, microbiology, gut health and disease research.</small></a>
+    </div>
+    <p>Single-page HTML. No external libraries. Designed with Quadram-inspired teal, lime and the supplied diamond visual motif.</p>
+  </footer>
+
+  <script>
+    const tabContent = {
+      judgement: {
+        tag: "Principle 01",
+        title: "AI can support judgement, but it must not replace it.",
+        body: "Treat AI as a co-pilot for research thinking. It can explain, structure and challenge ideas, but a trained researcher, clinician, supervisor or reviewer remains responsible for decisions.",
+        good: ["Ask for explanations, assumptions and possible caveats.", "Use AI to prepare better questions for a supervisor or collaborator.", "Check whether the answer fits your research context."],
+        bad: ["Do not ask AI to make final scientific, clinical, ethical or legal decisions.", "Do not submit work you do not understand.", "Do not treat fluent output as evidence of correctness."]
+      },
+      integrity: {
+        tag: "Principle 02",
+        title: "Polished text is not the same as reliable research.",
+        body: "AI-generated material can be plausible and wrong. Research integrity depends on verification, not on how confident the output sounds.",
+        good: ["Verify factual claims against primary sources.", "Check every citation, dataset claim, calculation and code block.", "Document meaningful AI use in your workflow."],
+        bad: ["Do not use invented references.", "Do not let AI hide weak logic or uncertainty.", "Do not copy outputs into research work without checking them." ]
+      },
+      data: {
+        tag: "Principle 03",
+        title: "Sensitive data should not go into public AI tools.",
+        body: "Quadram work may involve clinical information, human participant data, microbiome datasets, unpublished results, partner data, grants and commercially sensitive material.",
+        good: ["Use approved institutional tools and governance routes.", "Check agreements, ethics approval and re-identification risk.", "Ask a data steward, PI or information governance lead when uncertain."],
+        bad: ["Do not paste identifiable, re-identifiable, confidential or restricted material into unapproved tools.", "Do not assume anonymised means safe.", "Do not ignore provider storage or training terms." ]
+      },
+      authorship: {
+        tag: "Principle 04",
+        title: "Be transparent about authorship, ownership and reuse.",
+        body: "AI raises questions about copyright, attribution, licensing and contribution. Human authors remain accountable for research outputs.",
+        good: ["Acknowledge AI assistance when required.", "Check journal, funder and conference policies.", "Use clear licences and safeguards for shared code, models or data."],
+        bad: ["Do not present AI-generated work as wholly your own contribution.", "Do not imitate another person's voice, image or style without permission.", "Do not list AI tools as authors because they cannot take responsibility." ]
+      },
+      learning: {
+        tag: "Principle 05",
+        title: "AI should reduce confusion, not create an anxiety loop.",
+        body: "AI can accelerate learning when there is a framework, feedback and mentorship. It can increase anxiety when it becomes the only source of guidance.",
+        good: ["Use AI to learn a method inside a validated research system.", "Use it as a sounding board before human feedback.", "Discuss AI use openly in supervision and team meetings."],
+        bad: ["Do not replace mentorship with repeated AI prompts.", "Do not let speed outrun understanding.", "Do not treat AI reassurance as expert review." ]
+      }
+    };
+
+    const tabPanel = document.getElementById("tabPanel");
+    const tabButtons = document.querySelectorAll(".tab-button");
+
+    function renderTab(key) {
+      const item = tabContent[key];
+      tabPanel.innerHTML = `
+        <span class="tag">${item.tag}</span>
+        <h3>${item.title}</h3>
+        <p class="lead">${item.body}</p>
+        <div class="two-col">
+          <div class="info-box good">
+            <h4>Do this</h4>
+            <ul class="compact-list">${item.good.map(text => `<li>${text}</li>`).join("")}</ul>
+          </div>
+          <div class="info-box bad">
+            <h4>Avoid this</h4>
+            <ul class="compact-list">${item.bad.map(text => `<li>${text}</li>`).join("")}</ul>
+          </div>
+        </div>
+      `;
+      tabButtons.forEach(button => {
+        const active = button.dataset.tab === key;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-selected", active ? "true" : "false");
+      });
+    }
+
+    tabButtons.forEach(button => {
+      button.addEventListener("click", () => renderTab(button.dataset.tab));
+    });
+    renderTab("judgement");
+
+    const riskForm = document.getElementById("riskForm");
+    const riskResult = document.getElementById("riskResult");
+    const riskBadge = document.getElementById("riskBadge");
+    const riskHeadline = document.getElementById("riskHeadline");
+    const riskMessage = document.getElementById("riskMessage");
+
+    function getRadioValue(name) {
+      const selected = riskForm.querySelector(`input[name="${name}"]:checked`);
+      return selected ? selected.value : null;
+    }
+
+    function updateRisk() {
+      const sensitive = getRadioValue("sensitive");
+      const decision = getRadioValue("decision");
+      const publish = getRadioValue("publish");
+      const verify = getRadioValue("verify");
+      const answered = [sensitive, decision, publish, verify].filter(Boolean).length;
+
+      if (answered < 4) {
+        riskResult.dataset.state = "neutral";
+        riskBadge.textContent = `${answered}/4 answered`;
+        riskHeadline.textContent = "Keep going.";
+        riskMessage.textContent = "The key question is whether sensitive information is involved and whether you can verify the output yourself.";
+        return;
+      }
+
+      if (sensitive === "yes") {
+        riskResult.dataset.state = "red";
+        riskBadge.textContent = "High risk";
+        riskHeadline.textContent = "Stop before using a public AI tool.";
+        riskMessage.textContent = "Use approved systems only, check governance requirements, and ask the relevant PI, data steward or information governance contact before proceeding.";
+        return;
+      }
+
+      if (decision === "yes" || verify === "no") {
+        riskResult.dataset.state = "red";
+        riskBadge.textContent = "High risk";
+        riskHeadline.textContent = "Do not outsource this judgement to AI.";
+        riskMessage.textContent = "AI can help frame questions or identify caveats, but final scientific, clinical, ethical or legal judgement requires accountable human review.";
+        return;
+      }
+
+      if (publish === "yes") {
+        riskResult.dataset.state = "amber";
+        riskBadge.textContent = "Moderate risk";
+        riskHeadline.textContent = "Proceed only with checks and transparency.";
+        riskMessage.textContent = "Verify sources, code and claims. Record what tool was used, what it contributed, and how the output was checked before sharing or submitting.";
+        return;
+      }
+
+      riskResult.dataset.state = "green";
+      riskBadge.textContent = "Lower risk";
+      riskHeadline.textContent = "Use AI as a support tool.";
+      riskMessage.textContent = "This looks suitable for learning, structuring or critique. Keep prompts non-sensitive, check the output, and keep responsibility with the human user.";
+    }
+
+    riskForm.addEventListener("change", updateRisk);
+
+    const checklistGrid = document.getElementById("checklistGrid");
+    const checks = checklistGrid.querySelectorAll("input[type='checkbox']");
+    const progressFill = document.getElementById("progressFill");
+    const progressLabel = document.getElementById("progressLabel");
+    const checkStatus = document.getElementById("checkStatus");
+
+    function updateProgress() {
+      const total = checks.length;
+      const completed = Array.from(checks).filter(check => check.checked).length;
+      const pct = Math.round((completed / total) * 100);
+      progressFill.style.width = `${pct}%`;
+      progressLabel.textContent = `${pct}%`;
+      if (pct === 0) {
+        checkStatus.textContent = "Start with purpose and data. Those two areas usually reveal the biggest risks.";
+      } else if (pct < 45) {
+        checkStatus.textContent = "Good start. Now check data handling, accuracy and whether human feedback is needed.";
+      } else if (pct < 80) {
+        checkStatus.textContent = "Almost there. Make transparency, authorship and verification explicit before using the output.";
+      } else if (pct < 100) {
+        checkStatus.textContent = "Strong progress. Address the final unchecked items before sharing, submitting or relying on the output.";
+      } else {
+        checkStatus.textContent = "Checklist complete. Keep a record of meaningful AI use and remain accountable for the final work.";
+      }
+    }
+
+    checks.forEach(check => check.addEventListener("change", updateProgress));
+    updateProgress();
+
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const promptCards = document.querySelectorAll(".prompt-card");
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        filterButtons.forEach(b => b.classList.toggle("active", b === button));
+        promptCards.forEach(card => {
+          const show = filter === "all" || card.dataset.kind === filter;
+          card.hidden = !show;
+        });
+      });
+    });
+
+    function fallbackCopy(text) {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.setAttribute("readonly", "");
+      area.style.position = "absolute";
+      area.style.left = "-9999px";
+      document.body.appendChild(area);
+      area.select();
+      try { document.execCommand("copy"); } catch (error) {}
+      document.body.removeChild(area);
+    }
+
+    document.querySelectorAll(".copy-button").forEach(button => {
+      button.addEventListener("click", async () => {
+        const text = button.parentElement.querySelector("blockquote").innerText.trim();
+        try {
+          if (navigator.clipboard) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            fallbackCopy(text);
+          }
+          button.textContent = "Copied";
+          button.classList.add("copied");
+          setTimeout(() => {
+            button.textContent = "Copy prompt";
+            button.classList.remove("copied");
+          }, 1600);
+        } catch (error) {
+          fallbackCopy(text);
+          button.textContent = "Copied";
+          button.classList.add("copied");
+          setTimeout(() => {
+            button.textContent = "Copy prompt";
+            button.classList.remove("copied");
+          }, 1600);
+        }
+      });
+    });
+
+    document.querySelectorAll(".reveal-button").forEach(button => {
+      button.addEventListener("click", () => {
+        const card = button.closest(".scenario-card");
+        const open = card.classList.toggle("open");
+        button.textContent = open ? "Hide guidance" : "Show guidance";
+      });
+    });
+
+    const contrastToggle = document.getElementById("contrastToggle");
+    contrastToggle.addEventListener("click", () => {
+      const active = document.body.classList.toggle("high-contrast");
+      contrastToggle.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    const navLinks = document.querySelectorAll(".nav a");
+    const sections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = `#${entry.target.id}`;
+            navLinks.forEach(link => link.classList.toggle("active", link.getAttribute("href") === id));
+          }
+        });
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: 0.01 });
+      sections.forEach(section => observer.observe(section));
+    }
+  </script>
+</body>
+</html>
