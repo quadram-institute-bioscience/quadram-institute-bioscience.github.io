@@ -21,3 +21,8 @@ We support QIB research groups across the full data lifecycle — from raw seque
 ## Open science
 
 We release our tools and pipelines openly, packaging them for easy installation through community channels such as Bioconda and the Galaxy Toolshed, so the wider research community can benefit from and build on our work.
+
+## Branding
+
+Looking for our logos? You can find them on our [branding page]({{ site.baseurl }}/assets/branding/qi-logos/).
+
