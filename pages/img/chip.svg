@@ -1,0 +1,47 @@
+<svg width="220" height="220" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer rings -->
+  <circle cx="110" cy="110" r="100" fill="none" stroke="#B6BE00" stroke-width="1" opacity="0.15"/>
+  <circle cx="110" cy="110" r="90" fill="none" stroke="#B6BE00" stroke-width="0.5" opacity="0.1"/>
+  <!-- Trace lines -->
+  <line x1="110" y1="58" x2="110" y2="18" stroke="#B6BE00" stroke-width="1.5" opacity="0.5"/>
+  <line x1="88"  y1="62" x2="72"  y2="18" stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="132" y1="62" x2="148" y2="18" stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="110" y1="162" x2="110" y2="202" stroke="#B6BE00" stroke-width="1.5" opacity="0.5"/>
+  <line x1="88"  y1="158" x2="72"  y2="202" stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="132" y1="158" x2="148" y2="202" stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="58"  y1="110" x2="18"  y2="110" stroke="#B6BE00" stroke-width="1.5" opacity="0.5"/>
+  <line x1="62"  y1="88"  x2="18"  y2="72"  stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="62"  y1="132" x2="18"  y2="148" stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="162" y1="110" x2="202" y2="110" stroke="#B6BE00" stroke-width="1.5" opacity="0.5"/>
+  <line x1="158" y1="88"  x2="202" y2="72"  stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <line x1="158" y1="132" x2="202" y2="148" stroke="#B6BE00" stroke-width="1"   opacity="0.35"/>
+  <!-- Pin dots -->
+  <circle cx="110" cy="18"  r="3" fill="#B6BE00" opacity="0.7"/>
+  <circle cx="72"  cy="18"  r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="148" cy="18"  r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="110" cy="202" r="3" fill="#B6BE00" opacity="0.7"/>
+  <circle cx="72"  cy="202" r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="148" cy="202" r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="18"  cy="110" r="3" fill="#B6BE00" opacity="0.7"/>
+  <circle cx="18"  cy="72"  r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="18"  cy="148" r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="202" cy="110" r="3" fill="#B6BE00" opacity="0.7"/>
+  <circle cx="202" cy="72"  r="2" fill="#B6BE00" opacity="0.5"/>
+  <circle cx="202" cy="148" r="2" fill="#B6BE00" opacity="0.5"/>
+  <!-- Chip body -->
+  <rect x="58" y="58" width="104" height="104" rx="8" fill="#2F3D46" stroke="#B6BE00" stroke-width="1.5"/>
+  <!-- Internal grid -->
+  <line x1="68"  y1="84"  x2="152" y2="84"  stroke="#097E74" stroke-width="0.7" opacity="0.7"/>
+  <line x1="68"  y1="110" x2="152" y2="110" stroke="#097E74" stroke-width="0.7" opacity="0.7"/>
+  <line x1="68"  y1="136" x2="152" y2="136" stroke="#097E74" stroke-width="0.7" opacity="0.7"/>
+  <line x1="84"  y1="68"  x2="84"  y2="152" stroke="#097E74" stroke-width="0.7" opacity="0.7"/>
+  <line x1="110" y1="68"  x2="110" y2="152" stroke="#097E74" stroke-width="0.7" opacity="0.7"/>
+  <line x1="136" y1="68"  x2="136" y2="152" stroke="#097E74" stroke-width="0.7" opacity="0.7"/>
+  <!-- Core -->
+  <rect x="88" y="88" width="44" height="44" rx="4" fill="#097E74" stroke="#B6BE00" stroke-width="1"/>
+  <circle cx="110" cy="110" r="14" fill="#B6BE00" opacity="0.15"/>
+  <text x="110" y="106" text-anchor="middle" fill="#B6BE00" font-size="9"
+        font-family="monospace" font-weight="bold" letter-spacing="1">L40S</text>
+  <text x="110" y="119" text-anchor="middle" fill="#F0F1F1" font-size="7"
+        font-family="monospace" opacity="0.8">48 GB</text>
+</svg>

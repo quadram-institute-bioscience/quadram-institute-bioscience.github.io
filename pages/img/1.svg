@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="220"
+   height="220"
+   viewBox="0 0 220 220"
+   version="1.1"
+   id="svg30"
+   sodipodi:docname="1.svg"
+   inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs30" />
+  <sodipodi:namedview
+     id="namedview30"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="3.7227273"
+     inkscape:cx="109.86569"
+     inkscape:cy="110"
+     inkscape:window-width="1894"
+     inkscape:window-height="968"
+     inkscape:window-x="0"
+     inkscape:window-y="30"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg30" />
+  <!-- Outer rings -->
+  <circle
+     cx="110"
+     cy="110"
+     r="100"
+     fill="none"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.15"
+     id="circle1" />
+  <circle
+     cx="110"
+     cy="110"
+     r="90"
+     fill="none"
+     stroke="#B6BE00"
+     stroke-width="0.5"
+     opacity="0.1"
+     id="circle2" />
+  <!-- Trace lines -->
+  <line
+     x1="110"
+     y1="58"
+     x2="110"
+     y2="18"
+     stroke="#B6BE00"
+     stroke-width="1.5"
+     opacity="0.5"
+     id="line2" />
+  <line
+     x1="88"
+     y1="62"
+     x2="72"
+     y2="18"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line3" />
+  <line
+     x1="132"
+     y1="62"
+     x2="148"
+     y2="18"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line4" />
+  <line
+     x1="110"
+     y1="162"
+     x2="110"
+     y2="202"
+     stroke="#B6BE00"
+     stroke-width="1.5"
+     opacity="0.5"
+     id="line5" />
+  <line
+     x1="88"
+     y1="158"
+     x2="72"
+     y2="202"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line6" />
+  <line
+     x1="132"
+     y1="158"
+     x2="148"
+     y2="202"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line7" />
+  <line
+     x1="58"
+     y1="110"
+     x2="18"
+     y2="110"
+     stroke="#B6BE00"
+     stroke-width="1.5"
+     opacity="0.5"
+     id="line8" />
+  <line
+     x1="62"
+     y1="88"
+     x2="18"
+     y2="72"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line9" />
+  <line
+     x1="62"
+     y1="132"
+     x2="18"
+     y2="148"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line10" />
+  <line
+     x1="162"
+     y1="110"
+     x2="202"
+     y2="110"
+     stroke="#B6BE00"
+     stroke-width="1.5"
+     opacity="0.5"
+     id="line11" />
+  <line
+     x1="158"
+     y1="88"
+     x2="202"
+     y2="72"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line12" />
+  <line
+     x1="158"
+     y1="132"
+     x2="202"
+     y2="148"
+     stroke="#B6BE00"
+     stroke-width="1"
+     opacity="0.35"
+     id="line13" />
+  <!-- Pin dots -->
+  <circle
+     cx="110"
+     cy="18"
+     r="3"
+     fill="#B6BE00"
+     opacity="0.7"
+     id="circle13" />
+  <circle
+     cx="72"
+     cy="18"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle14" />
+  <circle
+     cx="148"
+     cy="18"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle15" />
+  <circle
+     cx="110"
+     cy="202"
+     r="3"
+     fill="#B6BE00"
+     opacity="0.7"
+     id="circle16" />
+  <circle
+     cx="72"
+     cy="202"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle17" />
+  <circle
+     cx="148"
+     cy="202"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle18" />
+  <circle
+     cx="18"
+     cy="110"
+     r="3"
+     fill="#B6BE00"
+     opacity="0.7"
+     id="circle19" />
+  <circle
+     cx="18"
+     cy="72"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle20" />
+  <circle
+     cx="18"
+     cy="148"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle21" />
+  <circle
+     cx="202"
+     cy="110"
+     r="3"
+     fill="#B6BE00"
+     opacity="0.7"
+     id="circle22" />
+  <circle
+     cx="202"
+     cy="72"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle23" />
+  <circle
+     cx="202"
+     cy="148"
+     r="2"
+     fill="#B6BE00"
+     opacity="0.5"
+     id="circle24" />
+  <!-- Chip body -->
+  <rect
+     x="58"
+     y="58"
+     width="104"
+     height="104"
+     rx="8"
+     fill="#2F3D46"
+     stroke="#B6BE00"
+     stroke-width="1.5"
+     id="rect24" />
+  <!-- Internal grid -->
+  <line
+     x1="68"
+     y1="84"
+     x2="152"
+     y2="84"
+     stroke="#097E74"
+     stroke-width="0.7"
+     opacity="0.7"
+     id="line24" />
+  <line
+     x1="68"
+     y1="110"
+     x2="152"
+     y2="110"
+     stroke="#097E74"
+     stroke-width="0.7"
+     opacity="0.7"
+     id="line25" />
+  <line
+     x1="68"
+     y1="136"
+     x2="152"
+     y2="136"
+     stroke="#097E74"
+     stroke-width="0.7"
+     opacity="0.7"
+     id="line26" />
+  <line
+     x1="84"
+     y1="68"
+     x2="84"
+     y2="152"
+     stroke="#097E74"
+     stroke-width="0.7"
+     opacity="0.7"
+     id="line27" />
+  <line
+     x1="110"
+     y1="68"
+     x2="110"
+     y2="152"
+     stroke="#097E74"
+     stroke-width="0.7"
+     opacity="0.7"
+     id="line28" />
+  <line
+     x1="136"
+     y1="68"
+     x2="136"
+     y2="152"
+     stroke="#097E74"
+     stroke-width="0.7"
+     opacity="0.7"
+     id="line29" />
+  <!-- Core -->
+  <rect
+     x="77.753624"
+     y="78.02224"
+     width="64.492752"
+     height="63.955513"
+     rx="5.8629775"
+     fill="#097e74"
+     stroke="#b6be00"
+     stroke-width="1"
+     id="rect29" />
+  <ellipse
+     cx="110"
+     cy="110"
+     fill="#b6be00"
+     opacity="0.15"
+     id="circle29"
+     rx="20.520422"
+     ry="20.349482"
+     style="stroke-width:1.45963" />
+  <text
+     x="109.54088"
+     y="104.62254"
+     text-anchor="middle"
+     fill="#b6be00"
+     font-size="13.1366px"
+     font-family="monospace"
+     font-weight="bold"
+     letter-spacing="1"
+     id="text29"
+     transform="scale(1.0041913,0.99582617)"
+     style="stroke-width:1.45963">L40S</text>
+  <text
+     x="109.54088"
+     y="123.59769"
+     text-anchor="middle"
+     fill="#f0f1f1"
+     font-size="10.2174px"
+     font-family="monospace"
+     opacity="0.8"
+     id="text30"
+     transform="scale(1.0041913,0.99582617)"
+     style="stroke-width:1.45963">48 GB</text>
+</svg>
