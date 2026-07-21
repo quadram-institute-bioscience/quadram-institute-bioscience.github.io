@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Responsible use of AI at the Quadram Institute</title>
+  <meta name="description" content="A short interactive guide to responsible use of AI at the Quadram Institute, based on the Research Quality and Integrity Manual.">
+  <style>
+    :root {
+      --ink: #182939;
+      --ink-soft: #314055;
+      --teal: #00ad94;
+      --teal-dark: #007c70;
+      --lime: #bdd629;
+      --grey: #525a69;
+      --stone: #f4f7f4;
+      --mint: #eaf8f4;
+      --white: #ffffff;
+      --danger: #ca3f3f;
+      --radius: 16px;
+      --max-width: 960px;
+      --focus: 0 0 0 3px rgba(0, 173, 148, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--stone);
+      line-height: 1.55;
+    }
+
+    a { color: var(--teal-dark); text-underline-offset: 0.15em; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible, input:focus-visible { outline: none; box-shadow: var(--focus); }
+
+    .skip-link {
+      position: absolute; top: -4rem; left: 1rem; z-index: 100;
+      padding: 0.7rem 1rem; color: var(--white); background: var(--ink); border-radius: 999px;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* Top bar */
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--white);
+      border-bottom: 1px solid rgba(24, 41, 57, 0.12);
+    }
+    .topbar-inner {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; min-height: 70px; flex-wrap: wrap;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--ink); }
+    .brand-logo { display: block; height: 48px; width: auto; max-width: 150px; object-fit: contain; }
+    .brand-text strong { display: block; font-size: 0.98rem; }
+    .brand-text span { display: block; font-size: 0.76rem; color: var(--grey); }
+    .nav { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    .nav a {
+      text-decoration: none; color: var(--ink-soft); font-weight: 700; font-size: 0.86rem;
+      padding: 0.5rem 0.7rem; border-radius: 999px;
+    }
+    .nav a:hover, .nav a.active { color: var(--ink); background: var(--mint); }
+    .print-btn {
+      border: 1px solid rgba(24, 41, 57, 0.18); background: var(--white); color: var(--ink);
+      border-radius: 999px; padding: 0.5rem 0.9rem; font-weight: 700; font-size: 0.86rem;
+    }
+    .print-btn:hover { background: var(--stone); }
+
+    /* Layout */
+    .section { width: min(100% - 2rem, var(--max-width)); margin: 0 auto; padding: 3rem 0; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 0.9rem; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+    h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+    .kicker {
+      display: inline-block; padding: 0.3rem 0.65rem; margin-bottom: 0.7rem;
+      border-radius: 999px; color: var(--teal-dark); background: var(--mint);
+      font-weight: 800; font-size: 0.82rem;
+    }
+    .lead { color: var(--ink-soft); font-size: clamp(1rem, 2vw, 1.15rem); max-width: 62ch; }
+    .section-intro { color: var(--grey); max-width: 60ch; margin-bottom: 1.6rem; }
+
+    /* Hero */
+    .hero { padding: 3rem 0 1rem; }
+    .hero-layout { width: min(100% - 2rem, var(--max-width)); margin: 0 auto; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1.8rem; align-items: center; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.2rem; }
+    .primary-button, .ghost-button {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 999px; font-weight: 800; text-decoration: none; padding: 0.8rem 1.1rem; border: 0;
+    }
+    .primary-button { color: var(--white); background: var(--teal-dark); }
+    .primary-button:hover { background: var(--ink); }
+    .ghost-button { color: var(--ink); background: var(--white); border: 1px solid rgba(24, 41, 57, 0.18); }
+    .ghost-button:hover { background: var(--stone); }
+
+    .statement-card {
+      padding: 1.4rem; border-radius: var(--radius); color: var(--white);
+      background: var(--ink);
+    }
+    .statement-card p { font-size: 1.15rem; font-weight: 800; line-height: 1.25; margin-bottom: 0.7rem; }
+    .statement-card small { color: rgba(255, 255, 255, 0.8); }
+    .value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-top: 0.7rem; }
+    .value-card { padding: 0.85rem; border-radius: 12px; background: var(--white); border: 1px solid rgba(24, 41, 57, 0.1); }
+    .value-card strong { display: block; font-size: 0.92rem; margin-bottom: 0.15rem; }
+    .value-card span { display: block; color: var(--grey); font-size: 0.82rem; }
+
+    /* Panel + tabs */
+    .panel { border-radius: var(--radius); background: var(--white); border: 1px solid rgba(24, 41, 57, 0.12); }
+    .tab-shell { display: grid; grid-template-columns: 230px 1fr; overflow: hidden; }
+    .tabs { padding: 0.9rem; background: var(--mint); border-right: 1px solid rgba(24, 41, 57, 0.1); }
+    .tab-button {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+      padding: 0.8rem 0.9rem; margin-bottom: 0.4rem; border: 0; border-radius: 12px;
+      text-align: left; color: var(--ink); background: transparent; font-weight: 800; font-size: 0.92rem;
+    }
+    .tab-button span { color: var(--teal-dark); font-size: 0.78rem; }
+    .tab-button.active { color: var(--white); background: var(--teal-dark); }
+    .tab-button.active span { color: var(--lime); }
+    .tab-panel { padding: clamp(1.2rem, 3vw, 1.8rem); }
+    .tab-panel .tag { display: inline-block; padding: 0.25rem 0.5rem; margin-bottom: 0.8rem; border-radius: 999px; background: rgba(189, 214, 41, 0.3); color: var(--ink); font-weight: 800; font-size: 0.8rem; }
+    .tab-panel h3 { font-size: clamp(1.3rem, 2.5vw, 1.7rem); line-height: 1.1; }
+    .two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; margin-top: 1.1rem; }
+    .info-box { padding: 1rem; border-radius: 12px; background: var(--stone); border: 1px solid rgba(24, 41, 57, 0.1); }
+    .info-box.good { background: rgba(0, 173, 148, 0.08); border-color: rgba(0, 173, 148, 0.25); }
+    .info-box.bad { background: rgba(202, 63, 63, 0.07); border-color: rgba(202, 63, 63, 0.22); }
+    .info-box h4 { margin: 0 0 0.5rem; font-size: 0.95rem; }
+    .compact-list { margin: 0; padding-left: 1.1rem; }
+    .compact-list li + li { margin-top: 0.3rem; }
+
+    /* Co-pilot cards */
+    .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; }
+    .simple-card { padding: 1.1rem; border-radius: var(--radius); background: var(--white); border: 1px solid rgba(24, 41, 57, 0.12); }
+    .number-token {
+      display: inline-grid; place-items: center; width: 1.9rem; height: 1.9rem; margin-bottom: 0.6rem;
+      border-radius: 999px; color: var(--ink); background: var(--lime); font-weight: 900;
+    }
+    .simple-card p { margin: 0; color: var(--ink-soft); }
+
+    /* Risk check */
+    .risk-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 1rem; align-items: start; }
+    .risk-form { padding: clamp(1.1rem, 3vw, 1.6rem); }
+    .risk-question { border: 0; margin: 0; padding: 0.8rem 0; }
+    .risk-question:first-child { padding-top: 0; }
+    .risk-question legend { margin-bottom: 0.55rem; font-weight: 800; padding: 0; }
+    .radio-row { display: flex; gap: 0.5rem; }
+    .radio-pill input { position: absolute; opacity: 0; pointer-events: none; }
+    .radio-pill span {
+      display: inline-flex; align-items: center; justify-content: center; min-width: 4.5rem;
+      padding: 0.5rem 0.7rem; border-radius: 999px; border: 1px solid rgba(24, 41, 57, 0.18);
+      background: var(--white); font-weight: 800;
+    }
+    .radio-pill input:checked + span { color: var(--white); background: var(--ink); border-color: var(--ink); }
+    .risk-result { position: sticky; top: 86px; padding: 1.3rem; border-radius: var(--radius); background: var(--ink); color: var(--white); }
+    .risk-result[data-state="green"] { background: var(--teal-dark); }
+    .risk-result[data-state="amber"] { background: #a46d00; }
+    .risk-result[data-state="red"] { background: var(--danger); }
+    .risk-badge {
+      display: inline-block; padding: 0.3rem 0.5rem; margin-bottom: 0.7rem; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.18); font-weight: 900; font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .risk-result strong { display: block; margin-bottom: 0.4rem; font-size: 1.2rem; }
+    .risk-result p { margin: 0; color: rgba(255, 255, 255, 0.88); }
+
+    /* Accordion */
+    .accordion { display: grid; gap: 0.7rem; }
+    details { border-radius: 12px; background: var(--white); border: 1px solid rgba(24, 41, 57, 0.12); overflow: hidden; }
+    details[open] { border-color: rgba(0, 173, 148, 0.3); }
+    summary {
+      cursor: pointer; padding: 0.95rem 1.1rem; font-weight: 800; list-style: none;
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+"; width: 1.6rem; height: 1.6rem; display: inline-grid; place-items: center;
+      border-radius: 999px; background: var(--mint); color: var(--teal-dark); flex: 0 0 auto;
+    }
+    details[open] summary::after { content: "\2013"; }
+    details > div { padding: 0 1.1rem 1.1rem; color: var(--grey); }
+
+    /* Footer */
+    .footer { padding: 2.2rem 1rem; color: var(--grey); text-align: center; font-size: 0.88rem; }
+
+    .print-only { display: none; }
+
+    @media (max-width: 860px) {
+      .hero-layout, .risk-grid { grid-template-columns: 1fr; }
+      .tab-shell { grid-template-columns: 1fr; }
+      .tabs { display: flex; gap: 0.5rem; overflow-x: auto; border-right: 0; border-bottom: 1px solid rgba(24, 41, 57, 0.1); }
+      .tab-button { flex: 0 0 auto; width: auto; margin: 0; white-space: nowrap; }
+      .card-grid { grid-template-columns: 1fr; }
+      .risk-result { position: static; }
+    }
+    @media (max-width: 560px) {
+      .value-grid, .two-col { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+    @media print {
+      .topbar, .hero-actions, .print-btn { display: none !important; }
+      body { background: #fff; color: #000; }
+      .panel, .simple-card, details, .statement-card { border: 1px solid #999; box-shadow: none; }
+      .statement-card { color: #000; background: #fff; }
+      .print-only { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Responsible AI at Quadram Institute, home">
+        <img class="brand-logo" src="https://corebio.info/assets/branding/QI-logo.png" alt="Quadram Institute logo" loading="eager" onerror="this.style.display='none'">
+        <span class="brand-text">
+          <strong>Responsible AI guide</strong>
+          <span>Quadram Institute</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Guide sections">
+        <a href="#principles">Principles</a>
+        <a href="#human-loop">Human in the loop</a>
+        <a href="#risk-check">Risk check</a>
+        <a href="#mentorship">Mentorship</a>
+      </nav>
+      <button class="print-btn" type="button" onclick="window.print()">Print</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-layout">
+        <div>
+          <p class="kicker">For staff, students and collaborators</p>
+          <h1>Responsible use of AI at the Quadram Institute</h1>
+          <p class="lead">AI tools are governed by the same quality and integrity principles as the rest of our research. Use them to support your thinking. Do not use them to replace your judgement, expose sensitive data, or hide uncertainty.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#risk-check">Start the quick risk check</a>
+            <a class="ghost-button" href="#principles">See the principles</a>
+          </div>
+        </div>
+        <aside class="statement-card" aria-label="Core message">
+          <p>AI can help us think, but it should not think on our behalf.</p>
+          <small>A trained researcher, supervisor or reviewer stays accountable for every decision and output.</small>
+          <div class="value-grid">
+            <div class="value-card"><strong>Rigour</strong><span>Check claims, code and citations.</span></div>
+            <div class="value-card"><strong>Data care</strong><span>Keep sensitive data off online tools.</span></div>
+            <div class="value-card"><strong>Transparency</strong><span>Disclose meaningful AI use.</span></div>
+            <div class="value-card"><strong>Wellbeing</strong><span>Use AI with mentorship, not in isolation.</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="principles">
+      <p class="kicker">Interactive principles</p>
+      <h2>Move from general caution to everyday habits</h2>
+      <p class="section-intro">Choose a topic to see the standard, what to do, and what to avoid. Each is drawn from the AI section of QIB's Research Quality and Integrity Manual.</p>
+      <div class="panel tab-shell">
+        <div class="tabs" role="tablist" aria-label="Responsible AI topics">
+          <button class="tab-button active" role="tab" type="button" data-tab="judgement">Human judgement <span>01</span></button>
+          <button class="tab-button" role="tab" type="button" data-tab="accuracy">Accuracy <span>02</span></button>
+          <button class="tab-button" role="tab" type="button" data-tab="data">Confidentiality <span>03</span></button>
+          <button class="tab-button" role="tab" type="button" data-tab="disclosure">Disclosure and terms <span>04</span></button>
+          <button class="tab-button" role="tab" type="button" data-tab="learning">Learning and wellbeing <span>05</span></button>
+        </div>
+        <article class="tab-panel" id="tabPanel" role="tabpanel" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <section class="section" id="human-loop">
+      <p class="kicker">Co-pilot, not driver</p>
+      <h2>Keep the human in the research loop</h2>
+      <p class="section-intro">AI is most useful when it sharpens expert work. It becomes risky when it replaces understanding, supervision or review.</p>
+      <div class="card-grid">
+        <div class="simple-card">
+          <span class="number-token">1</span>
+          <h3>Learn faster</h3>
+          <p>Ask for explanations, assumptions and method summaries, then take the good questions to a supervisor or statistician.</p>
+        </div>
+        <div class="simple-card">
+          <span class="number-token">2</span>
+          <h3>Structure ideas</h3>
+          <p>Let it organise themes, headings or outlines, while the scientific argument stays yours.</p>
+        </div>
+        <div class="simple-card">
+          <span class="number-token">3</span>
+          <h3>Stress-test your work</h3>
+          <p>Ask it to find gaps, caveats and reviewer-style questions before human peer review, not instead of it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="risk-check">
+      <p class="kicker">Before you paste, prompt or publish</p>
+      <h2>Run a quick risk check</h2>
+      <p class="section-intro">Answer four questions. The result updates as you go and suggests a next step.</p>
+      <div class="risk-grid">
+        <form class="panel risk-form" id="riskForm">
+          <fieldset class="risk-question">
+            <legend>1. Does your prompt include personal, clinical, participant, confidential or unpublished information?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="sensitive" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="sensitive" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="risk-question">
+            <legend>2. Are you asking AI to make a final scientific, clinical, ethical or legal decision?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="decision" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="decision" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="risk-question">
+            <legend>3. Will the output be shared, submitted or used in a formal research workflow?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="publish" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="publish" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="risk-question">
+            <legend>4. Can you verify, explain and defend the output without relying on the AI?</legend>
+            <div class="radio-row">
+              <label class="radio-pill"><input type="radio" name="verify" value="yes"><span>Yes</span></label>
+              <label class="radio-pill"><input type="radio" name="verify" value="no"><span>No</span></label>
+            </div>
+          </fieldset>
+        </form>
+        <aside class="risk-result" id="riskResult" data-state="neutral" aria-live="polite">
+          <span class="risk-badge" id="riskBadge">Not assessed</span>
+          <strong id="riskHeadline">Answer the questions to assess risk.</strong>
+          <p id="riskMessage">Use this as a pause point before reaching for a public AI tool, especially with research, clinical, partner or unpublished material.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="mentorship">
+      <p class="kicker">Research culture</p>
+      <h2>Responsible AI is also about mentorship</h2>
+      <p class="section-intro">AI can reduce friction, but it cannot replace clear feedback, training and community. Use of AI should be an open topic in supervision and team meetings.</p>
+      <div class="accordion">
+        <details open>
+          <summary>What should supervisors and line managers model?</summary>
+          <div>Discuss acceptable and unacceptable AI use openly, and give concrete examples. Encourage disclosure rather than secrecy, and reinforce that understanding matters more than speed.</div>
+        </details>
+        <details>
+          <summary>What should staff and students record?</summary>
+          <div>When AI materially contributes to writing, code, analysis or figures, note the tool, date, purpose, a summary of the prompt, what output was used and what checks you ran. Keep this alongside your project records.</div>
+        </details>
+        <details>
+          <summary>When should I ask for human advice?</summary>
+          <div>Ask when data is sensitive, when the output affects research conclusions, when you cannot explain the result, or when AI use is adding anxiety rather than clarity.</div>
+        </details>
+        <details>
+          <summary>How can AI support open research?</summary>
+          <div>Use it to improve documentation, metadata, code comments and plain-language summaries, while protecting restricted data and applying clear licences and safeguards. QIB provides training to help staff become AI literate.</div>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="print-only">Interactive tabs and the risk check are available in the on-screen version.</p>
+    <p>Based on the QIB Research Quality and Integrity Manual (2026), AI section. Single-page HTML, no external libraries.</p>
+  </footer>
+
+  <script>
+    const tabContent = {
+      judgement: {
+        tag: "Principle 01",
+        title: "AI can support judgement, but it must not replace it.",
+        body: "Treat AI as a co-pilot for research thinking. It can explain, structure and challenge ideas, but a trained researcher, clinician, supervisor or reviewer remains fully accountable for decisions and outputs.",
+        good: ["Ask for explanations, assumptions and likely caveats.", "Use it to prepare better questions for a supervisor or collaborator.", "Check whether the answer actually fits your research context."],
+        bad: ["Do not ask AI to make final scientific, clinical, ethical or legal decisions.", "Do not submit work you cannot explain.", "Do not treat fluent output as evidence that it is correct."]
+      },
+      accuracy: {
+        tag: "Principle 02",
+        title: "Polished text is not the same as reliable research.",
+        body: "AI outputs, including citations, are often invented or factually wrong, and AI-written code may not work as expected or may do something harmful. Integrity depends on verification, not on how confident the output sounds.",
+        good: ["Check every citation for existence, accuracy and relevance.", "Fact-check all outputs against reputable sources.", "Review and test any code before you use it."],
+        bad: ["Do not cite references you have not confirmed exist.", "Do not let AI paper over weak logic or uncertainty.", "Do not paste outputs into research work unchecked."]
+      },
+      data: {
+        tag: "Principle 03",
+        title: "Sensitive data should not go into online AI tools.",
+        body: "Online tools such as ChatGPT, Claude, Perplexity or Gemini upload what you enter to third-party servers. Locally hosted models, on a QIB server or your own machine, avoid this. Our work often involves clinical, participant, unpublished, partner or commercially sensitive material.",
+        good: ["Prefer QIB's locally hosted AI for anything non-public.", "Check GDPR, ethics approval, export control and re-identification risk first.", "Ask a PI, data steward or governance lead when unsure."],
+        bad: ["Do not enter identifiable, confidential or unpublished material into online tools.", "Do not share patentable results with online tools.", "Do not use online AI for peer review."]
+      },
+      disclosure: {
+        tag: "Principle 04",
+        title: "Be transparent, and respect terms and licences.",
+        body: "Human authors stay accountable, and AI cannot be listed as an author. Minor editorial help needs no disclosure, but anything that shapes the intellectual content does. Only enter third-party material that is CC0 licensed, since AI tools cannot honour CC BY attribution.",
+        good: ["Disclose AI use when it synthesises literature, interprets results or shapes conclusions.", "Suggested wording: work was generated or edited with a named tool, and the authors take full responsibility.", "Follow journal, funder and UEA policies where they apply."],
+        bad: ["Do not disclose for spelling, grammar, tone or rephrasing that keeps your meaning.", "Do not present AI-generated work as wholly your own contribution.", "Do not enter third-party data that is not CC0 licensed."]
+      },
+      learning: {
+        tag: "Principle 05",
+        title: "AI should reduce confusion, not create an anxiety loop.",
+        body: "AI can accelerate learning when there is a framework, feedback and mentorship. It can increase anxiety when it becomes the only source of guidance. QIB provides training to help staff and students become AI literate.",
+        good: ["Use AI to learn a method inside a supported research system.", "Use it as a sounding board before, not instead of, human feedback.", "Discuss AI use openly in supervision and team meetings."],
+        bad: ["Do not replace mentorship with repeated AI prompts.", "Do not let speed outrun understanding.", "Do not treat AI reassurance as expert review."]
+      }
+    };
+
+    const tabPanel = document.getElementById("tabPanel");
+    const tabButtons = document.querySelectorAll(".tab-button");
+
+    function renderTab(key) {
+      const item = tabContent[key];
+      tabPanel.innerHTML =
+        '<span class="tag">' + item.tag + '</span>' +
+        '<h3>' + item.title + '</h3>' +
+        '<p class="lead">' + item.body + '</p>' +
+        '<div class="two-col">' +
+          '<div class="info-box good"><h4>Do this</h4><ul class="compact-list">' +
+            item.good.map(function (t) { return '<li>' + t + '</li>'; }).join("") +
+          '</ul></div>' +
+          '<div class="info-box bad"><h4>Avoid this</h4><ul class="compact-list">' +
+            item.bad.map(function (t) { return '<li>' + t + '</li>'; }).join("") +
+          '</ul></div>' +
+        '</div>';
+      tabButtons.forEach(function (button) {
+        button.classList.toggle("active", button.dataset.tab === key);
+      });
+    }
+
+    tabButtons.forEach(function (button) {
+      button.addEventListener("click", function () { renderTab(button.dataset.tab); });
+    });
+    renderTab("judgement");
+
+    const riskForm = document.getElementById("riskForm");
+    const riskResult = document.getElementById("riskResult");
+    const riskBadge = document.getElementById("riskBadge");
+    const riskHeadline = document.getElementById("riskHeadline");
+    const riskMessage = document.getElementById("riskMessage");
+
+    function getRadioValue(name) {
+      const selected = riskForm.querySelector('input[name="' + name + '"]:checked');
+      return selected ? selected.value : null;
+    }
+
+    function updateRisk() {
+      const sensitive = getRadioValue("sensitive");
+      const decision = getRadioValue("decision");
+      const publish = getRadioValue("publish");
+      const verify = getRadioValue("verify");
+      const answered = [sensitive, decision, publish, verify].filter(Boolean).length;
+
+      if (answered < 4) {
+        riskResult.dataset.state = "neutral";
+        riskBadge.textContent = answered + "/4 answered";
+        riskHeadline.textContent = "Keep going.";
+        riskMessage.textContent = "The key questions are whether sensitive information is involved and whether you can verify the output yourself.";
+        return;
+      }
+      if (sensitive === "yes") {
+        riskResult.dataset.state = "red";
+        riskBadge.textContent = "High risk";
+        riskHeadline.textContent = "Do not use an online AI tool for this.";
+        riskMessage.textContent = "Use QIB's locally hosted AI or an approved route. Check GDPR, ethics approval and export control, and ask the relevant PI, data steward or governance contact first.";
+        return;
+      }
+      if (decision === "yes" || verify === "no") {
+        riskResult.dataset.state = "red";
+        riskBadge.textContent = "High risk";
+        riskHeadline.textContent = "Do not outsource this judgement to AI.";
+        riskMessage.textContent = "AI can help frame questions or surface caveats, but a final scientific, clinical, ethical or legal call needs accountable human review.";
+        return;
+      }
+      if (publish === "yes") {
+        riskResult.dataset.state = "amber";
+        riskBadge.textContent = "Moderate risk";
+        riskHeadline.textContent = "Proceed with checks and transparency.";
+        riskMessage.textContent = "Verify sources, code and claims. Record the tool used and what it contributed, and disclose the use if it shaped the intellectual content.";
+        return;
+      }
+      riskResult.dataset.state = "green";
+      riskBadge.textContent = "Lower risk";
+      riskHeadline.textContent = "Use AI as a support tool.";
+      riskMessage.textContent = "This looks suitable for learning, structuring or critique. Keep prompts non-sensitive, check the output, and keep responsibility with you.";
+    }
+
+    riskForm.addEventListener("change", updateRisk);
+
+    const navLinks = document.querySelectorAll(".nav a");
+    const sections = Array.prototype.map.call(navLinks, function (link) {
+      return document.querySelector(link.getAttribute("href"));
+    }).filter(Boolean);
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            const id = "#" + entry.target.id;
+            navLinks.forEach(function (link) {
+              link.classList.toggle("active", link.getAttribute("href") === id);
+            });
+          }
+        });
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: 0.01 });
+      sections.forEach(function (section) { observer.observe(section); });
+    }
+  </script>
+</body>
+</html>
