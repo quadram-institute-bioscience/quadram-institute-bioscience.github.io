@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LLM with Python Hackathon 2026 — Build scientific tools with Python and LLMs</title>
+  <meta name="description" content="An asynchronous virtual hackathon for using Large Language Models from Python in research, bioinformatics and scientific workflows.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container--wide nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="LLM with Python Hackathon home">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 28 28" fill="none">
+          <rect x="2" y="2" width="11" height="11" rx="2" fill="#097E74"opacity="1"/>
+          <rect x="15" y="2" width="11" height="11" rx="2" fill="#B6BE00"  opacity="1"/>
+          <rect x="2" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.38"/>
+          <rect x="15" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.14"/>
+        </svg>
+        <span class="nav-logo-text">LLM &amp; Python Hackathon</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="about.html">About</a></li>
+        <li><a href="programme.html">Programme</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="registration.html">Register</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode"></button>
+        <a href="registration.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container--wide hero-grid">
+      <div>
+        <div class="hero-label" aria-label="Virtual Hackathon 2026">
+          <span class="dot" aria-hidden="true"></span>
+          Virtual Hackathon &middot; 2026
+        </div>
+        <h1>Using LLMs from your <em>Python scripts</em></h1>
+        <p class="hero-sub">This is an <strong>asynchronous hackathon</strong> to use Large Language Models from Python. 
+         <br> Bring your coding skills, or <em>simply your ideas (coding is not required)</em>, and write concepts of what you could build with tools that autonomously use LLMs for you.</p>
+        <div class="hero-ctas">
+          <a href="registration.html" class="btn btn-primary btn-lg">Register for the hackathon</a>
+          <a href="about.html" class="btn btn-ghost btn-lg">What is this about?</a>
+        </div>
+        <p class="hero-note">First 20 participants receive $7 OpenRouter API credit &nbsp;&middot;&nbsp; Launch: 28 July 2026</p>
+      </div>
+      <div class="hero-visual">
+        <video class="hero-media" muted autoplay loop playsinline disablepictureinpicture
+               controlslist="nodownload nofullscreen noremoteplayback" aria-label="Animation showing Python driving an LLM">
+          <source src="assets/animation2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="container split-grid">
+      <div class="prose fade-in">
+        <div class="section-label">What is this about</div>
+        <h2 class="section-title">Python scripts that <em>talk to LLMs</em></h2>
+        <p>This hackathon focuses on API calls to LLM providers (like Claude) from Python scripts to analyse text, images and scientific documents.</p>
+        <p>The goal is not to become an AI expert &mdash; just to learn enough to build something useful. A good project can be as small as one Python script that solves a real problem.</p>
+        <p>Find out <a href="about.html">what the hackathon is about</a> or read the <a href="programme.html">programme and schedule</a>.</p>
+      </div>
+      <div class="flow-diagram fade-in" role="region" aria-label="How a Python LLM call works">
+        <div class="flow-title">How it works</div>
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">Py</div>
+          <div>
+            <div class="flow-step-label">Your Python script</div>
+            <div class="flow-step-desc">Write a prompt with your data or question</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+          </div>
+          <div>
+            <div class="flow-step-label">The script prompts LLM API</div>
+            <div class="flow-step-desc">Via OpenRouter &mdash; one API for many providers</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="flow-step-label">Model generates response</div>
+            <div class="flow-step-desc">Text, structured JSON, summaries, or explanations</div>
+          </div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-icon" aria-hidden="true">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          </div>
+          <div>
+            <div class="flow-step-label">Receive response in your tool</div>
+            <div class="flow-step-desc">Save, display, filter, or pass to another function.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section class="cta-section" id="register-cta">
+    <div class="container--wide split-grid--even">
+      <div>
+        <div class="section-label">Get started</div>
+        <h2>Ready to build something?</h2>
+        <p class="cta-copy">Register to secure your place and API credit before the launch on 28 July 2026. You can take part alone or with colleagues.</p>
+        <a href="registration.html" class="btn btn-accent btn-lg">Register now &rarr;</a>
+      </div>
+      <div>
+        <div class="register-stats" aria-label="Event statistics">
+          <div>
+            <div class="stat-number">$7</div>
+            <div class="stat-label">Credit for<br>first 20 registrants</div>
+          </div>
+          <div>
+            <div class="stat-number">2</div>
+            <div class="stat-label">Scheduled sessions<br>(rest is async)</div>
+          </div>
+          <div>
+            <div class="stat-number">$20</div>
+            <div class="stat-label">Prize credit<br>for best 4 prototypes</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container--wide footer-inner">
+    <a href="index.html" class="footer-logo" aria-label="LLM with Python Hackathon home">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="2" width="11" height="11" rx="2" fill="#B6BE00" opacity="0.7"/>
+        <rect x="15" y="2" width="11" height="11" rx="2" fill="#097E74" opacity="0.3"/>
+        <rect x="2" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.3"/>
+        <rect x="15" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.12"/>
+      </svg>
+      LLM with Python &mdash; a Core Bioinformatics Hackathon
+    </a>
+    <nav aria-label="Footer navigation">
+      <ul class="footer-links" role="list">
+        <li><a href="about.html">About</a></li>
+        <li><a href="programme.html">Programme</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="privacy.html">Privacy notice</a></li>
+      </ul>
+    </nav>
+    <p class="footer-copy">&copy; 2026 Quadram Institute Bioscience</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

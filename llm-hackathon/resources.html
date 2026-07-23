@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources — LLM with Python Hackathon 2026</title>
+  <meta name="description" content="Documentation links and getting-started resources for the LLM with Python Hackathon 2026.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="container--wide nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="LLM with Python Hackathon home">
+        <svg aria-hidden="true" width="26" height="26" viewBox="0 0 28 28" fill="none">
+          <rect x="2" y="2" width="11" height="11" rx="2" fill="#097E74"opacity="1"/>
+          <rect x="15" y="2" width="11" height="11" rx="2" fill="#B6BE00"  opacity="1"/>
+          <rect x="2" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.38"/>
+          <rect x="15" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.14"/>
+        </svg>
+        <span class="nav-logo-text">LLM &amp; Python Hackathon</span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="about.html">About</a></li>
+        <li><a href="programme.html">Programme</a></li>
+        <li><a href="resources.html" class="active">Resources</a></li>
+        <li><a href="registration.html">Register</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode"></button>
+        <a href="registration.html" class="btn btn-primary">Register</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- PAGE HEADER -->
+  <section class="page-header">
+    <div class="container--wide">
+      <div class="hero-label" aria-label="Virtual Hackathon 2026">
+        <span class="dot" aria-hidden="true"></span>
+        Virtual Hackathon &middot; 2026
+      </div>
+      <h1>Resources &amp; <em>documentation</em></h1>
+      <p class="page-lead">This hackathon is designed for people who are comfortable with basic Python
+        but no previous experience with Large Language Models or AI APIs is required. The links below will help you get started and serve as references throughout the event.
+        <br>If you wish, we will host a demonstration on <a class="resource-link-text" style="color: var(--color-primary)" href="programme.html">July 28th</a>.</p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PYTHON RESOURCES -->
+  <section id="python">
+    <div class="container split-grid">
+      <div class="prose fade-in">
+        <div class="section-label">Python</div>
+        <h2 class="section-title">Recommended <em>Python resources</em></h2>
+        <p>If you are new to Python, these are excellent places to start. Even simple Python scripts are encouraged &mdash; a useful prototype can often be built in fewer than 100 lines of code.</p>
+      </div>
+      <div class="fade-in">
+        <div class="resource-list">
+          <a class="resource-link" href="https://docs.python.org/3/tutorial/" target="_blank" rel="noopener">
+            <span class="resource-link-text"><strong>Python Official Tutorial</strong><span>docs.python.org/3/tutorial</span></span>
+            <svg class="resource-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <a class="resource-link" href="https://realpython.com" target="_blank" rel="noopener">
+            <span class="resource-link-text"><strong>Real Python</strong><span>realpython.com</span></span>
+            <svg class="resource-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <a class="resource-link" href="https://packaging.python.org" target="_blank" rel="noopener">
+            <span class="resource-link-text"><strong>Packaging &amp; Virtual Environments</strong><span>packaging.python.org</span></span>
+            <svg class="resource-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- LLM APIS -->
+  <section id="apis" style="background:var(--color-surface);">
+    <div class="container split-grid">
+      <div class="prose fade-in">
+        <div class="section-label">LLM APIs</div>
+        <h2 class="section-title">How we'll access <em>AI models</em></h2>
+        <p>Participants will use <strong>OpenRouter</strong> as the main platform for accessing Large Language Models. OpenRouter provides a single API that can connect to many providers:</p>
+        <ul>
+          <li>OpenAI (ChatGPT)</li>
+          <li>Anthropic (Claude)</li>
+          <li>Google (Gemini)</li>
+          <li>Meta (Llama)</li>
+          <li>Mistral</li>
+          <li>and many others</li>
+        </ul>
+        <div class="note-callout">
+          Using a common API means you can focus on building your project rather than learning multiple provider-specific interfaces.
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="section-label">Documentation</div>
+        <h2 class="section-title" style="font-size:var(--text-xl)">Official references</h2>
+        <div class="resource-list">
+          <a class="resource-link" href="https://openrouter.ai/docs" target="_blank" rel="noopener">
+            <span class="resource-link-text"><strong>OpenRouter Documentation</strong><span>openrouter.ai/docs</span></span>
+            <svg class="resource-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <a class="resource-link" href="https://platform.openai.com/docs" target="_blank" rel="noopener">
+            <span class="resource-link-text"><strong>OpenAI Python SDK</strong><span>platform.openai.com/docs</span></span>
+            <svg class="resource-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+          <a class="resource-link" href="https://github.com/openai/openai-python" target="_blank" rel="noopener">
+            <span class="resource-link-text"><strong>OpenAI Python Library</strong><span>github.com/openai/openai-python</span></span>
+            <svg class="resource-link-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+          </a>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-4);line-height:1.7;">Even though we use OpenRouter, much of the code is based on the widely used OpenAI Python client.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FIRST API CALL -->
+  <section id="example">
+    <div class="container split-grid">
+      <div class="fade-in">
+        <div class="section-label">Example</div>
+        <h2 class="section-title" style="margin-bottom:var(--space-6)">Your first API call</h2>
+        <div class="code-block" role="region" aria-label="Python code example">
+          <div class="code-bar" aria-hidden="true">
+            <div class="code-dot code-dot-r"></div>
+            <div class="code-dot code-dot-y"></div>
+            <div class="code-dot code-dot-g"></div>
+            <span class="code-filename">first_call.py</span>
+          </div>
+          <div class="code-pre">
+            <code><span class="kw">from</span> <span class="fn">openai</span> <span class="kw">import</span> OpenAI
+<span class="kw">import</span> <span class="fn">os</span>
+
+client = OpenAI(
+    base_url=<span class="str">"https://openrouter.ai/api/v1"</span>,
+    api_key=<span class="fn">os</span>.environ[<span class="str">"OPENROUTER_API_KEY"</span>]
+)
+
+response = client.chat.completions.create(
+    model=<span class="str">"openai/gpt-4.1-mini"</span>,
+    messages=[
+        {
+            <span class="str">"role"</span>: <span class="str">"user"</span>,
+            <span class="str">"content"</span>: <span class="str">"Explain N50 in simple terms."</span>
+        }
+    ]
+)
+
+<span class="fn">print</span>(response.choices[<span class="num">0</span>].message.content)</code>
+          </div>
+        </div>
+      </div>
+      <div class="prose fade-in">
+        <p>A typical workflow is: write a prompt in Python, send it, the LLM generates a response, and you use that response in your application.</p>
+        <p>With only a few lines of code, you can start building applications that analyse text, summarise documents, explain figures, classify information, and much more.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- THINGS YOU MIGHT BUILD -->
+  <section id="ideas" style="background:var(--color-surface-offset);">
+    <div class="container fade-in">
+      <div class="section-label">Ideas</div>
+      <h2 class="section-title">Things you might <em>build</em></h2>
+      <div class="card-grid" role="list">
+        <article class="card" role="listitem"><h3 class="card-title">Paper summarisation tools</h3></article>
+        <article class="card" role="listitem"><h3 class="card-title">Figure explainers</h3></article>
+        <article class="card" role="listitem"><h3 class="card-title">Grant-fit analysers</h3></article>
+        <article class="card" role="listitem"><h3 class="card-title">Bioinformatics report interpreters</h3></article>
+        <article class="card" role="listitem"><h3 class="card-title">Metadata extraction pipelines</h3></article>
+        <article class="card" role="listitem"><h3 class="card-title">Educational assistants</h3></article>
+        <article class="card" role="listitem"><h3 class="card-title">Research workflow automation</h3></article>
+      </div>
+      <div class="note-callout">
+        Remember: the goal is not to build a perfect product. The goal is to learn how LLMs can be integrated into useful Python applications.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container--wide footer-inner">
+    <a href="index.html" class="footer-logo" aria-label="LLM with Python Hackathon home">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 28 28" fill="none">
+        <rect x="2" y="2" width="11" height="11" rx="2" fill="currentColor" opacity="0.7"/>
+        <rect x="15" y="2" width="11" height="11" rx="2" fill="currentColor" opacity="0.3"/>
+        <rect x="2" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.3"/>
+        <rect x="15" y="15" width="11" height="11" rx="2" fill="currentColor" opacity="0.12"/>
+      </svg>
+      LLM with Python &mdash; a Core Bioinformatics Hackathon
+    </a>
+    <nav aria-label="Footer navigation">
+      <ul class="footer-links" role="list">
+        <li><a href="about.html">About</a></li>
+        <li><a href="programme.html">Programme</a></li>
+        <li><a href="resources.html">Resources</a></li>
+        <li><a href="privacy.html">Privacy notice</a></li>
+      </ul>
+    </nav>
+    <p class="footer-copy">&copy; 2026 Quadram Institute Bioscience</p>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>
