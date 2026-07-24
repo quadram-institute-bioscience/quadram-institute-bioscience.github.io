@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terms of Service — Quadram Institute Discord Bot</title>
+  <meta name="description" content="Terms of Service for the Quadram Institute Bioscience Discord bot.">
+  <style>
+    :root {
+      --primary: #09957f;
+      --primary-dark: #007c70;
+      --secondary: #b1b905;
+      --black: #2f2f41;
+      --white: #ffffff;
+      --white-offset: #f6fffc;
+      --steel: #5C5A5A;
+      --ink: #182939;
+      --ink-soft: #314055;
+      --grey: #525a69;
+      --stone: #f4f7f4;
+      --mint: #eaf8f4;
+      --radius: 16px;
+      --max-width: 880px;
+      --focus: 0 0 0 3px rgba(9, 149, 127, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif;
+      color: var(--black);
+      background: var(--white-offset);
+      line-height: 1.6;
+    }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { color: #0bb39a; text-decoration: underline; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    button:focus-visible, a:focus-visible { outline: none; box-shadow: var(--focus); }
+
+    .skip-link {
+      position: absolute; top: -4rem; left: 1rem; z-index: 100;
+      padding: 0.7rem 1rem; color: var(--white); background: var(--ink); border-radius: 999px;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--white);
+      border-bottom: 1px solid rgba(24, 41, 57, 0.1);
+    }
+    .topbar-inner {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; min-height: 64px; flex-wrap: wrap;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--ink); }
+    .brand-logo { display: block; height: 44px; width: auto; max-width: 140px; object-fit: contain; }
+    .brand-text strong { display: block; font-size: 0.95rem; }
+    .brand-text span { display: block; font-size: 0.75rem; color: var(--grey); }
+    .print-btn {
+      border: 1px solid rgba(24, 41, 57, 0.18); background: var(--white); color: var(--ink);
+      border-radius: 999px; padding: 0.5rem 0.9rem; font-weight: 700; font-size: 0.86rem;
+    }
+    .print-btn:hover { background: var(--stone); }
+
+    .hero {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      padding: 3.5rem 0 1.5rem;
+    }
+    .hero h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+    .hero .effective-date {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      background: var(--mint);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+    .hero .subtitle {
+      color: var(--steel);
+      font-size: 1.05rem;
+      max-width: 65ch;
+      margin-top: 1rem;
+    }
+
+    .container {
+      width: min(100% - 2rem, var(--max-width));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+
+    .tos-content {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid rgba(24, 41, 57, 0.1);
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .tos-content h2 {
+      font-size: 1.3rem;
+      color: var(--primary-dark);
+      margin: 2rem 0 0.75rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 3px solid var(--secondary);
+    }
+    .tos-content h2:first-of-type { margin-top: 0; }
+
+    .tos-content p {
+      margin: 0 0 1rem;
+      color: var(--black);
+    }
+
+    .tos-content ul {
+      margin: 0.5rem 0 1.2rem;
+      padding-left: 1.3rem;
+    }
+    .tos-content ul li {
+      margin-bottom: 0.45rem;
+      color: var(--black);
+    }
+    .tos-content ul li::marker { color: var(--primary); }
+
+    .tos-content strong.operator {
+      color: var(--ink);
+    }
+
+    .footer {
+      padding: 2rem 1rem;
+      color: var(--steel);
+      text-align: center;
+      font-size: 0.88rem;
+      border-top: 1px solid rgba(24, 41, 57, 0.08);
+    }
+    .footer a { color: var(--primary); }
+
+    @media (max-width: 600px) {
+      .tos-content { padding: 1.25rem; }
+      .hero { padding-top: 2rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { scroll-behavior: auto !important; transition: none !important; }
+    }
+    @media print {
+      .topbar, .hero .subtitle { display: none !important; }
+      body { background: #fff; color: #000; }
+      .tos-content { border: 1px solid #999; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Quadram Institute home">
+        <img class="brand-logo" src="https://corebio.info/assets/branding/QI-logo.png" alt="Quadram Institute logo" loading="eager" onerror="this.style.display='none'">
+        <span class="brand-text">
+          <strong>Discord Bot — Terms of Service</strong>
+          <span>Quadram Institute Bioscience</span>
+        </span>
+      </a>
+      <button class="print-btn" type="button" onclick="window.print()">Print</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="hero" id="top">
+      <h1>Terms of Service</h1>
+      <p class="effective-date">Effective date: July 24, 2026</p>
+      <p class="subtitle">These Terms of Service govern access to and use of the Discord bot operated by Quadram Institute Bioscience, Core Bioinformatics Teams. By using the Bot, you agree to these Terms. If you do not agree, do not use the Bot.</p>
+    </div>
+
+    <div class="container">
+      <div class="tos-content">
+
+        <h2>1. Operator</h2>
+        <p>The Bot is operated by <strong class="operator">Quadram Institute Bioscience, Core Bioinformatics Teams</strong> (the "Operator", "we", "us", or "our").</p>
+
+        <h2>2. Purpose of the Bot</h2>
+        <p>The Bot is provided as a general-purpose experimental tool for use within Discord servers. The Bot may accept prompts, generate text-based responses, and interact with users through integrations with language model infrastructure, including systems such as vLLM.</p>
+        <p>The Bot is offered on an experimental and evolving basis. Features may be added, changed, limited, or removed at any time without notice.</p>
+
+        <h2>3. Eligibility and Server Use</h2>
+        <p>You may use the Bot only in compliance with applicable law, Discord's terms and policies, and any rules of the Discord server in which the Bot is installed.</p>
+        <p>If you add or operate the Bot in a server, you are responsible for ensuring that you have authority to do so and that users in that server are informed that automated responses may be generated.</p>
+
+        <h2>4. Acceptable Use</h2>
+        <p>You agree not to use the Bot to:</p>
+        <ul>
+          <li>Violate any law, regulation, or third-party right.</li>
+          <li>Harass, abuse, threaten, defame, or impersonate others.</li>
+          <li>Submit, request, or distribute unlawful, harmful, fraudulent, or deceptive content.</li>
+          <li>Attempt to gain unauthorized access to systems, accounts, tokens, logs, or infrastructure associated with the Bot.</li>
+          <li>Interfere with the Bot's operation, stability, or security.</li>
+          <li>Use the Bot to generate or distribute malware, spam, or content intended to facilitate cyber abuse.</li>
+          <li>Misrepresent Bot output as human-reviewed, professionally approved, or authoritative where it is not.</li>
+        </ul>
+        <p>We may restrict, suspend, or block access to the Bot where we reasonably believe misuse, abuse, or security risk has occurred.</p>
+
+        <h2>5. AI-Generated Content</h2>
+        <p>Responses generated by the Bot may be incomplete, inaccurate, outdated, biased, or otherwise unsuitable for your intended purpose. Output is generated automatically and may not be reviewed by a human.</p>
+        <p>You are solely responsible for evaluating, verifying, and deciding whether to rely on any output from the Bot. The Bot is not intended to provide legal, medical, financial, regulatory, clinical, or other professional advice.</p>
+
+        <h2>6. Content and Inputs</h2>
+        <p>You retain responsibility for any prompts, messages, files, or other content you submit to the Bot ("Inputs"). You represent that you have the necessary rights to submit your Inputs and that doing so does not violate law or third-party rights.</p>
+        <p>To the extent permitted by law, you are responsible for any use you make of the Bot's responses and any downstream actions taken based on those responses.</p>
+
+        <h2>7. Data Handling</h2>
+        <p>Use of the Bot may involve the processing of Discord message content, prompts, usernames, channel context, server identifiers, technical logs, and generated responses, to the extent necessary to operate, secure, maintain, and improve the Bot.</p>
+        <p>The Bot may also process content through third-party infrastructure, models, hosting providers, or inference services. The specific technical configuration may change over time.</p>
+        <p>Do not submit confidential, personal, sensitive, regulated, or security-critical information unless you are satisfied that such use is appropriate for your server and risk context.</p>
+
+        <h2>8. Availability and Changes</h2>
+        <p>The Bot is provided on an "as is" and "as available" basis. We do not guarantee uptime, availability, performance, accuracy, compatibility, or continued operation of any feature.</p>
+        <p>We may modify, pause, or discontinue the Bot, in whole or in part, at any time, with or without notice.</p>
+
+        <h2>9. Intellectual Property</h2>
+        <p>The Bot, including its software, configuration, branding, documentation, and underlying systems, is owned by or licensed to the Operator except where otherwise stated.</p>
+        <p>You retain rights in content you submit, subject to any rights necessary for us and our service providers to process that content for operation of the Bot.</p>
+
+        <h2>10. Third-Party Services</h2>
+        <p>The Bot depends on third-party platforms and services, including Discord and model or hosting providers. We are not responsible for the availability, security, content, or practices of third-party services.</p>
+        <p>Your use of those services may also be governed by separate terms, policies, and privacy notices.</p>
+
+        <h2>11. Disclaimer of Warranties</h2>
+        <p>To the maximum extent permitted by law, the Bot is provided without warranties of any kind, whether express, implied, statutory, or otherwise, including implied warranties of merchantability, fitness for a particular purpose, non-infringement, and accuracy.</p>
+        <p>We do not warrant that the Bot will be uninterrupted, secure, error-free, or free from harmful components, or that outputs will meet your needs or expectations.</p>
+
+        <h2>12. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, the Operator and its affiliates, staff, contributors, and service providers will not be liable for any indirect, incidental, special, consequential, exemplary, or punitive damages, or for any loss of data, profits, goodwill, business opportunity, or system integrity, arising from or related to use of or inability to use the Bot.</p>
+        <p>Where liability cannot be excluded, it will be limited to the minimum amount required by applicable law.</p>
+
+        <h2>13. Indemnity</h2>
+        <p>You agree to indemnify and hold harmless the Operator, its affiliates, staff, contributors, and service providers from and against claims, liabilities, damages, losses, and expenses arising out of your misuse of the Bot, your violation of these Terms, or your infringement of any law or third-party rights.</p>
+
+        <h2>14. Termination</h2>
+        <p>We may suspend or terminate access to the Bot at any time, with or without notice, particularly where necessary to protect users, infrastructure, legal compliance, or service integrity.</p>
+        <p>These Terms will continue to apply to relevant conduct occurring before termination.</p>
+
+        <h2>15. Governing Law</h2>
+        <p>These Terms will be governed by the laws applicable in England and Wales, unless otherwise required by mandatory local law.</p>
+
+        <h2>16. Changes to These Terms</h2>
+        <p>We may update these Terms from time to time by publishing a revised version. Continued use of the Bot after changes take effect constitutes acceptance of the updated Terms.</p>
+
+        <h2>17. Contact</h2>
+        <p>For general enquiries about the Bot, contact the operator through the relevant project or organisational channel used to provide access to the Bot.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Operated by Quadram Institute Bioscience, Core Bioinformatics Teams.</p>
+  </footer>
+</body>
+</html>
