@@ -34,7 +34,7 @@
       </ul>
       <div class="nav-actions">
         <button class="theme-toggle" data-theme-toggle aria-label="Switch to dark mode"></button>
-        <a href="#registration-form" class="btn btn-primary">Register</a>
+        <a href="index.html" class="btn btn-primary">Home</a>
       </div>
     </div>
   </nav>
@@ -50,9 +50,9 @@
         Virtual Hackathon &middot; 2026
       </div>
       <h1>Registration <em>2026</em></h1>
-      <p class="page-lead">Sign up to join the hackathon and start building applications powered by Large Language Models. Everyone is welcome, regardless of experience level.</p>
+      <p class="page-lead">Registrations are now closed. Thank you for the incredible interest — we look forward to seeing you at the hackathon!</p>
       <div class="key-dates">
-        <div class="date-item"><strong>Registrations closes</strong>30 July 2026</div>
+        <div class="date-item"><strong>Registrations</strong>Closed</div>
         <div class="date-item"><strong>Kick-off session</strong>28 July 2026</div>
         <div class="date-item"><strong>Project development</strong>July &ndash; September 2026</div>
         <div class="date-item"><strong>Showcase &amp; prizes</strong>15 September 2026</div>
@@ -64,197 +64,12 @@
 
   <section>
     <div class="container--narrow">
-      <form id="registration-form" action="https://formspree.io/f/mlgyebrq" method="POST" novalidate>
-
-        <!-- Section 1: About You -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Section 1</div>
-            <h2>About you</h2>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="name">Name and Surname <span class="required">✱</span></label>
-            <input type="text" id="name" name="name" required data-fs-field
-                   placeholder="Your full name" autocomplete="name" />
-            <span class="field-error" data-fs-error="name"></span>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="email">Email address <span class="required">✱</span></label>
-            <input type="email" id="email" name="email" required data-fs-field
-                   placeholder="you@example.com" autocomplete="email" />
-            <span class="field-error" data-fs-error="email"></span>
-          </div>
-<!-- 
-          <div class="field">
-            <label class="field-label" for="affiliation">Affiliation / Organisation <span class="optional">(optional)</span></label>
-            <input type="text" id="affiliation" name="affiliation" data-fs-field
-                   placeholder="University, company, or institution" autocomplete="organization" />
-          </div>
--->
-          <div class="field">
-            <label class="field-label">Role</label>
-            <div class="radio-group two-col">
-              <label class="radio-option"><input type="radio" name="role" value="Student" data-fs-field /><span>PhD Student</span></label>
-              <label class="radio-option"><input type="radio" name="role" value="Researcher" /><span>Scientist (non bioinformatician)</span></label>
-              <label class="radio-option"><input type="radio" name="role" value="Bioinformatician" /><span>Bioinformatician</span></label>
-              <label class="radio-option"><input type="radio" name="role" value="Other" /><span>Other</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 2: Experience -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Section 2</div>
-            <h2>Experience</h2>
-            <p>This helps us tailor support and tutorial materials.</p>
-          </div>
-
-          <div class="field">
-            <label class="field-label">How familiar are you with Python?</label>
-            <div class="radio-group">
-              <label class="radio-option"><input type="radio" name="python_experience" value="Complete beginner" data-fs-field /><span>Complete beginner</span></label>
-              <label class="radio-option"><input type="radio" name="python_experience" value="Basic scripting" /><span>Basic scripting</span></label>
-              <label class="radio-option"><input type="radio" name="python_experience" value="Comfortable programmer" /><span>Comfortable programmer</span></label>
-              <label class="radio-option"><input type="radio" name="python_experience" value="Advanced" /><span>Advanced</span></label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="field-label">How familiar are you with LLMs / AI APIs?</label>
-            <div class="radio-group">
-              <label class="radio-option"><input type="radio" name="llm_experience" value="0" data-fs-field /><span>Never/rarely use LLMs</span></label>
-              <label class="radio-option"><input type="radio" name="llm_experience" value="1" /><span>I use online chatbots like ChatGPT or Claude</span></label>
-              <label class="radio-option"><input type="radio" name="llm_experience" value="2" /><span>Tried  AI <strong>APIs</strong> / regularly use APIs</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 3: Participation -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Section 3</div>
-            <h2>Participation</h2>
-          </div>
-
-          <div class="field">
-            <label class="field-label">How do you plan to participate?</label>
-            <div class="radio-group">
-              <label class="radio-option"><input type="radio" name="participation" value="Individually" data-fs-field /><span>Individually</span></label>
-              <label class="radio-option"><input type="radio" name="participation" value="As part of an existing team" /><span>As part of an existing team</span></label>
-              <label class="radio-option"><input type="radio" name="participation" value="I'd like help finding teammates" /><span>I'd like help finding teammates</span></label>
-            </div>
-          </div>
-
-          <div class="field conditional-field" id="team-name-field">
-            <label class="field-label" for="team_name">Team name <span class="optional">(optional)</span></label>
-            <input type="text" id="team_name" name="team_name" data-fs-field placeholder="Your team's name" />
-          </div>
-        </div>
-
-        <!-- Section 4: Project Idea -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Section 4</div>
-            <h2>Project idea</h2>
-          </div>
-
-          <div class="field">
-            <label class="field-label">Do you already have a project idea?</label>
-            <div class="radio-group two-col">
-              <label class="radio-option"><input type="radio" name="has_idea" value="Yes" data-fs-field /><span>Yes</span></label>
-              <label class="radio-option"><input type="radio" name="has_idea" value="No – I'd like inspiration at the launch session" /><span>No &mdash; I'd like inspiration at the launch</span></label>
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="project_title">Project title <span class="optional">(optional)</span></label>
-            <input type="text" id="project_title" name="project_title" data-fs-field placeholder="A working title for your project" />
-          </div>
-
-          <div class="field">
-            <label class="field-label" for="project_description">Short project description <span class="optional">(optional)</span></label>
-            <textarea id="project_description" name="project_description" data-fs-field
-                      placeholder="2–5 sentences describing what you would like to build."></textarea>
-          </div>
-        </div>
-
-        <!-- Section 5: Support & Credits -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Section 5</div>
-            <h2>Support &amp; credits</h2>
-            <p>The first 20 registered participants receive $7 OpenRouter API credit. The 4 best prototypes each receive an additional $20 credit after the event.</p>
-          </div>
-
-          <div class="field">
-            <label class="field-label">Would you like to be considered for one of the initial OpenRouter API credit allocations?</label>
-            <div class="radio-group two-col">
-              <label class="radio-option"><input type="radio" name="api_credit" value="Yes" data-fs-field /><span>Yes, please</span></label>
-              <label class="radio-option"><input type="radio" name="api_credit" value="No" /><span>No, thank you</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Section 6: Community -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Section 6</div>
-            <h2>Community</h2>
-            <p>Sharing participant details is surprisingly useful for helping people form teams.</p>
-          </div>
-
-          <div class="field">
-            <label class="field-label">Would you be happy for your name, affiliation, and project idea to be shared with other participants to encourage collaboration?</label>
-            <div class="radio-group two-col">
-              <label class="radio-option"><input type="radio" name="share_info" value="Yes" data-fs-field /><span>Yes</span></label>
-              <label class="radio-option"><input type="radio" name="share_info" value="No" /><span>No</span></label>
-            </div>
-          </div>
-        </div>
-
-        <!-- Final Question -->
-        <div class="form-section">
-          <div class="section-header">
-            <div class="section-label">Final question</div>
-            <h2>What do you hope to get out of the hackathon? <span class="optional">(optional)</span></h2>
-            <p>A short answer often provides useful feedback and good quotes for future events.</p>
-          </div>
-
-          <div class="field">
-            <textarea id="hopes" name="hopes" data-fs-field rows="4"
-                      placeholder="Share your goals, curiosities, or what you're most looking forward to…"></textarea>
-          </div>
-        </div>
-
-        <!-- Submit -->
-        <div class="form-section">
-        <div class="field">
-<small>
-Your personal data in this form   will be collected and used by Core Bioinformatics to organise and administer the 2026 hackathon, communicate with you about the event, and allocate any OpenRouter API credits.<br>
- 
-Your data will be accessed only by staff who need it for these purposes and will be retained only for as long as necessary to plan, deliver and evaluate the hackathon, in line with our internal retention policies.
-Under UK data protection law, you have rights including to request access to, correction of, or deletion of your personal data, and to object to or restrict certain processing. <br>
-You can exercise these rights or raise concerns by contacting Andrea.Telatin@Quadram.ac.uk. </small>
-</div>
-        </div>
-      
-        <div class="submit-area">
-          <p class="submit-note">
-            Fields marked <span class="required">*</span> are required.
-            Your data will be used only for hackathon administration.
-          </p>
-          <button type="submit" class="btn btn-primary btn-lg" data-fs-submit-btn>Submit registration</button>
-          <div class="form-error-banner" data-fs-error>Please review the form above and correct any errors before submitting.</div>
-          <div class="form-success-banner" data-fs-success>
-            <strong>You're registered!</strong><br>
-            Thank you for signing up. We'll be in touch with further details ahead of the launch on 28 July 2026.
-          </div>
-        </div>
-
-      </form>
+      <div class="registration-closed">
+        <h2>Registrations are now closed</h2>
+        <p>Thank you to everyone who signed up. We received an outstanding response and are thrilled by the enthusiasm for this year's hackathon.</p>
+        <p>If you registered, you'll hear from us shortly with all the details you need ahead of the kick-off on <strong>28 July 2026</strong>.</p>
+        <p style="margin-top: 2rem;"><a href="index.html" class="btn btn-primary">&larr; Back to home</a></p>
+      </div>
     </div>
   </section>
 
@@ -284,11 +99,6 @@ You can exercise these rights or raise concerns by contacting Andrea.Telatin@Qua
 </footer>
 
 <!-- Formspree AJAX (CDN, no bundler needed) -->
-<script>
-  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
-  formspree('initForm', { formElement: '#registration-form', formId: 'mlgyebrq' });
-</script>
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 <script src="app.js" defer></script>
 </body>
 </html>
