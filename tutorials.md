@@ -2,6 +2,8 @@
 title: Tutorials
 layout: tutorials
 intro_image: "images/illustrations/qreading.svg"
+intro_image_width: 1545
+intro_image_height: 1052
 intro_image_absolute: true
 intro_image_hide_on_mobile: false
 ---

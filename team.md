@@ -3,6 +3,8 @@ title: Team
 layout: teams
 permalink: /team/
 intro_image: images/team/team-2025.jpg
+intro_image_width: 768
+intro_image_height: 512
 intro_image_absolute: false
 intro_image_hide_on_mobile: false
 ---
