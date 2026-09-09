@@ -38,6 +38,9 @@
     @include media-breakpoint-up(md) {
       width: 80%;
     }
+    a {
+      text-decoration: underline;
+    }
   }
 }
 

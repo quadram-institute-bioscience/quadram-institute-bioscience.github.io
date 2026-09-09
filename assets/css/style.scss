@@ -4,7 +4,7 @@
 
 // Colors
 
-$primary: #09957f; 
+$primary: #077866;
 $secondary: #b1b905;
 $black: #2f2f41;
 $white: #ffffff;
@@ -14,7 +14,7 @@ $steel: #5C5A5A;
 // Links
 $link-color: $primary;
 $link-decoration: none;
-$link-hover-color: lighten($primary, 10%);
+$link-hover-color: darken($primary, 10%);
 $link-hover-decoration: underline;
 
 // Fonts
