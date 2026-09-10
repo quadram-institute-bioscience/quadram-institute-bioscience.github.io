@@ -12,7 +12,11 @@
   .hamburger-inner,
   .hamburger-inner::before,
   .hamburger-inner::after {
-    background: $primary;
+    background: $acid-green;
+  }
+  &:focus-visible {
+    outline: 2px solid $acid-green;
+    outline-offset: 2px;
   }
   .hamburger-inner::after {
     width: 18px;
