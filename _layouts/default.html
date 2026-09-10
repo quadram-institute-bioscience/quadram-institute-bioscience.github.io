@@ -24,10 +24,11 @@
   <meta name="twitter:creator" content="{{ site.seo.meta_twitter_creator }}" />
 </head>
 <body class='page {{page.bodyClass}}'>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
   {% include main-menu-mobile.html %}
   <div id="wrapper" class="wrapper">
     {% include header.html headerClass='header-extra' %}
-    <main>
+    <main id="main-content">
       {{content}}
     </main>
   </div>
