@@ -12,7 +12,7 @@ logo:
   desktop: "images/logo/logo-dark.svg"
   desktop_height: "36px"
 footer:
-  copyright_text: '&copy; Quadram Institute Bioscience - Theme by <a class="zerostatic" href="https://www.zerostatic.io">www.zerostatic.io</a>'
+  copyright_text: '&copy; 2020-2026, Quadram Institute Bioscience - <a href="https://github.com/quadram-institute-bioscience/quadram-institute-bioscience.github.io/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/quadram-institute-bioscience/quadram-institute-bioscience.github.io/actions/workflows/pages/pages-build-deployment/badge.svg" alt="pages-build-deployment" /></a>, theme by <a href="https://www.zerostatic.io/">Zerostatic</a>'
 excerpt_separator: <!--more-->
 
 seo:

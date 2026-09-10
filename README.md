@@ -1,15 +1,34 @@
 # Quadram Institute Bioscience - Core Bioinformatics
 
-Website for the Core Bioinformatics group at the Quadram Institute Bioscience.
+This is the repository for the website of the **Core Bioinformatics** team at the
+[Quadram Institute Bioscience](https://www.quadram.ac.uk) (Norwich, UK).
 
-## Theme: Jekyll Serif
+The site is live at [quadram-institute-bioscience.github.io](https://quadram-institute-bioscience.github.io/),
+built and deployed automatically via GitHub Pages.
 
-Serif is a modern business theme for Jekyll. It contains multiple content types for a typical business website. The theme is fully responsive, blazing fast and artfully illustrated.
+## About the team
 
-[Live Demo](https://jekyll-serif.netlify.app/) | 
-[Zerostatic Themes](https://www.zerostatic.io)
+Core Bioinformatics provides institute-wide infrastructure, pipelines, and bespoke methods for
+microbial genomics and metagenomics, supporting QIB research groups across the full data
+lifecycle — from raw sequencing data to biological insight. See the
+[about page](about.md) for details on the team's work, compute platforms, and open-science
+commitments.
 
-### Theme features
+## Theme
+
+This website was built starting from **Jekyll Serif**, a theme by
+[Zerostatic Themes](https://www.zerostatic.io) ([theme page](https://www.zerostatic.io/theme/jekyll-serif/)),
+released under the MIT license.
+
+Since adopting the theme, the site has undergone significant customisation, including:
+
+- A redesigned, sticky top navigation bar using the institute's colour palette
+- Custom Core Bioinformatics branding, logos, and illustrations
+- New/updated pages and content structures specific to the team
+- Accessibility improvements (skip links, focus states, contrast fixes)
+- Various other layout, styling, and configuration changes
+
+### Original theme features
 
 - Jekyll 4.1
 - Services (Collection)
@@ -19,25 +38,21 @@ Serif is a modern business theme for Jekyll. It contains multiple content types 
 - Responsive design
 - Bootstrap 4.3 grid and media queries only
 - Responsive menu
-- 100/100 Google Lighthouse speed score
-- 100/100 Google Lighthouse seo score
-- 100/100 Google Lighthouse accessibility score
-- 100/100 Google Lighthouse best practices score
-- Under 50KB without images or 80KB with images and illustrations ⚡
-- Under 20KB without Google fonts ⚡⚡⚡
-- Robust example content included
-- Royalty free illustrations included
-- Netlify & Github Pages ready
+- Netlify & GitHub Pages ready
 
 ### Info
- 
-If this is your first time using Jekyll, please follow the [Jekyll docs](https://jekyllrb.com/docs/installation/) and make sure your local environment (including Ruby) is setup correctly.
 
-### Theme Credits
+If this is your first time using Jekyll, please follow the
+[Jekyll docs](https://jekyllrb.com/docs/installation/) and make sure your local environment
+(including Ruby) is set up correctly.
 
-- Beautiful royalty free Illustrations by Icons8 - https://icons8.com/illustrations/style--pixeltrue
+### Theme credits
 
+- Beautiful royalty free illustrations by Icons8 - https://icons8.com/illustrations/style--pixeltrue
 
-### Theme License
+### Theme license
 
-This theme is open source under the MIT license. If you fork or copy this theme you must leave me as the original author in the LICENSE file (on line 3 where I am listed as the author). Really, I just don't want people copying this theme and then saying it's their theme, because I put a lot of work into my themes, thanks!
+The original Jekyll Serif theme is open source under the MIT license, authored by
+Robert Austin of Zerostatic Themes. As required by the license terms, Robert Austin remains
+listed as the original author in this repository's [LICENSE](LICENSE) file, even though
+significant edits have been made to the theme since it was adopted for this site.

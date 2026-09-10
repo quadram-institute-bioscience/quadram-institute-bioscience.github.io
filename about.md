@@ -22,7 +22,15 @@ We support QIB research groups across the full data lifecycle — from raw seque
 
 We release our tools and pipelines openly, packaging them for easy installation through community channels such as Bioconda and the Galaxy Toolshed, so the wider research community can benefit from and build on our work.
 
+## Website
+
+This website was developed starting from a theme by [www.zerostatic.io](https://www.zerostatic.io),
+called [JekyllSerif](https://www.zerostatic.io/theme/jekyll-serif/), released with MIT License.
+
+Source for this website is available on [Github](https://github.com/quadram-institute-bioscience/quadram-institute-bioscience.github.io/).
+
 ## Branding
 
 Looking for our logos? You can find them on our [branding page]({{ site.baseurl }}/assets/branding/qi-logos/).
+
 
