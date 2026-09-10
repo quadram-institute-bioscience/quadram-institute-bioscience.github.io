@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/tokens/colors.css">
+<link rel="stylesheet" href="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/tokens/typography.css">
+<link rel="stylesheet" href="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/tokens/base.css">
+<link rel="stylesheet" href="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/styles.css">
+<script src="_ds/quadram-institute-design-system-b317f06a-fb1f-4971-b654-0b9966c910fd/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: var(--qi-antiflash-white); }
+  a { color: var(--qi-dark-green); text-decoration: none; }
+  a:hover { color: var(--qi-diamond-teal); text-decoration: underline; text-underline-offset: 3px; }
+</style>
+</helmet>
+
+<div style="font-family: var(--font-body); color: var(--qi-charcoal); background: var(--qi-antiflash-white); min-height: 100vh;">
+
+  <sc-if value="{{ showUtilityBar }}" hint-placeholder-val="{{ true }}">
+    <div style="background: var(--qi-charcoal); color: var(--qi-antiflash-white); font-size: 0.8125rem;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 0.55rem 2rem; display: flex; justify-content: flex-end; gap: 1.5rem; align-items: center;">
+        <a href="#" style="color: var(--qi-antiflash-white);">Norwich Research Park</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Intranet</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Contact</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <header style="position: sticky; top: 0; z-index: 40; background: #fff; border-bottom: 1px solid var(--qi-neutral-100);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 1.05rem 2rem; display: flex; align-items: center; gap: 2.5rem;">
+      <a href="#" style="display: flex; align-items: center; gap: 0.7rem; text-decoration: none;">
+        <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.DiamondMark" size="{{ 26 }}" hint-size="26px,26px"></x-import>
+        <span style="font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; letter-spacing: -0.01em; color: var(--qi-charcoal); line-height: 1.05;">Quadram Institute<br><span style="font-weight: 400; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--qi-neutral-500);">Bioscience</span></span>
+      </a>
+      <nav style="display: flex; gap: 1.6rem; margin-left: auto; align-items: center; font-size: 0.9375rem; font-weight: 500;">
+        <a href="#research" style="color: var(--qi-charcoal);" style-hover="color: var(--qi-dark-green)">Research</a>
+        <a href="#facilities" style="color: var(--qi-charcoal);" style-hover="color: var(--qi-dark-green)">Facilities</a>
+        <a href="#" style="color: var(--qi-charcoal);" style-hover="color: var(--qi-dark-green)">People</a>
+        <a href="#news" style="color: var(--qi-charcoal);" style-hover="color: var(--qi-dark-green)">News &amp; events</a>
+        <a href="#work" style="color: var(--qi-charcoal);" style-hover="color: var(--qi-dark-green)">Work with us</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.IconButton" variant="ghost" aria-label="Search the site" hint-size="40px,40px">⌕</x-import>
+        <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Button" variant="primary" size="sm" hint-size="120px,36px">Partner with us</x-import>
+      </div>
+    </div>
+  </header>
+
+  <section style="background: #fff; border-bottom: 1px solid var(--qi-neutral-100);">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 4.5rem 2rem 3rem;">
+      <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1.4rem;">
+        <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.DiamondMark" size="{{ 12 }}" color="var(--qi-acid-green)" hint-size="12px,12px"></x-import>
+        <span class="qi-eyebrow">Food · Microbiome · Health</span>
+      </div>
+      <h1 style="font-family: var(--font-display); font-weight: 700; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; letter-spacing: -0.015em; margin: 0; max-width: 20ch; text-wrap: balance;">Understanding food and the gut to keep people healthy.</h1>
+      <p style="font-size: 1.1875rem; line-height: 1.6; color: var(--qi-neutral-600); max-width: 62ch; margin: 1.6rem 0 2.2rem;">We are an interdisciplinary research institute on the Norwich Research Park, working across food science, gut microbiology and clinical research to prevent disease and improve health across the lifecourse.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.9rem;">
+        <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Button" variant="primary" size="lg" hint-size="180px,48px">Explore our research</x-import>
+        <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Button" variant="secondary" size="lg" hint-size="150px,48px">About the Institute</x-import>
+      </div>
+    </div>
+
+    <div style="max-width: 1240px; margin: 0 auto; padding: 0 2rem 3.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem;">
+      <a href="#research" style="text-decoration: none;">
+        <div style="background: var(--qi-dark-green); color: #fff; border-radius: var(--radius-md); padding: 1.6rem; height: 100%; display: flex; flex-direction: column; gap: 0.5rem; min-height: 172px;" style-hover="background: var(--qi-diamond-teal)">
+          <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.75;">For researchers</span>
+          <span style="font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; margin-top: auto;">Research programmes</span>
+          <span style="font-size: 0.9375rem; opacity: 0.85;">Four themes, 40+ groups, open collaboration.</span>
+        </div>
+      </a>
+      <a href="#work" style="text-decoration: none;">
+        <div style="background: var(--qi-acid-green); color: var(--qi-charcoal); border-radius: var(--radius-md); padding: 1.6rem; height: 100%; display: flex; flex-direction: column; gap: 0.5rem; min-height: 172px;" style-hover="filter: brightness(1.06)">
+          <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; opacity: 0.7;">For industry &amp; funders</span>
+          <span style="font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; margin-top: auto;">Partner with us</span>
+          <span style="font-size: 0.9375rem;">Contract research, facilities access, co-investment.</span>
+        </div>
+      </a>
+      <a href="#news" style="text-decoration: none;">
+        <div style="background: #fff; color: var(--qi-charcoal); border: 1px solid var(--border-subtle); border-top: 4px solid var(--qi-cerulean); border-radius: var(--radius-md); padding: 1.6rem; height: 100%; display: flex; flex-direction: column; gap: 0.5rem; min-height: 172px;" style-hover="border-color: var(--qi-cerulean)">
+          <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--qi-neutral-500);">For media</span>
+          <span style="font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; line-height: 1.1; margin-top: auto;">Newsroom</span>
+          <span style="font-size: 0.9375rem; color: var(--qi-neutral-600);">Press releases, expert comment, image library.</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section id="research" style="max-width: 1240px; margin: 0 auto; padding: 5rem 2rem 1rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem; margin-bottom: 2.5rem;">
+      <div>
+        <span class="qi-eyebrow">Research themes</span>
+        <h2 style="font-family: var(--font-display); font-weight: 700; font-size: clamp(2rem, 3.4vw, 3rem); line-height: 1.05; letter-spacing: -0.01em; margin: 0.7rem 0 0; max-width: 26ch;">Four themes, one question: how does food shape health?</h2>
+      </div>
+      <a href="#" style="font-weight: 700; font-size: 0.9375rem;">All research groups →</a>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem;">
+      <sc-for list="{{ themes }}" as="theme" hint-placeholder-count="4">
+        <div style="background: #fff; border: 1px solid var(--qi-neutral-100); border-top: 4px solid var(--qi-dark-green); border-radius: var(--radius-md); padding: 1.5rem; display: flex; flex-direction: column; gap: 0.65rem;" style-hover="box-shadow: var(--shadow-md)">
+          <span style="font-family: var(--font-data); font-size: 0.8125rem; font-weight: 700; color: var(--qi-dark-green); letter-spacing: 0.08em;">{{ theme.no }}</span>
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.3125rem; line-height: 1.15; margin: 0;">{{ theme.title }}</h3>
+          <p style="font-size: 0.9375rem; line-height: 1.55; color: var(--qi-neutral-600); margin: 0;">{{ theme.body }}</p>
+          <span style="font-size: 0.8125rem; color: var(--qi-neutral-500); margin-top: auto; padding-top: 0.8rem;">{{ theme.meta }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="max-width: 1240px; margin: 0 auto; padding: 4.5rem 2rem;">
+    <div style="background: var(--qi-charcoal); color: var(--qi-antiflash-white); border-radius: var(--radius-md); overflow: hidden; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));">
+      <div style="min-height: 380px; position: relative;">
+        <image-slot id="qi-spotlight" shape="rect" placeholder="Drop the spotlight image (lab or clinical research photo)"></image-slot>
+      </div>
+      <div style="padding: 3rem 2.75rem; display: flex; flex-direction: column; justify-content: center; gap: 1.1rem;">
+        <div style="display: flex; align-items: center; gap: 0.6rem;">
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Badge" tone="impact" hint-size="90px,22px">Spotlight</x-import>
+          <span style="font-size: 0.8125rem; color: var(--qi-neutral-300);">Gut microbes and health</span>
+        </div>
+        <h2 style="font-family: var(--font-display); font-weight: 700; font-size: clamp(1.8rem, 2.8vw, 2.5rem); line-height: 1.08; margin: 0; max-width: 24ch;">Mapping the infant gut microbiome across the first 1,000 days</h2>
+        <p style="font-size: 1.0625rem; line-height: 1.6; color: var(--qi-neutral-200); max-width: 52ch; margin: 0;">A five-year cohort study with the Norfolk and Norwich University Hospital is tracking how early feeding, antibiotics and birth mode shape the microbial communities that set up lifelong immune health.</p>
+        <div style="display: flex; gap: 2.5rem; margin: 0.6rem 0 0.4rem;">
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Stat" value="1,240" label="Infants enrolled" accent="acid-green" hint-size="140px,90px"></x-import>
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Stat" value="18" label="Partner sites" accent="acid-green" hint-size="120px,90px"></x-import>
+        </div>
+        <div>
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Button" variant="impact" hint-size="150px,44px">Read the study</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news" style="max-width: 1240px; margin: 0 auto; padding: 1rem 2rem 4rem;">
+    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem; margin-bottom: 1.6rem;">
+      <div>
+        <span class="qi-eyebrow">Latest</span>
+        <h2 style="font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.05; margin: 0.7rem 0 0;">News, publications and events</h2>
+      </div>
+      <a href="#" style="font-weight: 700; font-size: 0.9375rem;">Newsroom →</a>
+    </div>
+    <div style="border-bottom: 1px solid var(--border-subtle); margin-bottom: 2rem;">
+      <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Tabs" tabs="{{ newsTabs }}" value="{{ activeTab }}" onChange="{{ setTab }}" hint-size="100%,44px"></x-import>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+      <sc-for list="{{ visibleItems }}" as="item" hint-placeholder-count="3">
+        <a href="#" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; gap: 0.9rem;" style-hover="color: var(--qi-dark-green)">
+          <div style="aspect-ratio: 3 / 2; width: 100%; position: relative;">
+            <image-slot id="{{ item.slot }}" radius="8" placeholder="{{ item.placeholder }}"></image-slot>
+          </div>
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Badge" tone="{{ item.tone }}" size="sm" hint-size="70px,20px">{{ item.kind }}</x-import>
+            <span style="font-size: 0.8125rem; color: var(--qi-neutral-500);">{{ item.date }}</span>
+          </div>
+          <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.1875rem; line-height: 1.2; margin: 0;">{{ item.title }}</h3>
+          <p style="font-size: 0.9375rem; line-height: 1.55; color: var(--qi-neutral-600); margin: 0;">{{ item.body }}</p>
+        </a>
+      </sc-for>
+    </div>
+  </section>
+
+  <sc-if value="{{ showFacilities }}" hint-placeholder-val="{{ true }}">
+    <section id="facilities" style="background: #fff; border-top: 1px solid var(--qi-neutral-100); border-bottom: 1px solid var(--qi-neutral-100);">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 4.5rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem; align-items: center;">
+        <div>
+          <span class="qi-eyebrow">Facilities</span>
+          <h2 style="font-family: var(--font-display); font-weight: 700; font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.05; margin: 0.7rem 0 1.1rem; max-width: 22ch;">National-capability science, open to collaborators</h2>
+          <p style="font-size: 1.0625rem; line-height: 1.6; color: var(--qi-neutral-600); max-width: 54ch; margin: 0 0 1.8rem;">Our building brings research laboratories, an endoscopy centre and a clinical trials unit under one roof. Capability is available to academic and commercial partners through managed access.</p>
+          <div style="display: grid; gap: 0.9rem; margin-bottom: 2rem;">
+            <sc-for list="{{ facilities }}" as="f" hint-placeholder-count="4">
+              <div style="display: flex; align-items: baseline; gap: 0.75rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--qi-neutral-100);">
+                <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.DiamondMark" size="{{ 9 }}" hint-size="9px,9px"></x-import>
+                <span style="font-weight: 700; font-size: 0.9375rem;">{{ f.name }}</span>
+                <span style="font-size: 0.875rem; color: var(--qi-neutral-500); margin-left: auto; text-align: right;">{{ f.detail }}</span>
+              </div>
+            </sc-for>
+          </div>
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Button" variant="secondary" hint-size="170px,44px">Request facility access</x-import>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 200px 140px; gap: 1rem;">
+          <div style="grid-column: span 2; position: relative;">
+            <image-slot id="qi-fac-1" radius="8" placeholder="Drop a wide facility photo"></image-slot>
+          </div>
+          <div style="position: relative;"><image-slot id="qi-fac-2" radius="8" placeholder="Instrument close-up"></image-slot></div>
+          <div style="position: relative;"><image-slot id="qi-fac-3" radius="8" placeholder="Clinical suite"></image-slot></div>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <section id="work" style="max-width: 1240px; margin: 0 auto; padding: 4.5rem 2rem;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+      <div style="background: #fff; border: 1px solid var(--qi-neutral-100); border-radius: var(--radius-md); padding: 2.25rem; display: flex; flex-direction: column; gap: 0.8rem;">
+        <span class="qi-eyebrow">Careers</span>
+        <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; line-height: 1.1; margin: 0;">Work with us</h3>
+        <p style="font-size: 0.9375rem; line-height: 1.6; color: var(--qi-neutral-600); margin: 0;">Group leader, postdoctoral, technical and professional-services roles across the Institute.</p>
+        <div style="margin-top: auto; padding-top: 1.4rem; display: flex; align-items: baseline; gap: 0.6rem;">
+          <span style="font-family: var(--font-display); font-weight: 700; font-size: 2.4rem; line-height: 1; color: var(--qi-dark-green);">14</span>
+          <span style="font-size: 0.9375rem; color: var(--qi-neutral-500);">open vacancies</span>
+        </div>
+        <a href="#" style="font-weight: 700; font-size: 0.9375rem;">See all roles →</a>
+      </div>
+      <div style="background: #fff; border: 1px solid var(--qi-neutral-100); border-radius: var(--radius-md); padding: 2.25rem; display: flex; flex-direction: column; gap: 0.8rem;">
+        <span class="qi-eyebrow">Collaborate</span>
+        <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; line-height: 1.1; margin: 0;">Industry and policy partners</h3>
+        <p style="font-size: 0.9375rem; line-height: 1.6; color: var(--qi-neutral-600); margin: 0;">Joint programmes, sponsored studentships and consultancy with food manufacturers, health providers and government bodies.</p>
+        <div style="margin-top: auto; padding-top: 1.4rem;">
+          <a href="#" style="font-weight: 700; font-size: 0.9375rem;">Talk to the business team →</a>
+        </div>
+      </div>
+      <div style="background: var(--qi-dark-green-tint); border: 1px solid var(--qi-dark-green); border-radius: var(--radius-md); padding: 2.25rem; display: flex; flex-direction: column; gap: 0.8rem;">
+        <span class="qi-eyebrow">Newsletter</span>
+        <h3 style="font-family: var(--font-display); font-weight: 700; font-size: 1.6rem; line-height: 1.1; margin: 0;">Research digest, monthly</h3>
+        <p style="font-size: 0.9375rem; line-height: 1.6; color: var(--qi-neutral-600); margin: 0;">New findings, publications and events, summarised for non-specialists.</p>
+        <div style="margin-top: auto; padding-top: 1.4rem; display: flex; flex-direction: column; gap: 0.8rem;">
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Input" label="Email address" placeholder="you@organisation.org" hint-size="100%,68px"></x-import>
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.Button" variant="primary" hint-size="110px,44px">Subscribe</x-import>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: var(--qi-charcoal); color: var(--qi-antiflash-white); margin-top: 1rem;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 4rem 2rem 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 2.5rem;">
+      <div style="display: flex; flex-direction: column; gap: 1rem;">
+        <div style="display: flex; align-items: center; gap: 0.7rem;">
+          <x-import component-from-global-scope="QuadramInstituteDesignSystem_b317f0.DiamondMark" size="{{ 22 }}" color="var(--qi-acid-green)" hint-size="22px,22px"></x-import>
+          <span style="font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;">Quadram Institute Bioscience</span>
+        </div>
+        <p style="font-size: 0.875rem; line-height: 1.6; color: var(--qi-neutral-300); margin: 0;">Rosalind Franklin Road<br>Norwich Research Park<br>Norwich NR4 7UQ<br>United Kingdom</p>
+        <a href="#" style="font-size: 0.875rem; color: var(--qi-acid-green);">+44 (0)1603 255000</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--qi-neutral-400); margin-bottom: 0.4rem;">Research</span>
+        <a href="#" style="color: var(--qi-antiflash-white);">Research themes</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Research groups</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Publications</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Facilities</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--qi-neutral-400); margin-bottom: 0.4rem;">Work with us</span>
+        <a href="#" style="color: var(--qi-antiflash-white);">Vacancies</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">PhD study</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Business partnerships</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Facility access</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.9rem;">
+        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--qi-neutral-400); margin-bottom: 0.4rem;">Media &amp; contact</span>
+        <a href="#" style="color: var(--qi-antiflash-white);">Newsroom</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Press office</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Visit us</a>
+        <a href="#" style="color: var(--qi-antiflash-white);">Contact directory</a>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 0 auto; padding: 1.5rem 2rem 2.5rem; border-top: 1px solid var(--qi-neutral-600); display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; font-size: 0.8125rem; color: var(--qi-neutral-300);">
+      <span>Strategically supported by the BBSRC. A registered charity and company limited by guarantee.</span>
+      <div style="display: flex; gap: 1.25rem;">
+        <a href="#" style="color: var(--qi-neutral-300);">Privacy</a>
+        <a href="#" style="color: var(--qi-neutral-300);">Accessibility</a>
+        <a href="#" style="color: var(--qi-neutral-300);">Freedom of information</a>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showUtilityBar&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;showFacilities&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Layout&quot;},&quot;newsCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:2,&quot;max&quot;:6,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+const ITEMS = [
+  { kind: "News", tone: "accent", date: "2 September 2026", title: "Gut bacteria found to modify how dietary fibre lowers cholesterol", body: "A collaboration with the Institute of Food Research identifies two Bacteroides species that drive the effect in a human intervention study.", slot: "qi-news-1", placeholder: "News image", group: "news" },
+  { kind: "Publication", tone: "info", date: "28 August 2026", title: "Genomic surveillance of Salmonella in the UK poultry supply chain", body: "Nature Microbiology. Whole-genome sequencing of 4,300 isolates reveals persistent lineages across three processing regions.", slot: "qi-news-2", placeholder: "Publication figure", group: "publications" },
+  { kind: "Event", tone: "impact", date: "17 October 2026", title: "Quadram Annual Science Meeting: diet, immunity and ageing", body: "A one-day meeting at the Institute for researchers and industry partners. Registration is open until 3 October.", slot: "qi-news-3", placeholder: "Event photo", group: "events" },
+  { kind: "News", tone: "accent", date: "14 August 2026", title: "£4.2m award to study antimicrobial resistance in the food chain", body: "The programme will trace resistance genes from farm to fork across four European partner countries.", slot: "qi-news-4", placeholder: "News image", group: "news" },
+  { kind: "Publication", tone: "info", date: "6 August 2026", title: "Bile acid signalling in the ageing colon: a systematic review", body: "Gut. Evidence from 62 studies on how microbial bile acid metabolism shifts with age.", slot: "qi-news-5", placeholder: "Publication figure", group: "publications" },
+  { kind: "Event", tone: "impact", date: "5 November 2026", title: "Public lecture: what your microbiome can and cannot tell you", body: "An evening talk at the Norwich Research Park, free and open to all.", slot: "qi-news-6", placeholder: "Event photo", group: "events" }
+];
+
+class Component extends DCLogic {
+  state = { tab: "all" };
+
+  renderVals() {
+    const tab = this.state.tab;
+    const count = this.props.newsCount ?? 3;
+    const filtered = tab === "all" ? ITEMS : ITEMS.filter(i => i.group === tab);
+    return {
+      showUtilityBar: this.props.showUtilityBar ?? true,
+      showFacilities: this.props.showFacilities ?? true,
+      activeTab: tab,
+      setTab: id => this.setState({ tab: id }),
+      newsTabs: [
+        { id: "all", label: "All" },
+        { id: "news", label: "News" },
+        { id: "publications", label: "Publications" },
+        { id: "events", label: "Events" }
+      ],
+      visibleItems: filtered.slice(0, count),
+      themes: [
+        { no: "01", title: "Microbes and food safety", body: "Tracking foodborne pathogens through the supply chain with genomics, and finding the interventions that stop them.", meta: "11 research groups" },
+        { no: "02", title: "Food innovation and health", body: "Reformulating what we eat — fibre, protein and plant compounds — so that healthier diets are also realistic ones.", meta: "9 research groups" },
+        { no: "03", title: "Gut microbes and health", body: "How microbial communities develop, what they metabolise, and how they shape immunity and inflammation.", meta: "14 research groups" },
+        { no: "04", title: "Population health and epidemiology", body: "Linking diet, microbiome and clinical data at scale to explain disease risk across the lifecourse.", meta: "7 research groups" }
+      ],
+      facilities: [
+        { name: "Clinical Research Facility", detail: "12 beds, MHRA-compliant" },
+        { name: "Endoscopy Centre", detail: "Shared with NNUH" },
+        { name: "Genomics and sequencing", detail: "Long- and short-read" },
+        { name: "Metabolomics and imaging", detail: "NMR, LC-MS, cryo-EM access" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>

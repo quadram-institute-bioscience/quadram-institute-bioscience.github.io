@@ -1,0 +1,36 @@
+body { margin:0; background:#F0F1F1; color:#2F3D46; font-family:'IBM Plex Sans',system-ui,sans-serif; -webkit-font-smoothing:antialiased; }
+a { color:#097E74; text-decoration:none; }
+a:hover { color:#2F3D46; }
+* { box-sizing:border-box; }
+
+img, svg { max-width: 100%; }
+button { font-family: inherit; }
+a:focus-visible, button:focus-visible { outline: 3px solid #097E74; outline-offset: 2px; }
+
+.hv1:hover { border-bottom:2px solid #097E74 !important; }
+.hv2:hover { border-bottom:2px solid #097E74 !important; }
+.hv3:hover { border-bottom:2px solid #097E74 !important; }
+.hv4:hover { border-bottom:2px solid #097E74 !important; }
+.hv5:hover { border-bottom:2px solid #097E74 !important; }
+.hv6:hover { border-bottom:2px solid #097E74 !important; }
+.hv7:hover { border-bottom:2px solid #097E74 !important; }
+.hv8:hover { border-color:#2F3D46 !important; }
+.hv9:hover { background:#2F3D46 !important; }
+.hv10:hover { background:#097E74; color:#F0F1F1 !important; }
+.hv11:hover { border-color:#097E74; color:#097E74 !important; }
+.hv12:hover { background:rgba(9,126,116,0.06); color:#2F3D46 !important; }
+.hv13:hover { background:rgba(9,126,116,0.06); color:#2F3D46 !important; }
+.hv14:hover { background:rgba(9,126,116,0.06); color:#2F3D46 !important; }
+.hv15:hover { background:#F0F1F1; color:#2F3D46 !important; }
+.hv16:hover { color:#097E74 !important; }
+.hv17:hover { color:#097E74 !important; }
+.hv18:hover { color:#097E74 !important; }
+.hv19:hover { color:#097E74 !important; }
+.hv20:hover { color:#B6BE00 !important; }
+
+@media (max-width: 720px) {
+  header nav { display: none !important; }
+  section, footer > div { padding-left: 20px !important; padding-right: 20px !important; }
+  [style*="grid-template-columns:minmax"] { grid-template-columns: minmax(0,1fr) !important; }
+  header > div { padding-left: 20px !important; padding-right: 20px !important; }
+}

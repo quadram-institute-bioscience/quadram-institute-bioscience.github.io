@@ -1,0 +1,60 @@
+/* Quadram Institute brand webfonts.
+   FS Sinclair — brand display / headings (the rounded geometric face used in the logo).
+   DIN — labels, UI, data, running text. */
+
+@font-face {
+  font-family: "FS Sinclair";
+  src: url("../assets/fonts/FSSinclair-Light.otf") format("opentype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "FS Sinclair";
+  src: url("../assets/fonts/FSSinclair-LightItalic.otf") format("opentype");
+  font-weight: 300; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "FS Sinclair";
+  src: url("../assets/fonts/FSSinclair-Regular.otf") format("opentype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "FS Sinclair";
+  src: url("../assets/fonts/FSSinclair-MediumItalic.otf") format("opentype");
+  font-weight: 500; font-style: italic; font-display: swap;
+}
+@font-face {
+  font-family: "FS Sinclair";
+  src: url("../assets/fonts/FSSinclair-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "FS Sinclair";
+  src: url("../assets/fonts/FSSinclair-BoldItalic.otf") format("opentype");
+  font-weight: 700; font-style: italic; font-display: swap;
+}
+
+@font-face {
+  font-family: "DIN";
+  src: url("../assets/fonts/DIN-Light.ttf") format("truetype");
+  font-weight: 300; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "DIN";
+  src: url("../assets/fonts/DIN-Regular.ttf") format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "DIN";
+  src: url("../assets/fonts/DIN-Medium.ttf") format("truetype");
+  font-weight: 500; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "DIN";
+  src: url("../assets/fonts/DIN-Bold.otf") format("opentype");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "DIN Alternate";
+  src: url("../assets/fonts/DIN-BlackAlternate.ttf") format("truetype");
+  font-weight: 900; font-style: normal; font-display: swap;
+}

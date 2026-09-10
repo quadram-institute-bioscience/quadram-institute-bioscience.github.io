@@ -1,0 +1,42 @@
+/* Quadram Institute spacing, radii, shadows & layout tokens.
+   4px base grid. The brand feels precise and structured — restrained radii,
+   crisp low-spread shadows, generous whitespace. */
+
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem;  /* 4 */
+  --space-2: 0.5rem;   /* 8 */
+  --space-3: 0.75rem;  /* 12 */
+  --space-4: 1rem;     /* 16 */
+  --space-5: 1.5rem;   /* 24 */
+  --space-6: 2rem;     /* 32 */
+  --space-7: 3rem;     /* 48 */
+  --space-8: 4rem;     /* 64 */
+  --space-9: 6rem;     /* 96 */
+
+  /* Corner radii — the brand is angular; radii stay tight */
+  --radius-none: 0;
+  --radius-sm:   3px;
+  --radius-md:   6px;
+  --radius-lg:   10px;
+  --radius-pill: 999px;
+
+  /* Shadows — subtle, cool-toned, low spread */
+  --shadow-sm: 0 1px 2px rgba(47, 61, 70, 0.08);
+  --shadow-md: 0 4px 12px rgba(47, 61, 70, 0.10);
+  --shadow-lg: 0 12px 32px rgba(47, 61, 70, 0.14);
+
+  /* Focus ring */
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  /* Layout */
+  --container-max: 1200px;
+  --content-max:   68ch;
+
+  /* Motion */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-base: 200ms; /* @kind other */
+  --duration-slow: 320ms; /* @kind other */
+}

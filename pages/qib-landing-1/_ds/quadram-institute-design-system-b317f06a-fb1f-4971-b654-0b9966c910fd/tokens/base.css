@@ -1,0 +1,62 @@
+/* Quadram Institute — base element styling & primitive utility classes.
+   Kept light: element defaults, link colours, headings, and a few helpers. */
+
+.qi-scope, body.qi-body {
+  background: var(--surface-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Links */
+a { color: var(--text-accent); text-decoration: none; }
+a:hover { color: var(--qi-diamond-teal); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Headings default to the display face, sentence case, tight leading */
+.qi-h1, .qi-h2, .qi-h3, .qi-h4 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  color: var(--text-body);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+.qi-h1 { font-size: var(--text-5xl); }
+.qi-h2 { font-size: var(--text-4xl); }
+.qi-h3 { font-size: var(--text-3xl); }
+.qi-h4 { font-size: var(--text-2xl); }
+
+.qi-display {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-6xl);
+  line-height: 0.98;
+  letter-spacing: var(--tracking-tight);
+}
+
+.qi-lead { font-size: var(--text-lg); line-height: var(--leading-relaxed); color: var(--text-body); }
+.qi-body { font-size: var(--text-md); line-height: var(--leading-normal); }
+.qi-small { font-size: var(--text-sm); color: var(--text-muted); }
+
+/* Eyebrow / data label — DIN, uppercase, wide tracking */
+.qi-eyebrow {
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--text-accent);
+}
+
+/* Focus */
+:where(a, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: var(--radius-sm);
+}
+
+::selection { background: var(--qi-acid-green); color: var(--qi-charcoal); }
