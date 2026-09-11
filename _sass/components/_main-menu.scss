@@ -9,15 +9,17 @@
     justify-content: flex-start;
     > li {
       list-style: none;
-      font-size: 1rem;
+      font-size: 1.1rem;
       > a {
         padding: 10px 12px 10px 12px;
         display: inline-block;
         font-weight: normal;
         text-decoration: none;
-        color: $acid-green;
+        color: white;
+        transition: all 225ms ease-in 0s;
         &:hover {
           text-decoration: underline;
+          text-decoration-color: $acid-green;
         }
         &:focus-visible {
           outline: 2px solid $acid-green;
@@ -28,10 +30,10 @@
       &.active {
         > a {
           font-weight: bold;
+          color: $acid-green;
           text-decoration: none;
           &:hover {
             text-decoration: none;
-            transition: all 225ms ease-in 0s;
           }
         }
       }
