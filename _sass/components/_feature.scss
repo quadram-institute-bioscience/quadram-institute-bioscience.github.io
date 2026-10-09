@@ -1,9 +1,11 @@
 .feature {
   height: 100%;
-  border: 1px solid $white-offset;
-  border-radius: 3px;
-  padding: 20px;
-  background-color: #ffffff;
+  border: 1px solid $border;
+  border-top: 4px solid $secondary;
+  border-radius: 4px;
+  padding: 28px;
+  background-color: $white;
+  box-shadow: 0 1px 2px rgba($black, 0.06), 0 12px 32px rgba($black, 0.06);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -21,9 +23,14 @@
     height: auto;
   }
   .feature-title {
+    font-size: 24px;
+    line-height: 1.16;
+    margin-bottom: 14px;
   }
   .feature-content {
     margin-bottom: 0;
     margin-top: auto;
+    color: $steel;
+    line-height: 1.58;
   }
 }
