@@ -1,40 +1,59 @@
 a {
   color: $primary;
+  text-decoration-color: rgba($primary, 0.35);
+  text-underline-offset: 0.18em;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+
+  &:hover {
+    color: $link-hover-color;
+    text-decoration-color: rgba($black, 0.5);
+  }
 }
+
 p {
-  line-height: 26px;
+  line-height: 1.65;
   color: $steel;
   font-family: $font-family-base;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 }
+
 h1 {
-  font-size: 20px;
+  font-size: 34px;
   font-family: $font-family-heading;
-  line-height: 1.2;
-  margin-bottom: 20px;
+  font-weight: 500;
+  line-height: 1.12;
+  color: $black;
+  margin-bottom: 22px;
+  @include media-breakpoint-up(md) {
+    font-size: 48px;
+    line-height: 1.08;
+  }
+}
+
+h2 {
+  font-size: 26px;
+  font-family: $font-family-heading;
+  font-weight: 500;
+  line-height: 1.18;
+  color: $black;
+  margin-bottom: 12px;
   @include media-breakpoint-up(md) {
     font-size: 32px;
-    line-height: 1.2;
+    line-height: 1.16;
   }
 }
-h2 {
-  font-size: 24px;
-  font-family: $font-family-heading;
-  line-height: 1.4;
-  margin-bottom: 10px;
-  @include media-breakpoint-up(md) {
-    font-size: 26px;
-    line-height: 1.4;
-  }
-}
+
 h3 {
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 20px;
+  font-family: $font-family-heading;
+  font-weight: 500;
+  line-height: 1.25;
+  color: $black;
   @include media-breakpoint-up(md) {
-    font-size: 20px;
-    line-height: 1.4;
+    font-size: 23px;
   }
 }
+
 ul,
 ol {
   margin: 0;

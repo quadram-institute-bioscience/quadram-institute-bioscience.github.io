@@ -4,12 +4,14 @@
 
 // Colors
 
-$primary: #077866;
-$secondary: #b1b905;
-$black: #2f2f41;
+$primary: #097E74;
+$secondary: #B6BE00;
+$black: #2F3D46;
 $white: #ffffff;
-$white-offset: #f6fffc;
-$steel: #5C5A5A;
+$white-offset: #F0F1F1;
+$steel: #45535B;
+$muted: #5C6B72;
+$border: #E2E5E6;
 
 // Navigation
 $charcoal: #2F3D46;
@@ -18,12 +20,13 @@ $acid-green: #B6BE00;
 // Links
 $link-color: $primary;
 $link-decoration: none;
-$link-hover-color: darken($primary, 10%);
+$link-hover-color: $black;
 $link-hover-decoration: underline;
 
 // Fonts
-$font-family-base: 'IBM Plex Sans', Helvetica, Arial, sans-serif;
-$font-family-heading: 'Encode Sans Semi Condensed', serif, -apple-system;
+$font-family-base: 'Barlow', Helvetica, Arial, sans-serif;
+$font-family-heading: 'Saira', 'Exo 2', Helvetica, Arial, sans-serif;
+$font-family-data: 'Barlow Semi Condensed', 'Barlow', Helvetica, Arial, sans-serif;
 
 // Footer
 $footer-background-color: $primary;
@@ -55,6 +58,7 @@ $sub-footer-text-color: $white;
 @import 'components/call';
 @import 'components/title';
 @import 'components/content';
+@import 'components/service';
 @import 'components/intro';
 @import 'components/intro-image';
 @import 'components/strip';
@@ -69,10 +73,23 @@ $sub-footer-text-color: $white;
 
 body {
   font-size: 16px;
-  line-height: 1.2;
+  line-height: 1.55;
   font-family: $font-family-base;
+  color: $black;
+  background: $white-offset;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
   @include media-breakpoint-up(md) {
     font-size: 16px;
-    line-height: 1.3;
+    line-height: 1.6;
   }
+}
+
+main {
+  background: $white-offset;
+}
+
+::selection {
+  background: rgba($secondary, 0.45);
+  color: $black;
 }

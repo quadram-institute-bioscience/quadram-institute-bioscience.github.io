@@ -2,6 +2,11 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  background: $white;
+  border: 1px solid $border;
+  border-top: 4px solid $primary;
+  box-shadow: 0 1px 2px rgba($black, 0.06), 0 12px 32px rgba($black, 0.06);
+  padding: 24px;
   .team-image {
     height: 60px;
     width: 60px;
@@ -17,26 +22,29 @@
     h2 {
       margin: 0;
       font-size: 22px;
-      font-weight: normal;
+      font-family: $font-family-heading;
+      font-weight: 500;
+      line-height: 1.16;
     }
     p {
-      color: $black;
+      color: $muted;
       text-transform: uppercase;
       margin: 0;
       font-size: 12px;
       font-weight: 500;
+      letter-spacing: 0.08em;
     }
   }
   .team-content {
     margin-top: 20px;
     flex: 1 0 100%;
+    color: $steel;
+    line-height: 1.58;
   }
 }
 
 .team-summary-large {
-  background-color: $white-offset;
   padding: 30px;
-  border-radius: 3px;
   .team-image {
     height: 90px;
     width: 90px;

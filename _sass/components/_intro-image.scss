@@ -2,6 +2,7 @@
   width: 100%;
   height: auto;
   margin-top: -40px;
+  filter: drop-shadow(0 20px 32px rgba($black, 0.12));
 }
 .intro-image-absolute {
   max-width: none;
@@ -12,18 +13,18 @@
   }
   @include media-breakpoint-up(md) {
     position: absolute;
-    bottom: -50px;
-    left: -50px;
+    bottom: -42px;
+    left: -40px;
     width: 700px;
   }
   @include media-breakpoint-up(lg) {
-    bottom: -60px;
-    left: -60px;
+    bottom: -52px;
+    left: -50px;
     width: 800px;
   }
   @include media-breakpoint-up(xl) {
-    bottom: -100px;
-    left: -70px;
+    bottom: -86px;
+    left: -64px;
     width: 850px;
   }
 }
